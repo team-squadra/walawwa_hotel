@@ -39,7 +39,7 @@ $status = $responseData['status'];
 $token = $responseData['token'];
 
 if($status == 'admin'){
-    header("Location:../admin.html");
+    header("Location:../Admin/index.html");
     exit();
 }
 else{
