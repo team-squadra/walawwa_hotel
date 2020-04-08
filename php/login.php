@@ -43,22 +43,24 @@ $responseData = json_decode($response, TRUE);
 $status = $responseData['status'];
 $token = $responseData['token'];
 $email = $responseData['email'];
+$name = $responseData['name'];
 
 //setting session
 $_SESSION["email"] = $email;
 $_SESSION["status"] = $status;
 $_SESSION["token"] = $token;
+$_SESSION["name"] = $name;
 
 if(empty($_SESSION["token"])){
     header("Location:../login.html");
 }
 else{
     if($status == 'admin'){
-        header("Location:../Admin/index.html");
+        header("Location:../Admin/index.php");
         exit();
     }
     else{
-        header("Location:../Home.html");
+        header("Location:../Home.php");
         exit();
     }
 }

@@ -1,6 +1,19 @@
 <!DOCTYPE html>
 <html lang="en">
-
+    <?php
+	session_start();
+	
+	
+	if(!isset($_SESSION['status'])){
+		//not logged in
+		header('Location: ../login.html');
+	} 
+	
+	else if($_SESSION['status'] =='user')
+	{
+		header('Location: ../Home.php');
+	}
+	?>
 <head>
     <!-- Required meta tags-->
     <meta charset="UTF-8">
@@ -393,23 +406,34 @@
                                         <div class="image">
                                             <img src="images/icon/avatar-01.jpg" alt="John Doe" />
                                         </div>
+                                        <?php
+                                         echo'
                                         <div class="content">
-                                            <a class="js-acc-btn" href="#">john doe</a>
+                                            <a class="js-acc-btn" href="#">'.$_SESSION['name'].'</a>
                                         </div>
                                         <div class="account-dropdown js-dropdown">
+                                       
                                             <div class="info clearfix">
                                                 <div class="image">
                                                     <a href="#">
-                                                        <img src="images/icon/avatar-01.jpg" alt="John Doe" />
+                                                        <img src="images/icon/avatar-01.jpg" alt='.$_SESSION['name'].' />
                                                     </a>
                                                 </div>
                                                 <div class="content">
                                                     <h5 class="name">
-                                                        <a href="#">john doe</a>
+                                                    
+                                                        <a href="#">
+                                                             '.$_SESSION['name'].'
+                                                            
+                                                            </a>
+                                                            
                                                     </h5>
-                                                    <span class="email">johndoe@example.com</span>
+                                                    <span class="email">'.$_SESSION['email'].'</span>
                                                 </div>
                                             </div>
+                                            ';
+                                                            ?>
+
                                             <div class="account-dropdown__body">
                                                 <div class="account-dropdown__item">
                                                     <a href="#">
@@ -425,7 +449,7 @@
                                                 </div>
                                             </div>
                                             <div class="account-dropdown__footer">
-                                                <a href="#">
+                                                <a href="../php/logout.php">
                                                     <i class="zmdi zmdi-power"></i>Logout</a>
                                             </div>
                                         </div>

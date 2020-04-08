@@ -1,5 +1,19 @@
 <!doctype html>
 <html class="no-js"  lang="en">
+	<?php
+	session_start();
+	
+	
+	if(!isset($_SESSION['status'])){
+		//not logged in
+		header('Location: login.html');
+	} 
+	
+	else if($_SESSION['status'] =='admin')
+	{
+		header('Location: Admin/index.php');
+	}
+	?>
 
 	<head>
 		<!-- META DATA -->
@@ -96,8 +110,10 @@
 										<li class="smooth-menu"><a href="#blog">blog</a></li>
 										<li class="smooth-menu"><a href="#subs">subscription</a></li>
 										<li>
-											<button class="book-btn">book now
-											</button>
+											<!-- <a href="php/logout.php"> -->
+											<a class="book-btn" href="php/logout.php">LogOut
+		</a>
+		                                   <!-- </a> -->
 										</li><!--/.project-btn--> 
 									</ul>
 								</div><!-- /.navbar-collapse -->
