@@ -1,9 +1,14 @@
 <?php
+session_start();
+unset($_SESSION["user"]);
+unset($_SESSION['pw']);
 
 if (isset($_POST['login'])) {
 //  $uname = mysqli_real_escape_string($link, $_REQUEST['uname']);
  $email =$_POST['email'];
  $password =$_POST['pass'];
+
+
 
 // The data to send to the API
 $postData = array(
@@ -37,15 +42,25 @@ $responseData = json_decode($response, TRUE);
 // Print the date from the response
 $status = $responseData['status'];
 $token = $responseData['token'];
+$email = $responseData['email'];
 
-if($status == 'admin'){
-    header("Location:../Admin/index.html");
-    exit();
+//setting session
+$_SESSION["email"] = $email;
+$_SESSION["status"] = $status;
+$_SESSION["token"] = $token;
+
+if(empty($_SESSION["token"])){
+    header("Location:../login.html");
 }
 else{
-    header("Location:../Home.html");
-    exit();
+    if($status == 'admin'){
+        header("Location:../Admin/index.html");
+        exit();
+    }
+    else{
+        header("Location:../Home.html");
+        exit();
+    }
 }
-
 }
 ?>
