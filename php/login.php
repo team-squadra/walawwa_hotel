@@ -45,7 +45,7 @@ $token = $responseData['token'];
 $email = $responseData['email'];
 $name = $responseData['name'];
 
-//setting session
+//setting session variables
 $_SESSION["email"] = $email;
 $_SESSION["status"] = $status;
 $_SESSION["token"] = $token;

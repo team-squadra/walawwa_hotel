@@ -6,7 +6,7 @@
 	
 	if(!isset($_SESSION['status'])){
 		//not logged in
-		header('Location: ../login.html');
+		header('Location: ../login.php');
 	} 
 	
 	else if($_SESSION['status'] =='user')
