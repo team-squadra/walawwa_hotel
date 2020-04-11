@@ -20,7 +20,7 @@
 
   <h2>Login Form</h2>
 
-  <form action="register_hotel.php" method="post" enctype="multipart/form-data">
+  <form action="php/register_hotel.php" method="post" enctype="multipart/form-data">
     <div class="imgcontainer">
       <img src="img_avatar2.png" alt="Avatar" class="avatar">
     </div>
