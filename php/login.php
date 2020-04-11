@@ -52,7 +52,7 @@ $_SESSION["token"] = $token;
 $_SESSION["name"] = $name;
 
 if(empty($_SESSION["token"])){
-    header("Location:../login.html");
+    header("Location:../login.php");
 }
 else{
     if($status == 'admin'){
