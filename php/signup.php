@@ -40,8 +40,15 @@ if($response === FALSE){
 $responseData = json_decode($response, TRUE);
 
 // Print the date from the response
-echo $responseData['published'];
-
+$userid = $responseData['user'];
+if(empty($userid)){
+    echo "No responce from the server";
+    exit();
+}
+else{
+    header("Location:../login.php");
+    exit();
+}
 
 }
 ?>
