@@ -1,35 +1,30 @@
 <?php
-session_start();
-unset($_SESSION["uname"]);
-unset($_SESSION['email']);
-unset($_SESSION['file']);
-unset($_SESSION['phone']);
 
-if (isset($_POST['upload'])) {
+if(isset($_POST['upload'])){
 
     $name = $_POST['uname'];
     $email = $_POST['email'];
     $phone_number = $_POST['phone'];
 
     //Image upload 
-    $target_file = basename($_FILES["file"]["name"]);
+    $target_file = basename($_FILES["imagefile"]["name"]);
 
     // Select file type
-    $imageFileType = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
-
+    $imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
+  
     // Valid file extensions
-    $extensions_arr = array("jpg", "jpeg", "png", "gif");
-
+    $extensions_arr = array("jpg","jpeg","png","gif");
+  
     // Check extension
-    if (in_array($imageFileType, $extensions_arr)) {
-
-        // Convert to base64 
-        $image_base64 = base64_encode(file_get_contents($_FILES['file']['tmp_name']));
-
-        echo $image_base64;
-        echo "<br>";
-
+    if( in_array($imageFileType,$extensions_arr) ){
+   
+      // Convert to base64 
+      $image_base64 = base64_encode(file_get_contents($_FILES['imagefile']['tmp_name']) );
+    
     }
+
+
+    // Display the output 
 
     //The data to send to the API
     $postData = array(
@@ -52,6 +47,8 @@ if (isset($_POST['upload'])) {
 
     // Send the request
     $response = curl_exec($ch);
+    echo $response;
+    echo "<br>";
 
     // Check for errors
     if ($response === FALSE) {
@@ -66,3 +63,4 @@ if (isset($_POST['upload'])) {
     echo $responseData['hotel'];
 }
 ?>
+
