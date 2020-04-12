@@ -110,8 +110,9 @@
 										<li class="smooth-menu"><a href="#blog">blog</a></li>
 										<li class="smooth-menu"><a href="#subs">subscription</a></li>
 										<li>
-											<!-- <a href="Controllers/logout.php"> -->
-											<a class="book-btn" href="Controllers/logout.php">LogOut</a>
+											<!-- <a href="php/logout.php"> -->
+											<a class="book-btn" href="php/logout.php">LogOut
+		</a>
 		                                   <!-- </a> -->
 										</li><!--/.project-btn--> 
 									</ul>
@@ -815,240 +816,61 @@
 				</div><!--/.gallery-header-->
 				<div class="packages-content">
 					<div class="row">
+						<?php include 'Controllers/get_hotels.php';
+						foreach($responseData AS $response) {
 
-						<div class="col-md-4 col-sm-6">
-							<div class="single-package-item">
-								<img src="images/packages/p1.jpg" alt="package-place">
-								<div class="single-package-item-txt">
-									<h3>italy <span class="pull-right">$499</span></h3>
-									<div class="packages-para">
-										<p>
-											<span>
-												<i class="fa fa-angle-right"></i> 5 daays 6 nights
-											</span>
-											<i class="fa fa-angle-right"></i>  5 star accomodation
-										</p>
-										<p>
-											<span>
-												<i class="fa fa-angle-right"></i>  transportation
-											</span>
-											<i class="fa fa-angle-right"></i>  food facilities
-										 </p>
-									</div><!--/.packages-para-->
-									<div class="packages-review">
-										<p>
-											<i class="fa fa-star"></i>
-											<i class="fa fa-star"></i>
-											<i class="fa fa-star"></i>
-											<i class="fa fa-star"></i>
-											<i class="fa fa-star"></i>
-											<span>2544 review</span>
-										</p>
-									</div><!--/.packages-review-->
-									<div class="about-btn">
-										<button  class="about-view packages-btn">
-											book now
-										</button>
-									</div><!--/.about-btn-->
-								</div><!--/.single-package-item-txt-->
-							</div><!--/.single-package-item-->
-
-						</div><!--/.col-->
-
-						<div class="col-md-4 col-sm-6">
-							<div class="single-package-item">
-								<img src="images/packages/p2.jpg" alt="package-place">
-								<div class="single-package-item-txt">
-									<h3>england <span class="pull-right">$1499</span></h3>
-									<div class="packages-para">
-										<p>
-											<span>
-												<i class="fa fa-angle-right"></i> 5 daays 6 nights
-											</span>
-											<i class="fa fa-angle-right"></i>  5 star accomodation
-										</p>
-										<p>
-											<span>
-												<i class="fa fa-angle-right"></i>  transportation
-											</span>
-											<i class="fa fa-angle-right"></i>  food facilities
-										 </p>
-									</div><!--/.packages-para-->
-									<div class="packages-review">
-										<p>
-											<i class="fa fa-star"></i>
-											<i class="fa fa-star"></i>
-											<i class="fa fa-star"></i>
-											<i class="fa fa-star"></i>
-											<i class="fa fa-star"></i>
-											<span>2544 review</span>
-										</p>
-									</div><!--/.packages-review-->
-									<div class="about-btn">
-										<button  class="about-view packages-btn">
-											book now
-										</button>
-									</div><!--/.about-btn-->
-								</div><!--/.single-package-item-txt-->
-							</div><!--/.single-package-item-->
-
-						</div><!--/.col-->
+							$name = $response['name'];
+							$email = $response['email'];
+							$phone_number = $response['phone_number'];
+							$hotelImage = $response['hotelImage'];
 						
-						<div class="col-md-4 col-sm-6">
-							<div class="single-package-item">
-								<img src="images/packages/p3.jpg" alt="package-place">
-								<div class="single-package-item-txt">
-									<h3>france <span class="pull-right">$1199</span></h3>
-									<div class="packages-para">
-										<p>
-											<span>
-												<i class="fa fa-angle-right"></i> 5 daays 6 nights
-											</span>
-											<i class="fa fa-angle-right"></i>  5 star accomodation
-										</p>
-										<p>
-											<span>
-												<i class="fa fa-angle-right"></i>  transportation
-											</span>
-											<i class="fa fa-angle-right"></i>  food facilities
-										 </p>
-									</div><!--/.packages-para-->
-									<div class="packages-review">
-										<p>
-											<i class="fa fa-star"></i>
-											<i class="fa fa-star"></i>
-											<i class="fa fa-star"></i>
-											<i class="fa fa-star"></i>
-											<i class="fa fa-star"></i>
-											<span>2544 review</span>
-										</p>
-									</div><!--/.packages-review-->
-									<div class="about-btn">
-										<button  class="about-view packages-btn">
-											book now
-										</button>
-									</div><!--/.about-btn-->
-								</div><!--/.single-package-item-txt-->
-							</div><!--/.single-package-item-->
-
-						</div><!--/.col-->
-						
-						<div class="col-md-4 col-sm-6">
-							<div class="single-package-item">
-								<img src="images/packages/p4.jpg" alt="package-place">
-								<div class="single-package-item-txt">
-									<h3>india <span class="pull-right">$799</span></h3>
-									<div class="packages-para">
-										<p>
-											<span>
-												<i class="fa fa-angle-right"></i> 5 daays 6 nights
-											</span>
-											<i class="fa fa-angle-right"></i>  5 star accomodation
-										</p>
-										<p>
-											<span>
-												<i class="fa fa-angle-right"></i>  transportation
-											</span>
-											<i class="fa fa-angle-right"></i>  food facilities
-										 </p>
-									</div><!--/.packages-para-->
-									<div class="packages-review">
-										<p>
-											<i class="fa fa-star"></i>
-											<i class="fa fa-star"></i>
-											<i class="fa fa-star"></i>
-											<i class="fa fa-star"></i>
-											<i class="fa fa-star"></i>
-											<span>2544 review</span>
-										</p>
-									</div><!--/.packages-review-->
-									<div class="about-btn">
-										<button  class="about-view packages-btn">
-											book now
-										</button>
-									</div><!--/.about-btn-->
-								</div><!--/.single-package-item-txt-->
-							</div><!--/.single-package-item-->
-
-						</div><!--/.col-->
-						
-						<div class="col-md-4 col-sm-6">
-							<div class="single-package-item">
-								<img src="images/packages/p5.jpg" alt="package-place">
-								<div class="single-package-item-txt">
-									<h3>spain <span class="pull-right">$999</span></h3>
-									<div class="packages-para">
-										<p>
-											<span>
-												<i class="fa fa-angle-right"></i> 5 daays 6 nights
-											</span>
-											<i class="fa fa-angle-right"></i>  5 star accomodation
-										</p>
-										<p>
-											<span>
-												<i class="fa fa-angle-right"></i>  transportation
-											</span>
-											<i class="fa fa-angle-right"></i>  food facilities
-										 </p>
-									</div><!--/.packages-para-->
-									<div class="packages-review">
-										<p>
-											<i class="fa fa-star"></i>
-											<i class="fa fa-star"></i>
-											<i class="fa fa-star"></i>
-											<i class="fa fa-star"></i>
-											<i class="fa fa-star"></i>
-											<span>2544 review</span>
-										</p>
-									</div><!--/.packages-review-->
-									<div class="about-btn">
-										<button  class="about-view packages-btn">
-											book now
-										</button>
-									</div><!--/.about-btn-->
-								</div><!--/.single-package-item-txt-->
-							</div><!--/.single-package-item-->
-
-						</div><!--/.col-->
-						
-						<div class="col-md-4 col-sm-6">
-							<div class="single-package-item">
-								<img src="images/packages/p6.jpg" alt="package-place">
-								<div class="single-package-item-txt">
-									<h3>thailand <span class="pull-right">$799</span></h3>
-									<div class="packages-para">
-										<p>
-											<span>
-												<i class="fa fa-angle-right"></i> 5 daays 6 nights
-											</span>
-											<i class="fa fa-angle-right"></i>  5 star accomodation
-										</p>
-										<p>
-											<span>
-												<i class="fa fa-angle-right"></i>  transportation
-											</span>
-											<i class="fa fa-angle-right"></i>  food facilities
-										 </p>
-									</div><!--/.packages-para-->
-									<div class="packages-review">
-										<p>
-											<i class="fa fa-star"></i>
-											<i class="fa fa-star"></i>
-											<i class="fa fa-star"></i>
-											<i class="fa fa-star"></i>
-											<i class="fa fa-star"></i>
-											<span>2544 review</span>
-										</p>
-									</div><!--/.packages-review-->
-									<div class="about-btn">
-										<button  class="about-view packages-btn">
-											book now
-										</button>
-									</div><!--/.about-btn-->
-								</div><!--/.single-package-item-txt-->
-							</div><!--/.single-package-item-->
-
-						</div><!--/.col-->
+							if(empty($email)){
+								// header("Location:../login.html");
+								echo "No responce from server";
+							}
+							else{
+								echo'
+								<div class="col-md-4 col-sm-6">
+									<div class="single-package-item">
+										<img src="data:image/png;base64,' . $hotelImage . '" alt="package-place">
+										<div class="single-package-item-txt">
+											<h3>'.$name.'</h3>
+											<div class="packages-para">
+												<p>
+													<span>
+														<i class="fa fa-angle-right"></i> email
+													</span>
+													<i class="fa fa-angle-right"></i>  number
+												</p>
+												<p>
+													<span>
+														<i class="fa fa-angle-right"></i>  transportation
+													</span>
+													<i class="fa fa-angle-right"></i>  food facilities
+												</p>
+											</div><!--/.packages-para-->
+											<div class="packages-review">
+												<p>
+													<i class="fa fa-star"></i>
+													<i class="fa fa-star"></i>
+													<i class="fa fa-star"></i>
+													<i class="fa fa-star"></i>
+													<i class="fa fa-star"></i>
+													<span>2544 review</span>
+												</p>
+											</div><!--/.packages-review-->
+											<div class="about-btn">
+												<button  class="about-view packages-btn">
+													book now
+												</button>
+											</div><!--/.about-btn-->
+										</div><!--/.single-package-item-txt-->
+									</div><!--/.single-package-item-->  
+								</div><!--/.col--> 
+								';
+								}
+						}
+						?>
 
 					</div><!--/.row-->
 				</div><!--/.packages-content-->
