@@ -11,7 +11,7 @@
 
 <body>
 
-  <h2>Login Form</h2>
+  <h2>Hotel Registration</h2>
 
   <form action="Controllers/register_hotel.php" method="post" enctype="multipart/form-data">
     <div class="imgcontainer">
@@ -19,19 +19,55 @@
     </div>
 
     <div class="container">
-      <label for="uname"><b>Username</b></label>
-      <input type="text" placeholder="Enter Username" name="uname" id="uname" required>
+      <label for="uname"><b>Username</b></label><br>
+      <input type="text" placeholder="Enter Username" name="uname" id="uname" required><br>
 
-      <label for="email"><b>Email</b></label>
-      <input type="email" placeholder="Enter email" name="email" id="email" required>
+      <label for="location"><b>Location</b></label><br>
+      <input type="text" placeholder="Enter location" name="location" id="location" required><br>
 
-      <label for="phone"><b>Phone Number</b></label>
-      <input type="number" placeholder="phonenumber" name="phone" id="phone" required>
+      <label for="pool"><b>Pool Facility</b></label><br>
+      <select id="pool" name="pool">
+        <option value="available">available</option>
+        <option value="not available">not available</option>
+      </select><br>
 
-      <label for="imageUpload"><b>Your Image</b></label>
-      <input type="file" name="imagefile" id="imagefile" accept=".png, .jpg, .jpeg" required>
+      <label for="wifi"><b>wifi Facility</b></label><br>
+      <select id="wifi" name="wifi">
+        <option value="available">available</option>
+        <option value="not available">not available</option>
+      </select><br>
 
-      <button type="submit" name="upload">Login</button>
+      <label for="parking"><b>parking Facility</b></label><br>
+      <select id="parking" name="parking">
+        <option value="available">available</option>
+        <option value="not available">not available</option>
+      </select><br>
+
+      <label for="spa"><b>spa Facility</b></label><br>
+      <select id="spa" name="spa">
+        <option value="available">available</option>
+        <option value="not available">not available</option>
+      </select><br>
+
+      <label for="bar"><b>bar Facility</b></label><br>
+      <select id="bar" name="bar">
+        <option value="available">available</option>
+        <option value="not available">not available</option>
+      </select><br>
+
+      <label for="description"><b>description</b></label><br>
+      <input type="text" placeholder="Enter description" name="description" id="description" required><br>
+
+      <label for="email"><b>Email</b></label><br>
+      <input type="email" placeholder="Enter email" name="email" id="email" required><br>
+
+      <label for="phone"><b>Phone Number</b></label><br>
+      <input type="number" placeholder="phonenumber" name="phone" id="phone" required><br>
+
+      <label for="imageUpload"><b>Your Image</b></label><br>
+      <input type="file" name="imagefile" id="imagefile" accept=".png, .jpg, .jpeg" required><br>
+
+      <button type="submit" name="upload">Register</button>
       <label>
         <input type="checkbox" checked="checked" name="remember"> Remember me
       </label>

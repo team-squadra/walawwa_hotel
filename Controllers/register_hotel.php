@@ -5,6 +5,13 @@ if(isset($_POST['upload'])){
     $name = $_POST['uname'];
     $email = $_POST['email'];
     $phone_number = $_POST['phone'];
+    $location = $_POST['location'];
+    $pool = $_POST['pool'];
+    $wifi = $_POST['wifi'];
+    $parking = $_POST['parking'];
+    $spa = $_POST['spa'];
+    $bar = $_POST['bar'];
+    $description = $_POST['description'];
 
     //Image upload 
     $target_file = basename($_FILES["imagefile"]["name"]);
@@ -31,7 +38,14 @@ if(isset($_POST['upload'])){
         'name' => $name,
         'phone_number' => $phone_number,
         'email' => $email,
-        'hotelImage' => $image_base64
+        'hotelImage' => $image_base64,
+        'location' => $location,
+        'pool' => $pool,
+        'wifi' => $wifi,
+        'parking' => $parking,
+        'spa' => $spa,
+        'bar' => $bar,
+        'description' => $description
     );
 
     // Setup cURL
