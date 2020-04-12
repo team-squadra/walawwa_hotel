@@ -1,6 +1,6 @@
 <?php
 
-$ch = curl_init( 'https://mighty-inlet-78383.herokuapp.com/api/hotels/imagedata');
+$ch = curl_init( 'https://mighty-inlet-78383.herokuapp.com/api/hotels/hoteldata');
 curl_setopt_array($ch, array(
     CURLOPT_RETURNTRANSFER => TRUE
 ));
