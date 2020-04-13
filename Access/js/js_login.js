@@ -6,7 +6,6 @@ function login_check() {
         dataType: "JSON",
         beforeSend: function() {
             $("#login_submit").html("Wait........");
-            //$("#login_loading_bar").display("none");
             $(".show-progress").addClass('progress');
         },
         success: function(feedback) {
