@@ -8,7 +8,7 @@
     <!--===============================================================================================-->
     <link rel="icon" type="image/png" href="logo/logo1.png" />
     <!--===============================================================================================-->
-    <link rel="stylesheet" type="text/css" href="css/util.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
     <!--===============================================================================================-->
 </head>
 
@@ -63,12 +63,31 @@
         width: 100%
     }
 }
+
+.title {
+    font-family: 'Poppins', sans-serif;
+    font-size: 30px;
+    line-height: 1.2;
+    width: 200px;
+    padding: 50px;
+}
 </style>
 
 <body>
     <div id="loading_div" style="width: 100%; height: 100%;">
         <div class="centered">
-            <img src="logo/logo1.png" style="width: 100px; height: 100px;padding: 50px;"><br>
+            <div class="title">
+                <center>
+                    <label style="color:Gray;">Hotel</label>
+                    <label style="color:LightGray;">Book
+                        <sub>
+                            <img src="logo/logo1.png"
+                                style="width: 25px;height :25px;-ms-transform: rotate(20deg);transform: rotate(20deg);">
+                        </sub>
+                    </label>
+                </center>
+            </div>
+            <br>
             <div class="progress"></div>
         </div>
     </div>
@@ -78,7 +97,6 @@
 	session_start();
 	
 	if(!isset($_SESSION['status'])){
-		//not logged in
 		header('Location: Access/login.php');
 	} 
 	

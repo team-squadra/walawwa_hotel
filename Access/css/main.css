@@ -734,3 +734,8 @@ input.input100 {
         width: 100%
     }
 }
+
+#login_err_lbl {
+    padding: 5px;
+    color: tomato;
+}

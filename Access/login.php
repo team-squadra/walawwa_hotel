@@ -35,24 +35,33 @@
         <div class="container-login100">
             <div class="wrap-login100">
                 <form id="login_form" class="login100-form validate-form">
+
                     <span class="login100-form-title p-b-43" style="color: #6675DF;">
-                        HotelBook
+                        <center>
+                            <label style="color:Gray;">Hotel</label>
+                            <label style="color:LightGray;">Book
+                                <sub>
+                                    <img src="../logo/logo1.png"
+                                        style="width: 25px;height :25px;-ms-transform: rotate(20deg);transform: rotate(20deg);">
+                                </sub>
+                            </label>
+                        </center>
                     </span>
 
-                    <div class="wrap-input100 validate-input" data-validate="Valid email is required: ex@abc.xyz">
-                        <input class="input100" type="text" name="lg_email">
+                    <div class="wrap-input100 validate-input" style="margin-bottom: 20px;">
+                        <input class="input100" type="text" name="lg_email" id="lg_email_id">
                         <span class="focus-input100"></span>
                         <span class="label-input100">Email</span>
                     </div>
 
-                    <div class="wrap-input100 validate-input" data-validate="Password is required">
-                        <input class="input100" type="password" name="lg_password">
+                    <div class="wrap-input100 validate-input" style="margin-bottom: 20px;">
+                        <input class="input100" type="password" name="lg_password"  id="lg_password_id">
                         <span class="focus-input100"></span>
                         <span class="label-input100">Password</span>
                     </div>
 
                     <center>
-                        <span id="login_err_lbl"></span>
+                        <label id="login_err_lbl"></label>
                     </center>
 
                     <div class="container-login100-form-btn">
@@ -107,8 +116,8 @@
             })
         })
     })(jQuery);
-	</script>
-	<!--===============================================================================================-->
+    </script>
+    <!--===============================================================================================-->
 
 </body>
 
