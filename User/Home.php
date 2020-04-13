@@ -859,79 +859,51 @@
 						</div><!--/.gallery-header-->
 						<div class="blog-content">
 							<div class="row">
+							<?php include 'Controllers/get_news.php';
+								foreach($responseData AS $response) {
 
-								<div class="col-sm-4 col-md-4">
-									<div class="thumbnail">
-										<h2>trending news <span>15 november 2017</span></h2>
-										<div class="thumbnail-img">
-											<img src="images/blog/b1.jpg" alt="blog-img">
-											<div class="thumbnail-img-overlay"></div><!--/.thumbnail-img-overlay-->
-										
-										</div><!--/.thumbnail-img-->
-									  
-										<div class="caption">
-											<div class="blog-txt">
-												<h3>
-													<a href="#">
-														Discover on beautiful weather, Fantastic foods and historical place in Prag
-													</a>
-												</h3>
-												<p>
-													Lorem ipsum dolor sit amet, contur adip elit, sed do mod incid ut labore et dolore magna aliqua. Ut enim ad minim veniam 
-												</p>
-												<a href="#">Read More</a>
-											</div><!--/.blog-txt-->
-										</div><!--/.caption-->
-									</div><!--/.thumbnail-->
+									$hedding = $response['hedding'];
+									$content = $response['content'];
+									$date = $response['date'];
+									$newsImage = $response['newsImage'];
+									$id = $response['_id'];
+								
+									if(empty($id)){
+										// header("Location:../login.html");
+										echo "No responce from server";
+									}
+									else{
+										echo'
+											<div class="col-sm-4 col-md-4">
+												<div class="thumbnail">
+													<h2>trending news <span>'.$date.'</span></h2>
+													<div class="thumbnail-img">
+													<img src="data:image/png;base64,' . $newsImage . '" alt="img"/>
+														<div class="thumbnail-img-overlay"></div><!--/.thumbnail-img-overlay-->
+													
+													</div><!--/.thumbnail-img-->
+												
+													<div class="caption">
+														<div class="blog-txt">
+															<h3>
+																<a href="#">
+																	'.$hedding.'
+																</a>
+															</h3>
+															<p>
+																'.$content.'
+															</p>
+															<a href="#">Read More</a>
+														</div><!--/.blog-txt-->
+													</div><!--/.caption-->
+												</div><!--/.thumbnail-->
 
-								</div><!--/.col-->
-
-								<div class="col-sm-4 col-md-4">
-									<div class="thumbnail">
-										<h2>trending news <span>15 november 2017</span></h2>
-										<div class="thumbnail-img">
-											<img src="images/blog/b2.jpg" alt="blog-img">
-											<div class="thumbnail-img-overlay"></div><!--/.thumbnail-img-overlay-->
-										
-										</div><!--/.thumbnail-img-->
-										<div class="caption">
-											<div class="blog-txt">
-												<h3>
-													<a href="#">
-														Discover on beautiful weather, Fantastic foods and historical place in india
-													</a>
-												</h3>
-												<p>
-													Lorem ipsum dolor sit amet, contur adip elit, sed do mod incid ut labore et dolore magna aliqua. Ut enim ad minim veniam 
-												</p>
-												<a href="#">Read More</a>
-											</div><!--/.blog-txt-->
-										</div><!--/.caption-->
-									</div><!--/.thumbnail-->
-
-								</div><!--/.col-->
-
-								<div class="col-sm-4 col-md-4">
-									<div class="thumbnail">
-										<h2>trending news <span>15 november 2017</span></h2>
-										<div class="thumbnail-img">
-											<img src="images/blog/b3.jpg" alt="blog-img">
-											<div class="thumbnail-img-overlay"></div><!--/.thumbnail-img-overlay-->
-										
-										</div><!--/.thumbnail-img-->
-										<div class="caption">
-											<div class="blog-txt">
-												<h3><a href="#">10 Most Natural place to Discover</a></h3>
-												<p>
-													Lorem ipsum dolor sit amet, contur adip elit, sed do mod incid ut labore et dolore magna aliqua. Ut enim ad minim veniam 
-												</p>
-												<a href="#">Read More</a>
-											</div><!--/.blog-txt-->
-										</div><!--/.caption-->
-									</div><!--/.thumbnail-->
-
-								</div><!--/.col-->
-
+											</div><!--/.col-->
+								
+										';
+									}
+								}
+							?>
 							</div><!--/.row-->
 						</div><!--/.blog-content-->
 					</div><!--/.blog-details-->
