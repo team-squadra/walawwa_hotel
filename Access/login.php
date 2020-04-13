@@ -49,13 +49,13 @@
                     </span>
 
                     <div class="wrap-input100 validate-input" style="margin-bottom: 20px;">
-                        <input class="input100" type="text" name="lg_email" id="lg_email_id">
+                        <input class="input100" type="text" name="lg_email" id="lg_email_id" onfocus="clr_err()">
                         <span class="focus-input100"></span>
                         <span class="label-input100">Email</span>
                     </div>
 
                     <div class="wrap-input100 validate-input" style="margin-bottom: 20px;">
-                        <input class="input100" type="password" name="lg_password"  id="lg_password_id">
+                        <input class="input100" type="password" name="lg_password"  id="lg_password_id" onfocus="clr_err()">
                         <span class="focus-input100"></span>
                         <span class="label-input100">Password</span>
                     </div>
