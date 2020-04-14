@@ -111,7 +111,7 @@
 										<li class="smooth-menu"><a href="#subs">subscription</a></li>
 										<li>
 											<!-- <a href="php/logout.php"> -->
-											<a class="book-btn" href="../Access/php_logout.php">LogOut</a>
+											<a class="book-btn" href="../Access/logout.php">LogOut</a>
 		                                   <!-- </a> -->
 										</li><!--/.project-btn--> 
 									</ul>

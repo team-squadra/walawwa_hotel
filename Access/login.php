@@ -36,7 +36,7 @@
             <div class="wrap-login100">
                 <form id="login_form" class="login100-form validate-form">
 
-                    <span class="login100-form-title p-b-43" style="color: #6675DF;">
+                    <span class="login100-form-title p-b-43">
                         <center>
                             <label style="color:Gray;">Hotel</label>
                             <label style="color:LightGray;">Book
@@ -60,19 +60,26 @@
                         <span class="label-input100">Password</span>
                     </div>
 
-                    <center>
-                        <label id="login_err_lbl"></label>
-                    </center>
+                    <div class="text-right">
+                        <label id="login_err_lbl" class="err_lbl"></label>
+                    </div>
 
-                    <div class="container-login100-form-btn">
-                        <button type="button" id="login_submit" name="login" class="login100-form-btn"
+                    <div class="container-login100-form-btn" style="margin-bottom: 20px;">
+                        <button type="button" id="login_submit" class="login100-form-btn"
                             onclick="login_check()">login</button>
                     </div>
 
-                    <br><br>
                     <center>
                         <div class="show-progress" id="login_loading_bar"></div>
                     </center>
+
+                    <div class="text-center p-t-46 p-b-20" onclick="redirect_register()" style="cursor: pointer;">
+						<span class="txt2">Create an account 
+                        <a href="registration.php">Sign up</a>
+						</span>
+					</div>
+
+                    
                 </form>
 
                 <div class="login100-more" style="background-image: url('images/bg-01.jpg');">

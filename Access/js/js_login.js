@@ -6,13 +6,13 @@ function login_check() {
 
     if (lg_email_id_val == "") {
         document.getElementById("login_submit").innerHTML = "login";
-        document.getElementById("login_err_lbl").innerHTML = "Email is reqired !";
+        document.getElementById("login_err_lbl").innerHTML = "Email is required !";
         document.getElementById("login_loading_bar").classList.remove("progress");
 
     } else if (lg_email_id_val.match(mailformat)) {
         if (lg_password_id_val == "") {
             document.getElementById("login_submit").innerHTML = "login";
-            document.getElementById("login_err_lbl").innerHTML = "Password is reqired !";
+            document.getElementById("login_err_lbl").innerHTML = "Password is required !";
             document.getElementById("login_loading_bar").classList.remove("progress");
         } else {
             $.ajax({
@@ -26,9 +26,10 @@ function login_check() {
                     $("#login_submit").attr("disabled", true);
                 },
                 success: function(feedback) {
+                    console.log(feedback);
                     if (feedback['error'] == 'success') {
                         location = feedback['msg'];
-                    } else if (feedback['error'] == 'no_password') {
+                    } else if (feedback['error'] == 'error') {
 
                         $("#login_err_lbl").html(feedback['msg']);
                         $(".show-progress").removeClass('progress');
@@ -38,7 +39,11 @@ function login_check() {
                     } else {
 
                     }
+                },
+                error: function(error) {
+                    console.log(error);
                 }
+
             })
         }
     } else {
@@ -52,4 +57,8 @@ function login_check() {
 
 function clr_err() {
     document.getElementById("login_err_lbl").innerHTML = "";
+}
+
+function redirect_register() {
+    window.location.replace("registration.php");
 }
