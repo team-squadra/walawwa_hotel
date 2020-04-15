@@ -28,10 +28,10 @@
 		<link href="https://fonts.googleapis.com/css?family=Poppins:100,200,300,400,500,600,700,800,900" rel="stylesheet" />
 
 		<!-- TITLE OF SITE -->
-		<title>Travel</title>
+		<title>HotelBook</title>
 
 		<!-- favicon img -->
-		<link rel="shortcut icon" type="image/icon" href="logo/favicon.png"/>
+		<link rel="shortcut icon" type="image/icon" href="../logo/logo1.png"/>
 
 		<!--font-awesome.min.css-->
 		<link rel="stylesheet" href="css/font-awesome.min.css" />
@@ -93,7 +93,12 @@
 						<div class="col-sm-2">
 							<div class="logo">
 								<a href="index.html">
-									tour<span>Nest</span>
+									Hotel<span>Book
+									<sub>
+										<img src="../logo/logo1.png"
+											style="width: 25px;height :25px;-ms-transform: rotate(20deg);transform: rotate(20deg);">
+									</sub>
+									</span>
 								</a>
 							</div><!-- /.logo-->
 						</div><!-- /.col-->
@@ -108,12 +113,12 @@
 								</div><!-- /.navbar-header-->
 								<div class="collapse navbar-collapse">		  
 									<ul class="nav navbar-nav navbar-right">
-										<li class="smooth-menu"><a href="#home">home</a></li>
+										<li class="smooth-menu"><a href="#home">Home</a></li>
 										<li class="smooth-menu"><a href="#gallery">Destination</a></li>
-										<li class="smooth-menu"><a href="#pack">Packages </a></li>
+										<li class="smooth-menu"><a href="#pack">Hotels </a></li>
 										<li class="smooth-menu"><a href="#spo">Special Offers</a></li>
 										<li class="smooth-menu"><a href="#blog">blog</a></li>
-										<li class="smooth-menu"><a href="#subs">subscription</a></li>
+										<li class="smooth-menu"><a href="#subs">Make a Review</a></li>
 										<li class="smooth-menu"><a href="#pak">My bookings</a></li>
 										<li>
 											<!-- <a href="php/logout.php"> -->
@@ -536,7 +541,8 @@
 							top destination
 						</h2>
 						<p>
-							Duis aute irure dolor in  velit esse cillum dolore eu fugiat nulla.  
+							Travel gives us many amazing experiences, but perhaps less obvious is the effect our travels 
+							have on the places and people we visit.
 						</p>
 					</div><!--/.gallery-header-->
 					<div class="gallery-box">
@@ -640,7 +646,7 @@
 						Our Hotels List
 					</h2>
 					<p>
-						Duis aute irure dolor in  velit esse cillum dolore eu fugiat nulla.  
+						Find the perfect place to stay with us
 					</p>
 				</div><!--/.gallery-header-->
 				<div class="packages-content">
@@ -651,6 +657,10 @@
 							$name = $response['name'];
 							$email = $response['email'];
 							$phone_number = $response['phone_number'];
+							$parking = $response['parking'];
+							$spa = $response['spa'];
+							$bar = $response['bar'];
+							$pool = $response['pool'];
 							$hotelImage = $response['hotelImage'];
 						
 							if(empty($email)){
@@ -667,27 +677,17 @@
 											<div class="packages-para">
 												<p>
 													<span>
-														<i class="fa fa-angle-right"></i> email
+													<i class="fas fa-parking"></i>  Parking '.$parking.'
 													</span>
-													<i class="fa fa-angle-right"></i>  number
+													<i class="fas fa-spa"></i> Spa '.$spa.'
 												</p>
 												<p>
 													<span>
-														<i class="fa fa-angle-right"></i>  transportation
+														<i class="fas fa-glass-cheers"></i> Bar '.$bar.'
 													</span>
-													<i class="fa fa-angle-right"></i>  food facilities
+													<i class="fas fa-swimming-pool"></i> Pool '.$pool.'
 												</p>
 											</div><!--/.packages-para-->
-											<div class="packages-review">
-												<p>
-													<i class="fa fa-star"></i>
-													<i class="fa fa-star"></i>
-													<i class="fa fa-star"></i>
-													<i class="fa fa-star"></i>
-													<i class="fa fa-star"></i>
-													<span>2544 review</span>
-												</p>
-											</div><!--/.packages-review-->
 											<div class="about-btn">
 												<button  class="about-view packages-btn">
 													book now
@@ -717,7 +717,7 @@
 						clients reviews
 					</h2>
 					<p>
-						Duis aute irure dolor in  velit esse cillum dolore eu fugiat nulla. 
+						Our Satisfied Clients 
 					</p>
 
 				</div><!--/.gallery-header-->
@@ -790,7 +790,7 @@
 											<i class="fa fa-star"></i>
 											<i class="fa fa-star"></i>
 											<i class="fa fa-star"></i>
-											<span>2544 review</span>
+											<span>2324 review</span>
 										</p>
 									</div><!--/.packages-review-->
 									<div class="packages-para special-offer-para">
@@ -967,10 +967,15 @@
 							<div class="single-footer-item">
 								<div class="footer-logo">
 									<a href="index.html">
-										tour<span>Nest</span>
+										Hotel<span>Book
+										<sub>
+											<img src="../logo/logo1.png"
+												style="width: 25px;height :25px;-ms-transform: rotate(20deg);transform: rotate(20deg);">
+										</sub>
+										</span>
 									</a>
 									<p>
-										best travel agency
+										best hotel agency
 									</p>
 								</div>
 							</div><!--/.single-footer-item-->
@@ -980,12 +985,13 @@
 							<div class="single-footer-item">
 								<h2>link</h2>
 								<div class="single-footer-txt">
-									<p><a href="#">home</a></p>
-									<p><a href="#">destination</a></p>
-									<p><a href="#">spacial packages</a></p>
-									<p><a href="#">special offers</a></p>
-									<p><a href="#">blog</a></p>
-									<p><a href="#">contacts</a></p>
+									<p><a href="#home">home</a></p>
+									<p><a href="#gallery">destination</a></p>
+									<p><a href="#pack">Hotels</a></p>
+									<p><a href="#spo">special offers</a></p>
+									<p><a href="#blog">blog</a></p>
+									<p><a href="#subs">Make a Review</a></p>
+
 								</div><!--/.single-footer-txt-->
 							</div><!--/.single-footer-item-->
 
@@ -995,11 +1001,11 @@
 							<div class="single-footer-item">
 								<h2>popular destination</h2>
 								<div class="single-footer-txt">
-									<p><a href="#">china</a></p>
-									<p><a href="#">venezuela</a></p>
-									<p><a href="#">brazil</a></p>
-									<p><a href="#">australia</a></p>
-									<p><a href="#">london</a></p>
+									<p>Colombo</p>
+									<p>Yala</p>
+									<p>Dambulla</p>
+									<p>Bandarawela</p>
+									<p>Kaluthara</p>
 								</div><!--/.single-footer-txt-->
 							</div><!--/.single-footer-item-->
 						</div><!--/.col-->
@@ -1008,10 +1014,10 @@
 							<div class="single-footer-item text-center">
 								<h2 class="text-left">contacts</h2>
 								<div class="single-footer-txt text-left">
-									<p>+1 (300) 1234 6543</p>
-									<p class="foot-email"><a href="#">info@tnest.com</a></p>
-									<p>North Warnner Park 336/A</p>
-									<p>Newyork, USA</p>
+									<p>+94 11 265 98744 </p>
+									<p>info@bookme.com</p>
+									<p>294, Galle Road, Bambalapitiya, Colombo 04</p>
+									<p>Colombo,Sri Lanka</p>
 								</div><!--/.single-footer-txt-->
 							</div><!--/.single-footer-item-->
 						</div><!--/.col-->
@@ -1022,11 +1028,11 @@
 				<hr>
 				<div class="foot-icons ">
 					<ul class="footer-social-links list-inline list-unstyled">
-		                <li><a href="#" target="_blank" class="foot-icon-bg-1"><i class="fa fa-facebook"></i></a></li>
-		                <li><a href="#" target="_blank" class="foot-icon-bg-2"><i class="fa fa-twitter"></i></a></li>
-		                <li><a href="#" target="_blank" class="foot-icon-bg-3"><i class="fa fa-instagram"></i></a></li>
+		                <li><a href="#" target="_blank" class="foot-icon-bg-1"><i class="fab fa-facebook-f"></i></a></li>
+		                <li><a href="#" target="_blank" class="foot-icon-bg-2"><i class="fab fa-twitter"></i></a></li>
+		                <li><a href="#" target="_blank" class="foot-icon-bg-3"><i class="fab fa-instagram"></i></a></li>
 		        	</ul>
-		        	<p>&copy; 2017 <a href="https://www.themesine.com">ThemeSINE</a>. All Right Reserved</p>
+		        	<p>&copy; 2020 <a href="#">Team Squadra</a>. All Right Reserved®</p>
 
 		        </div><!--/.foot-icons-->
 				<div id="scroll-Top">
@@ -1076,6 +1082,9 @@
 
 		<!--Custom JS-->
 		<script src="js/custom.js"></script>
+
+		<!-- fa fa icons -->
+		<script src='https://kit.fontawesome.com/a076d05399.js'></script>
 
 
 	</body>
