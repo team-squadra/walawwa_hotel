@@ -109,6 +109,7 @@
 										<li class="smooth-menu"><a href="#spo">Special Offers</a></li>
 										<li class="smooth-menu"><a href="#blog">blog</a></li>
 										<li class="smooth-menu"><a href="#subs">subscription</a></li>
+										<li class="smooth-menu"><a href="#pak">My bookings</a></li>
 										<li>
 											<!-- <a href="php/logout.php"> -->
 											<a class="book-btn" href="../Access/php_logout.php">LogOut</a>
@@ -916,15 +917,7 @@
 		<!--subscribe start-->
 		<section id="subs" class="subscribe">
 			<div class="container">
-				<div class="subscribe-title text-center">
-					<h2>
-						Join our Subscribers List to Get Regular Update
-					</h2>
-					<p>
-						Subscribe Now. We will send you Best offer for your Trip 
-					</p>
-				</div>
-				<form>
+				<!-- <form>
 					<div class="row">
 						<div class="col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">
 							<div class="custom-input-group">
@@ -936,8 +929,40 @@
 
 						</div>
 					</div>
-				</form>
-			</div>
+				</form> -->
+				<div class="col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">
+					<div class="inner">
+						<div class="image-holder">
+							<img src="images/registration-form-6.jpg" alt="">
+						</div>
+						<form action="">
+							<h3>Make a Review</h3>
+							<div class="form-row">
+								<input type="text" class="form-control" placeholder="Name">
+								<input type="text" class="form-control" placeholder="Mail">
+							</div>
+							<div class="form-row">
+								<input type="text" class="form-control" placeholder="Phone">
+								<div class="form-holder">
+									<select name="" id="" class="form-control">
+										<option value="" disabled selected>Choose Your Class</option>
+										<option value="class 01">Class 01</option>
+										<option value="class 02">Class 02</option>
+										<option value="class 03">Class 03</option>
+									</select>
+									<i class="zmdi zmdi-chevron-down"></i>
+								</div>
+							</div>
+							<textarea name="" id="" placeholder="Message" class="form-control" style="height: 130px;"></textarea>
+							<button>Book Now
+								<i class="zmdi zmdi-long-arrow-right"></i>
+							</button>
+						</form>
+						
+					</div>
+				</div>
+
+			 </div> <!-- div end -->
 
 		</section>
 		<!--subscribe end-->
