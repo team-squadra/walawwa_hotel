@@ -6,9 +6,8 @@ if (isset($_POST['upload'])) {
     $location = $_POST['location'];
     $review = $_POST['review'];
 
-    echo $name;
-
-    //Image upload 
+    // //Image upload 
+    // // $target_file = basename($_FILES["img"]["name"]);
     // $target_file = basename($_FILES["img"]["name"]);
 
     // // Select file type

@@ -64,6 +64,11 @@
 		<!--responsive.css-->
 		<link rel="stylesheet" href="css/responsive.css" />
 
+		<!-- MATERIAL DESIGN ICONIC FONT -->
+		<link rel="stylesheet" href="fonts/material-design-iconic-font/css/material-design-iconic-font.min.css">
+		<!-- STYLE CSS -->
+		<link rel="stylesheet" href="css/review/style.css">
+
 		<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
 		<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
 
@@ -931,35 +936,20 @@
 					</div>
 				</form> -->
 				<div class="col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">
-					<div class="inner">
 						<div class="image-holder">
 							<img src="images/registration-form-6.jpg" alt="">
 						</div>
-						<form action="">
+						<form action="Controllers/set_review.php" method="post" enctype="multipart/form-data">
 							<h3>Make a Review</h3>
 							<div class="form-row">
-								<input type="text" class="form-control" placeholder="Name">
-								<input type="text" class="form-control" placeholder="Mail">
+								<input type="text" class="form-ctrl" placeholder="Enter Username" name="uname" id="uname" required>
+								<input type="text" class="form-ctrl" placeholder="Location" name="location" id="location" required>
 							</div>
-							<div class="form-row">
-								<input type="text" class="form-control" placeholder="Phone">
-								<div class="form-holder">
-									<select name="" id="" class="form-control">
-										<option value="" disabled selected>Choose Your Class</option>
-										<option value="class 01">Class 01</option>
-										<option value="class 02">Class 02</option>
-										<option value="class 03">Class 03</option>
-									</select>
-									<i class="zmdi zmdi-chevron-down"></i>
-								</div>
-							</div>
-							<textarea name="" id="" placeholder="Message" class="form-control" style="height: 130px;"></textarea>
-							<button>Book Now
+							<textarea name="review" id="review" placeholder="Message" class="form-ctrl" style="height: 130px;"></textarea>
+							<button class="buttonw" type="submit" name="upload">Review Now
 								<i class="zmdi zmdi-long-arrow-right"></i>
 							</button>
 						</form>
-						
-					</div>
 				</div>
 
 			 </div> <!-- div end -->
