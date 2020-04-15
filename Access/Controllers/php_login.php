@@ -5,7 +5,7 @@ login();
 
 function login(){
 
-    if ($_GET['login'] && $_GET['login'] == 'true'){
+    if (isset($_GET['login']) && $_GET['login'] == 'true'){
 
         $email = $_POST['lg_email'];
         $password = $_POST['lg_password'];
@@ -65,7 +65,7 @@ function login(){
                 echo json_encode(['error' => 'success', 'msg' => '../User/Home.php']);
             }
         } else {
-          echo json_encode(['error' => 'no_password', 'msg' => ''.$error.'']);
+          echo json_encode(['error' => 'error', 'msg' => ''.$error.'']);
         }
 
     }

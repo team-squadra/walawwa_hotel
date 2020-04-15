@@ -97,7 +97,7 @@
 	session_start();
 	
 	if(!isset($_SESSION['status'])){
-		header('Location: Access/login.php');
+        header('Location: Access/login.php');
 	} 
 	
 	else if($_SESSION['status'] =='admin')
