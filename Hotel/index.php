@@ -74,8 +74,9 @@
                     <li><a href="photography.php">Photography</a></li>
                     <li><a href="travel.php">Travel</a></li>
                     <li><a href="fashion.php">Fashion</a></li>
-                    <li><a href="about.php">About</a></li>
+                    <li><a href="profile.php">Profile</a></li>
                     <li><a href="contact.php">Contact</a></li>
+                    <li><a href="../Access/logout.php">Log out</a></li>
                 </ul>
             </nav>
 
@@ -102,19 +103,22 @@
                     <div class="col-md-8 text text-center">
                         <div class="img mb-4" style="background-image: url(images/bg1.jpg);"></div>
                         <div class="desc">
-                            <h1 class="mb-4"><?php echo $_SESSION['name'] ?></h1>
-                            <p class="mb-4">Where trade winds carried legendary explorers like Marco Polo, Ibn Battuta
-                                and Fa-Hsien past Sri Lanka's soaring southern cliffs on some of history's most
-                                celebrated nautical journeys, Cape Weligama has become the most celebrated resort along
-                                this fabled island's palm-fringed shores. Thirty minutes east of Galle, Cape Weligama
-                                inhabits 12 manicured acres atop a singular promontory rising 40 metres above the Indian
-                                Ocean. Stunning panoramas await you, naturally complementing the 39 private retreats
-                                designed by one of Asia's most celebrated architects, Lek Bunnag. The hotel’s dining
-                                venues capture Weligama's iconic sunsets, as does the 60-meter crescent-shaped infinity
-                                pool that appears to flow seamlessly into the shimmering sea, while those timeless
-                                breezes ensure elegant swells unfurl onto the sun-kissed sand.</p>
-                            <p><a href="about.php" class="btn-custom">More About Me <span
-                                        class="ion-ios-arrow-forward"></span></a></p>
+                            <h1 class="mb-4">
+                                <?php
+                                if(isset($_SESSION["name"])){
+                                    echo $_SESSION["name"] ;
+                                }
+                                else{
+                                    echo "Hotel Username";
+                                }
+                                ?>
+                            </h1>
+                            <p class="mb-4"></p>
+                            <p>
+                                <a href="profile.php" class="btn-custom">
+                                    profile <span class="ion-ios-arrow-forward"></span>
+                                </a>
+                            </p>
                         </div>
                     </div>
                 </div>

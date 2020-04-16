@@ -1,3 +1,17 @@
+<?php
+	session_start();
+
+	if(!isset($_SESSION['status'])){
+		header('Location: ../Access/login.php');
+	} 
+	else if($_SESSION['status'] !='hotel')
+	{
+		header('Location: ../index.php');
+    }
+    else{
+
+	}
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -60,7 +74,7 @@
                     <li><a href="photography.php">Photography</a></li>
                     <li><a href="travel.php">Travel</a></li>
                     <li><a href="fashion.php">Fashion</a></li>
-                    <li class="colorlib-active"><a href="about.php">About</a></li>
+                    <li class="colorlib-active"><a href="profile.php">Profile</a></li>
                     <li><a href="contact.php">Contact</a></li>
                 </ul>
             </nav>
@@ -86,18 +100,22 @@
                 <div class="overlay"></div>
                 <div class="js-fullheight d-flex justify-content-center align-items-center">
                     <div class="col-md-8 text text-center">
-                        <div class="img mb-4" style="background-image: url(images/author.jpg);"></div>
+                        <div class="img mb-4" style="background-image: url(images/bg1.jpg);"></div>
                         <div class="desc">
-                            <h2 class="subheading">Hello I'm</h2>
-                            <h1 class="mb-4">Elen Henderson</h1>
-                            <p class="mb-4">I am A Blogger Far far away, behind the word mountains, far from the
-                                countries Vokalia and Consonantia, there live the blind texts. Separated they live in
-                                Bookmarksgrove right at the coast of the Semantics, a large language ocean.</p>
-                            <ul class="ftco-social mt-3">
-                                <li class="ftco-animate"><a href="#"><span class="icon-twitter"></span></a></li>
-                                <li class="ftco-animate"><a href="#"><span class="icon-facebook"></span></a></li>
-                                <li class="ftco-animate"><a href="#"><span class="icon-instagram"></span></a></li>
-                            </ul>
+                            <h1 class="mb-4">
+                                <?php
+                                if(isset($_SESSION["name"])){
+                                    echo $_SESSION["name"] ;
+                                }
+                                else{
+                                    echo "Hotel Username";
+                                }
+                                ?>
+                            </h1>
+                            <p class="mb-4"></p>
+                            <p class="mb-4"></p>
+                            <p class="mb-4"></p>
+                            <p class="mb-4"></p>
                         </div>
                     </div>
                 </div>

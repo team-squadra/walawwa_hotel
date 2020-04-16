@@ -60,7 +60,7 @@
                     <li><a href="photography.php">Photography</a></li>
                     <li><a href="travel.php">Travel</a></li>
                     <li><a href="fashion.php">Fashion</a></li>
-                    <li><a href="about.php">About</a></li>
+                    <li><a href="profile.php">Profile</a></li>
                     <li><a href="contact.php">Contact</a></li>
                 </ul>
             </nav>

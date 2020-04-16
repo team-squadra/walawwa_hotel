@@ -51,7 +51,8 @@
 
                     <div id="nav_div">
                         <center>
-                            <div onclick="reg_as_user()" class="cpointer button btn-clr">Register as a User</div><br>
+                            <div onclick="reg_as_user()" class="cpointer button btn-clr">Register as a Customer</div>
+                            <br>
                             <div onclick="reg_as_hotel()" class="cpointer button btn-clr">Register as a Hotel</div>
                         </center>
                     </div>
@@ -62,7 +63,7 @@
                             <input class="input100" type="text" name="u_reg_uname" id="u_reg_uname_id"
                                 onfocus="clr_err()">
                             <span class="focus-input100"></span>
-                            <span class="label-input100">User name</span>
+                            <span class="label-input100">Username</span>
                         </div>
 
                         <div class="wrap-input100 validate-input">
@@ -91,9 +92,9 @@
                                 onfocus="clr_err()">
                             <span class="focus-input100"></span>
                             <span class="label-input100">Confirm Password</span>
-						</div>
-						
-						<div class="text-right cpointer">
+                        </div>
+
+                        <div class="text-right cpointer">
                             <a href="registration.php">Change user type</a>
                         </div>
 
@@ -110,6 +111,13 @@
                     </div>
 
                     <div id="hotel_reg_div" style="display: none;">
+
+                        <div class="wrap-input100 validate-input">
+                            <input class="input100" type="text" name="h_reg_uname" id="h_reg_uname_id"
+                                onfocus="clr_err()">
+                            <span class="focus-input100"></span>
+                            <span class="label-input100">Hotel Username</span>
+                        </div>
 
                         <div class="wrap-input100 validate-input">
                             <input class="input100" type="text" name="h_reg_email" id="h_reg_email_id"
