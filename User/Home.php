@@ -3,15 +3,15 @@
 	<?php
 	session_start();
 	
-	
 	if(!isset($_SESSION['status'])){
-		//not logged in
-		header('Location: login.php');
+		header('Location: ../Access/login.php');
 	} 
-	
-	else if($_SESSION['status'] =='admin')
+	else if($_SESSION['status'] !='user')
 	{
-		header('Location: Admin/index.php');
+		header('Location: ../index.php');
+    }
+    else{
+
 	}
 	?>
 
@@ -28,10 +28,10 @@
 		<link href="https://fonts.googleapis.com/css?family=Poppins:100,200,300,400,500,600,700,800,900" rel="stylesheet" />
 
 		<!-- TITLE OF SITE -->
-		<title>Travel</title>
+		<title>HotelBook</title>
 
 		<!-- favicon img -->
-		<link rel="shortcut icon" type="image/icon" href="logo/favicon.png"/>
+		<link rel="shortcut icon" type="image/icon" href="../logo/logo1.png"/>
 
 		<!--font-awesome.min.css-->
 		<link rel="stylesheet" href="css/font-awesome.min.css" />
@@ -64,6 +64,11 @@
 		<!--responsive.css-->
 		<link rel="stylesheet" href="css/responsive.css" />
 
+		<!-- MATERIAL DESIGN ICONIC FONT -->
+		<link rel="stylesheet" href="fonts/material-design-iconic-font/css/material-design-iconic-font.min.css">
+		<!-- STYLE CSS -->
+		<link rel="stylesheet" href="css/review/style.css">
+
 		<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
 		<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
 
@@ -88,7 +93,12 @@
 						<div class="col-sm-2">
 							<div class="logo">
 								<a href="index.html">
-									tour<span>Nest</span>
+									Hotel<span>Book
+									<sub>
+										<img src="../logo/logo1.png"
+											style="width: 25px;height :25px;-ms-transform: rotate(20deg);transform: rotate(20deg);">
+									</sub>
+									</span>
 								</a>
 							</div><!-- /.logo-->
 						</div><!-- /.col-->
@@ -103,12 +113,12 @@
 								</div><!-- /.navbar-header-->
 								<div class="collapse navbar-collapse">		  
 									<ul class="nav navbar-nav navbar-right">
-										<li class="smooth-menu"><a href="#home">home</a></li>
+										<li class="smooth-menu"><a href="#home">Home</a></li>
 										<li class="smooth-menu"><a href="#gallery">Destination</a></li>
-										<li class="smooth-menu"><a href="#pack">Packages </a></li>
+										<li class="smooth-menu"><a href="#pack">Hotels </a></li>
 										<li class="smooth-menu"><a href="#spo">Special Offers</a></li>
 										<li class="smooth-menu"><a href="#blog">blog</a></li>
-										<li class="smooth-menu"><a href="#subs">subscription</a></li>
+										<li class="smooth-menu"><a href="#subs">Make a Review</a></li>
 										<li class="smooth-menu"><a href="#pak">My bookings</a></li>
 										<li>
 											<!-- <a href="php/logout.php"> -->
@@ -531,7 +541,8 @@
 							top destination
 						</h2>
 						<p>
-							Duis aute irure dolor in  velit esse cillum dolore eu fugiat nulla.  
+							Travel gives us many amazing experiences, but perhaps less obvious is the effect our travels 
+							have on the places and people we visit.
 						</p>
 					</div><!--/.gallery-header-->
 					<div class="gallery-box">
@@ -635,7 +646,7 @@
 						Our Hotels List
 					</h2>
 					<p>
-						Duis aute irure dolor in  velit esse cillum dolore eu fugiat nulla.  
+						Find the perfect place to stay with us
 					</p>
 				</div><!--/.gallery-header-->
 				<div class="packages-content">
@@ -646,6 +657,10 @@
 							$name = $response['name'];
 							$email = $response['email'];
 							$phone_number = $response['phone_number'];
+							$parking = $response['parking'];
+							$spa = $response['spa'];
+							$bar = $response['bar'];
+							$pool = $response['pool'];
 							$hotelImage = $response['hotelImage'];
 						
 							if(empty($email)){
@@ -662,27 +677,17 @@
 											<div class="packages-para">
 												<p>
 													<span>
-														<i class="fa fa-angle-right"></i> email
+													<i class="fas fa-parking"></i>  Parking '.$parking.'
 													</span>
-													<i class="fa fa-angle-right"></i>  number
+													<i class="fas fa-spa"></i> Spa '.$spa.'
 												</p>
 												<p>
 													<span>
-														<i class="fa fa-angle-right"></i>  transportation
+														<i class="fas fa-glass-cheers"></i> Bar '.$bar.'
 													</span>
-													<i class="fa fa-angle-right"></i>  food facilities
+													<i class="fas fa-swimming-pool"></i> Pool '.$pool.'
 												</p>
 											</div><!--/.packages-para-->
-											<div class="packages-review">
-												<p>
-													<i class="fa fa-star"></i>
-													<i class="fa fa-star"></i>
-													<i class="fa fa-star"></i>
-													<i class="fa fa-star"></i>
-													<i class="fa fa-star"></i>
-													<span>2544 review</span>
-												</p>
-											</div><!--/.packages-review-->
 											<div class="about-btn">
 												<button  class="about-view packages-btn">
 													book now
@@ -712,7 +717,7 @@
 						clients reviews
 					</h2>
 					<p>
-						Duis aute irure dolor in  velit esse cillum dolore eu fugiat nulla. 
+						Our Satisfied Clients 
 					</p>
 
 				</div><!--/.gallery-header-->
@@ -785,7 +790,7 @@
 											<i class="fa fa-star"></i>
 											<i class="fa fa-star"></i>
 											<i class="fa fa-star"></i>
-											<span>2544 review</span>
+											<span>2324 review</span>
 										</p>
 									</div><!--/.packages-review-->
 									<div class="packages-para special-offer-para">
@@ -931,35 +936,20 @@
 					</div>
 				</form> -->
 				<div class="col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">
-					<div class="inner">
 						<div class="image-holder">
 							<img src="images/registration-form-6.jpg" alt="">
 						</div>
-						<form action="">
+						<form action="Controllers/set_review.php" method="post" enctype="multipart/form-data">
 							<h3>Make a Review</h3>
 							<div class="form-row">
-								<input type="text" class="form-control" placeholder="Name">
-								<input type="text" class="form-control" placeholder="Mail">
+								<input type="text" class="form-ctrl" placeholder="Enter Username" name="uname" id="uname" required>
+								<input type="text" class="form-ctrl" placeholder="Location" name="location" id="location" required>
 							</div>
-							<div class="form-row">
-								<input type="text" class="form-control" placeholder="Phone">
-								<div class="form-holder">
-									<select name="" id="" class="form-control">
-										<option value="" disabled selected>Choose Your Class</option>
-										<option value="class 01">Class 01</option>
-										<option value="class 02">Class 02</option>
-										<option value="class 03">Class 03</option>
-									</select>
-									<i class="zmdi zmdi-chevron-down"></i>
-								</div>
-							</div>
-							<textarea name="" id="" placeholder="Message" class="form-control" style="height: 130px;"></textarea>
-							<button>Book Now
+							<textarea name="review" id="review" placeholder="Message" class="form-ctrl" style="height: 130px;"></textarea>
+							<button class="buttonw" type="submit" name="upload">Review Now
 								<i class="zmdi zmdi-long-arrow-right"></i>
 							</button>
 						</form>
-						
-					</div>
 				</div>
 
 			 </div> <!-- div end -->
@@ -977,10 +967,15 @@
 							<div class="single-footer-item">
 								<div class="footer-logo">
 									<a href="index.html">
-										tour<span>Nest</span>
+										Hotel<span>Book
+										<sub>
+											<img src="../logo/logo1.png"
+												style="width: 25px;height :25px;-ms-transform: rotate(20deg);transform: rotate(20deg);">
+										</sub>
+										</span>
 									</a>
 									<p>
-										best travel agency
+										best hotel agency
 									</p>
 								</div>
 							</div><!--/.single-footer-item-->
@@ -990,12 +985,13 @@
 							<div class="single-footer-item">
 								<h2>link</h2>
 								<div class="single-footer-txt">
-									<p><a href="#">home</a></p>
-									<p><a href="#">destination</a></p>
-									<p><a href="#">spacial packages</a></p>
-									<p><a href="#">special offers</a></p>
-									<p><a href="#">blog</a></p>
-									<p><a href="#">contacts</a></p>
+									<p><a href="#home">home</a></p>
+									<p><a href="#gallery">destination</a></p>
+									<p><a href="#pack">Hotels</a></p>
+									<p><a href="#spo">special offers</a></p>
+									<p><a href="#blog">blog</a></p>
+									<p><a href="#subs">Make a Review</a></p>
+
 								</div><!--/.single-footer-txt-->
 							</div><!--/.single-footer-item-->
 
@@ -1005,11 +1001,11 @@
 							<div class="single-footer-item">
 								<h2>popular destination</h2>
 								<div class="single-footer-txt">
-									<p><a href="#">china</a></p>
-									<p><a href="#">venezuela</a></p>
-									<p><a href="#">brazil</a></p>
-									<p><a href="#">australia</a></p>
-									<p><a href="#">london</a></p>
+									<p>Colombo</p>
+									<p>Yala</p>
+									<p>Dambulla</p>
+									<p>Bandarawela</p>
+									<p>Kaluthara</p>
 								</div><!--/.single-footer-txt-->
 							</div><!--/.single-footer-item-->
 						</div><!--/.col-->
@@ -1018,10 +1014,10 @@
 							<div class="single-footer-item text-center">
 								<h2 class="text-left">contacts</h2>
 								<div class="single-footer-txt text-left">
-									<p>+1 (300) 1234 6543</p>
-									<p class="foot-email"><a href="#">info@tnest.com</a></p>
-									<p>North Warnner Park 336/A</p>
-									<p>Newyork, USA</p>
+									<p>+94 11 265 98744 </p>
+									<p>info@bookme.com</p>
+									<p>294, Galle Road, Bambalapitiya, Colombo 04</p>
+									<p>Colombo,Sri Lanka</p>
 								</div><!--/.single-footer-txt-->
 							</div><!--/.single-footer-item-->
 						</div><!--/.col-->
@@ -1032,11 +1028,11 @@
 				<hr>
 				<div class="foot-icons ">
 					<ul class="footer-social-links list-inline list-unstyled">
-		                <li><a href="#" target="_blank" class="foot-icon-bg-1"><i class="fa fa-facebook"></i></a></li>
-		                <li><a href="#" target="_blank" class="foot-icon-bg-2"><i class="fa fa-twitter"></i></a></li>
-		                <li><a href="#" target="_blank" class="foot-icon-bg-3"><i class="fa fa-instagram"></i></a></li>
+		                <li><a href="#" target="_blank" class="foot-icon-bg-1"><i class="fab fa-facebook-f"></i></a></li>
+		                <li><a href="#" target="_blank" class="foot-icon-bg-2"><i class="fab fa-twitter"></i></a></li>
+		                <li><a href="#" target="_blank" class="foot-icon-bg-3"><i class="fab fa-instagram"></i></a></li>
 		        	</ul>
-		        	<p>&copy; 2017 <a href="https://www.themesine.com">ThemeSINE</a>. All Right Reserved</p>
+		        	<p>&copy; 2020 <a href="#">Team Squadra</a>. All Right Reserved®</p>
 
 		        </div><!--/.foot-icons-->
 				<div id="scroll-Top">
@@ -1086,6 +1082,9 @@
 
 		<!--Custom JS-->
 		<script src="js/custom.js"></script>
+
+		<!-- fa fa icons -->
+		<script src='https://kit.fontawesome.com/a076d05399.js'></script>
 
 
 	</body>
