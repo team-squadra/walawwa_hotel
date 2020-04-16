@@ -101,7 +101,7 @@ function registration(){
         
         //result finalizing
         if ($error == "success"){
-            registration_setp2($email);
+            registration_setp2($email , $uname);
         }
         else{
             echo json_encode(['error' => 'error', 'msg' => ''.$error.'']);
@@ -110,11 +110,14 @@ function registration(){
     }
 }
 
-function registration_setp2($remail){
-    
+
+
+function registration_setp2($remail , $runame){
+
         //The data to send to the API
         $postData = array(
-            'email' => $remail
+            'email' => $remail,
+            'name' => $runame
         );
     
         // Setup cURL
@@ -141,14 +144,16 @@ function registration_setp2($remail){
         $responseData = json_decode($response, TRUE);
     
         // Print the date from the response
-        $hotelid = $responseData['hotel'];
+        $error = $responseData['error'];
 
         //result finalizing
-        if ($hotelid != ""){
+        if ($error == "success"){
             echo json_encode(['error' => 'success', 'msg' => 'login.php']);
         }
         else{
-            echo json_encode(['error' => 'error', 'msg' => ''.$hotelid.'']);
+            echo json_encode(['error' => 'error', 'msg' => ''.$error.'']);
         }
 
 }
+
+?>

@@ -1,6 +1,5 @@
 <?php
-	session_start();
-
+    session_start();
 	if(!isset($_SESSION['status'])){
 		header('Location: ../Access/login.php');
 	} 
@@ -112,10 +111,24 @@
                                 }
                                 ?>
                             </h1>
-                            <p class="mb-4"></p>
-                            <p class="mb-4"></p>
-                            <p class="mb-4"></p>
-                            <p class="mb-4"></p>
+                            <?php
+                            include 'Controllers/php/php_profileDataLoader.php';
+                                echo '
+                                <p class="mb-4">'.$hotel_id.'</p>
+                                <p class="mb-4">'.$hotel_name.'</p>
+                                <p class="mb-4">'.$hotel_email.'</p>
+                                <p class="mb-4">'.$hotel_phone_number.'</p>
+                                <p class="mb-4">'.$hotel_location.'</p>
+                                <p class="mb-4">'.$hotel_description.'</p>
+                                <p class="mb-4">'.$hotel_hotelImage.'</p>
+                                <p class="mb-4">'.$hotel_pool.'</p>
+                                <p class="mb-4">'.$hotel_parking.'</p>
+                                <p class="mb-4">'.$hotel_spa.'</p>
+                                <p class="mb-4">'.$hotel_bar.'</p>
+                                <p class="mb-4">'.$hotel_wifi.'</p>
+                                ';
+                            ?>
+                            
                         </div>
                     </div>
                 </div>
