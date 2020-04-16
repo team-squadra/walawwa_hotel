@@ -66,6 +66,7 @@ function login(){
             }
             else if($status == "hotel"){
                 $_SESSION["status"] = $status;
+                $_SESSION["name"] = $name;
                 $_SESSION["email"] = $email;
                 $_SESSION["token"] = $token;
 

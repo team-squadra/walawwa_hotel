@@ -1,5 +1,6 @@
 function h_register_check() {
 
+    var h_reg_uname_val_id = document.getElementById("h_reg_uname_id").value;
     var h_reg_email_val_id = document.getElementById("h_reg_email_id").value;
     var h_reg_pass_val_id = document.getElementById("h_reg_pass_id").value;
     var h_reg_conpass_val_id = document.getElementById("h_reg_conpass_id").value;
@@ -13,9 +14,15 @@ function h_register_check() {
     atr_register_err_lbl.innerHTML = ""; //clr err
 
 
-    if (h_reg_email_val_id == "") {
+    if (h_reg_uname_val_id == "") {
 
-        atr_register_submit.innerHTML = "login";
+        atr_register_submit.innerHTML = "Sign up";
+        atr_register_err_lbl.innerHTML = "Hotel Username is required !";
+        atr_register_loading_bar.classList.remove("progress");
+
+    } else if (h_reg_email_val_id == "") {
+
+        atr_register_submit.innerHTML = "Sign up";
         atr_register_err_lbl.innerHTML = "Email is required !";
         atr_register_loading_bar.classList.remove("progress");
 
@@ -23,19 +30,19 @@ function h_register_check() {
 
         if (h_reg_pass_val_id == "") {
 
-            atr_register_submit.innerHTML = "login";
+            atr_register_submit.innerHTML = "Sign up";
             atr_register_err_lbl.innerHTML = "Password is required !";
             atr_register_loading_bar.classList.remove("progress");
 
         } else if (h_reg_conpass_val_id == "") {
 
-            atr_register_submit.innerHTML = "login";
+            atr_register_submit.innerHTML = "Sign up";
             atr_register_err_lbl.innerHTML = "Confirm your password !";
             atr_register_loading_bar.classList.remove("progress");
 
         } else if (h_reg_conpass_val_id != h_reg_pass_val_id) {
 
-            atr_register_submit.innerHTML = "login";
+            atr_register_submit.innerHTML = "Sign up";
             atr_register_err_lbl.innerHTML = "Password Mismatch !";
             document.getElementById("h_reg_pass_id").value = "";
             document.getElementById("h_reg_conpass_id").value = "";
@@ -86,7 +93,7 @@ function h_register_check() {
         }
 
     } else {
-        atr_register_submit.innerHTML = "login";
+        atr_register_submit.innerHTML = "Sign up";
         atr_register_err_lbl.innerHTML = "Invalid Email !";
         atr_register_loading_bar.classList.remove("progress");
     }
@@ -115,19 +122,19 @@ function u_register_check() {
 
     if (u_reg_uname_val_id == "") {
 
-        atr_register_submit.innerHTML = "login";
+        atr_register_submit.innerHTML = "Sign up";
         atr_register_err_lbl.innerHTML = "User Name is required !";
         atr_register_loading_bar.classList.remove("progress");
 
     } else if (u_reg_phone_val_id == "") {
 
-        atr_register_submit.innerHTML = "login";
+        atr_register_submit.innerHTML = "Sign up";
         atr_register_err_lbl.innerHTML = "Phone number is required !";
         atr_register_loading_bar.classList.remove("progress");
 
     } else if (u_reg_email_val_id == "") {
 
-        atr_register_submit.innerHTML = "login";
+        atr_register_submit.innerHTML = "Sign up";
         atr_register_err_lbl.innerHTML = "Email is required !";
         atr_register_loading_bar.classList.remove("progress");
 
@@ -135,19 +142,19 @@ function u_register_check() {
 
         if (u_reg_pass_val_id == "") {
 
-            atr_register_submit.innerHTML = "login";
+            atr_register_submit.innerHTML = "Sign up";
             atr_register_err_lbl.innerHTML = "Password is required !";
             atr_register_loading_bar.classList.remove("progress");
 
         } else if (u_reg_conpass_val_id == "") {
 
-            atr_register_submit.innerHTML = "login";
+            atr_register_submit.innerHTML = "Sign up";
             atr_register_err_lbl.innerHTML = "Confirm your password !";
             atr_register_loading_bar.classList.remove("progress");
 
         } else if (u_reg_conpass_val_id != u_reg_pass_val_id) {
 
-            atr_register_submit.innerHTML = "login";
+            atr_register_submit.innerHTML = "Sign up";
             atr_register_err_lbl.innerHTML = "Password Mismatch !";
             document.getElementById("u_reg_pass_id").value = "";
             document.getElementById("u_reg_conpass_id").value = "";
@@ -199,7 +206,7 @@ function u_register_check() {
 
     } else {
 
-        atr_register_submit.innerHTML = "login";
+        atr_register_submit.innerHTML = "Sign up";
         atr_register_err_lbl.innerHTML = "Invalid Email !";
         atr_register_loading_bar.classList.remove("progress");
     }
