@@ -69,6 +69,17 @@
 		<!-- STYLE CSS -->
 		<link rel="stylesheet" href="css/review/style.css">
 
+		<!-- booking form -->
+
+		<!-- Google font -->
+		<link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet">
+
+		<!-- Bootstrap -->
+		<link type="text/css" rel="stylesheet" href="css/booking/bootstrap.min.css" />
+
+		<!-- Custom stlylesheet -->
+		<link type="text/css" rel="stylesheet" href="css/booking/style.css" />
+
 		<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
 		<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
 
@@ -114,13 +125,8 @@
 
 								<div class="collapse navbar-collapse">		  
 									<ul class="nav navbar-nav navbar-right">
-										<li class="smooth-menu"><a href="#home">Home</a></li>
-										<li class="smooth-menu"><a href="#gallery">Destination</a></li>
-										<li class="smooth-menu"><a href="#pack">Hotels </a></li>
-										<li class="smooth-menu"><a href="#spo">Special Offers</a></li>
-										<li class="smooth-menu"><a href="#blog">blog</a></li>
-										<li class="smooth-menu"><a href="#subs">Make a Review</a></li>
-										<li class="smooth-menu"><a href="#">My bookings</a></li>
+										<li ><a href="Home.php">Home</a></li>
+										<li ><a href="#mybookings">My bookings</a></li>
 										<li>
 											<!-- <a href="php/logout.php"> -->
 											<a class="book-btn" href="../Access/logout.php">LogOut</a>
@@ -171,7 +177,7 @@
 		<!--about-us end -->
 
 		<!--packages start-->
-		<section id="pack" class="packages">
+		<section id="mybookings" class="packages">
 			<div class="container">
 				<div class="gallary-header text-center">
 					<h2>
@@ -180,19 +186,19 @@
 				</div><!--/.gallery-header-->
 				<div class="packages-content">
 					<div class="row">
-						<?php include 'Controllers/get_hotels.php';
+						<?php include 'Controllers/get_bookings.php';
 						foreach($responseData AS $response) {
 
-							$name = $response['name'];
-							$email = $response['email'];
-							$phone_number = $response['phone_number'];
-							$parking = $response['parking'];
-							$spa = $response['spa'];
-							$bar = $response['bar'];
-							$pool = $response['pool'];
+							$user_name = $response['user_name'];
+							$hotel_name = $response['hotel_name'];
+							$check_in = $response['check_in'];
+							$check_out = $response['check_out'];
+							$rooms = $response['rooms'];
+							$adaults = $response['adaults'];
+							$childrens = $response['childrens'];
 							$hotelImage = $response['hotelImage'];
 						
-							if(empty($email)){
+							if(empty($hotel_name)){
 								// header("Location:../login.html");
 								echo "No responce from server";
 							}
@@ -202,26 +208,31 @@
 									<div class="single-package-item">
 										<img src="data:image/png;base64,' . $hotelImage . '" alt="package-place">
 										<div class="single-package-item-txt">
-											<h3>'.$name.'</h3>
+											<h3>'.$hotel_name.'</h3>
 											<div class="packages-para">
 												<p>
 													<span>
-													<i class="fas fa-parking"></i>  Parking '.$parking.'
+													<i class="fas fa-calendar-times"></i>From: '.$check_in.'
 													</span>
-													<i class="fas fa-spa"></i> Spa '.$spa.'
+													<i class="fas fa-calendar-check"></i> To: '.$check_out.'
 												</p>
 												<p>
 													<span>
-														<i class="fas fa-glass-cheers"></i> Bar '.$bar.'
+														<i class="fas fa-person-booth"></i> Rooms: '.$rooms.'
 													</span>
-													<i class="fas fa-swimming-pool"></i> Pool '.$pool.'
+													<i class="fas fa-male"></i> Adults: '.$adaults.'
+												</p>
+												<p>
+													<span>
+														<i class="fas fa-child"></i> Childrens: '.$childrens.'
+													</span>
 												</p>
 											</div><!--/.packages-para-->
+
 											<div class="about-btn">
-												<button  class="about-view packages-btn">
-													book now
-												</button>
+												<button  class="about-view packages-btn">Update</button>										
 											</div><!--/.about-btn-->
+
 										</div><!--/.single-package-item-txt-->
 									</div><!--/.single-package-item-->  
 								</div><!--/.col--> 
@@ -234,8 +245,113 @@
 				</div><!--/.packages-content-->
 			</div><!--/.container-->
 
-		</section><!--/.packages-->
-		<!--packages end-->
+			<section id="subs" class="subscribe">
+			<div class="container">
+				<!-- form start	 -->
+
+				
+					<div class="section-center">
+						<div class="container">
+							<div class="row">
+								<div class="col-md-7 col-md-push-5">
+									<div class="booking-cta">
+										<h1>Make your reservation</h1>
+										<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Animi facere, soluta magnam consectetur molestias itaque
+											ad sint fugit architecto incidunt iste culpa perspiciatis possimus voluptates aliquid consequuntur cumque quasi.
+											Perspiciatis.
+										</p>
+									</div>
+								</div>
+								<div class="col-md-4 col-md-pull-7">
+									<div class="booking-form">
+										<form action="Controllers/set_booking.php" method="post" enctype="multipart/form-data">										
+											<div class="form-group">
+												<!-- <span class="form-label">Your Destination</span>
+												<input class="form-control" type="text" placeholder="Enter a destination or hotel name"> -->							
+												<span class="form-label">Pick Your Hotel</span>
+														<select class="form-control" id="hotel_name" name="hotel_name">
+															<option value="0" selected="selected" disabled>Category</option>
+															<?php include 'Controllers/get_hotels.php';
+																foreach($responseData AS $response) {
+
+																	$name = $response['name'];										
+																	echo'<option value="'.$name.'">'.$name.'</option>';
+																	
+																}
+																?>
+														</select>
+												<span class="select-arrow"></span>
+
+
+											</div>
+											<div class="row">
+												<div class="col-sm-6">
+													<div class="form-group">
+														<span class="form-label">Check In</span>
+														<input class="form-control" type="date" id="check_in" name="check_in" required>
+													</div>
+												</div>
+												<div class="col-sm-6">
+													<div class="form-group">
+														<span class="form-label">Check out</span>
+														<input class="form-control" type="date" id="check_out" name="check_out" required>
+													</div>
+												</div>
+											</div>
+											<div class="row">
+												<div class="col-sm-4">
+													<div class="form-group">
+														<span class="form-label">Rooms</span>
+														<select class="form-control" id="rooms" name="rooms">
+															<option value="1">1</option>
+															<option value="2">2</option>
+															<option value="3">3</option>
+														</select>
+														<span class="select-arrow"></span>
+													</div>
+												</div>
+												<div class="col-sm-4">
+													<div class="form-group">
+														<span class="form-label">Adults</span>
+														<select class="form-control" id="adaults" name="adaults">
+															<option value="1">1</option>
+															<option value="2">2</option>
+															<option value="3">3</option>
+														</select>
+														<span class="select-arrow"></span>
+													</div>
+												</div>
+												<div class="col-sm-4">
+													<div class="form-group">
+														<span class="form-label">Children</span>
+														<select class="form-control" id="childrens" name="childrens">
+															<option value="1">1</option>
+															<option value="2">2</option>
+															<option value="3">3</option>
+														</select>
+														<span class="select-arrow"></span>
+													</div>
+												</div>
+											</div>
+											<div class="form-btn">
+												<button class="submit-btn" type="submit" name="upload" id="upload">Book Now</button>
+											</div>
+										</form>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				
+
+
+				<!-- form end -->
+			
+
+			</div> <!-- div end -->
+
+			</section>
+			<!--subscribe end-->
 
 
 		<!-- footer-copyright start -->
