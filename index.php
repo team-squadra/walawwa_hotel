@@ -99,7 +99,6 @@
 	if(!isset($_SESSION['status'])){
         header('Location: Access/login.php');
 	} 
-	
 	else if($_SESSION['status'] =='admin')
 	{
 		header('Location: Admin/index.php');
@@ -107,7 +106,14 @@
     else if($_SESSION['status'] =='user')
 	{
 		header('Location: User/Home.php');
-	}
+    }
+    else if($_SESSION['status'] =='hotel')
+	{
+		header('Location: Hotel/index.php');
+    }
+    else{
+
+    }
 ?>
 
 </html>

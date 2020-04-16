@@ -3,15 +3,15 @@
 	<?php
 	session_start();
 	
-	
 	if(!isset($_SESSION['status'])){
-		//not logged in
-		header('Location: login.php');
+		header('Location: ../Access/login.php');
 	} 
-	
-	else if($_SESSION['status'] =='admin')
+	else if($_SESSION['status'] !='user')
 	{
-		header('Location: Admin/index.php');
+		header('Location: ../index.php');
+    }
+    else{
+
 	}
 	?>
 

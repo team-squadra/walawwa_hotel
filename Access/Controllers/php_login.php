@@ -64,6 +64,13 @@ function login(){
 
                 echo json_encode(['error' => 'success', 'msg' => '../User/Home.php']);
             }
+            else if($status == "hotel"){
+                $_SESSION["status"] = $status;
+                $_SESSION["email"] = $email;
+                $_SESSION["token"] = $token;
+
+                echo json_encode(['error' => 'success', 'msg' => '../Hotel/index.php']);
+            }
         } else {
           echo json_encode(['error' => 'error', 'msg' => ''.$error.'']);
         }
