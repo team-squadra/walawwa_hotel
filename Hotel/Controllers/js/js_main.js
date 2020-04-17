@@ -82,6 +82,35 @@ function switch_to_edit() {
 }
 
 function update_profile() {
-    document.getElementById("profile_details_view").style.display = "block";
-    document.getElementById("profile_details_input").style.display = "none";
+
+    $.ajax({
+        type: 'POST',
+        url: 'Controllers/php/php_updateProfile.php?update=true',
+        data: $("#profile_form").serialize(),
+        dataType: "JSON",
+        beforeSend: function() {
+            $("#update_profile_btn").html("Wait........");
+            $(".show-progress").addClass('progress');
+            $("#update_profile_btn").attr("disabled", true);
+        },
+        success: function(feedback) {
+            console.log(feedback);
+            if (feedback['error'] == 'success') {
+                location = feedback['msg'];
+            } else if (feedback['error'] == 'error') {
+
+                $("#update_err_lbl").html(feedback['msg']);
+                $(".show-progress").removeClass('progress');
+                $("#update_profile_btn").html("Save");
+                $("#update_profile_btn").attr("disabled", false);
+
+            } else {
+
+            }
+        },
+        error: function(error) {
+            console.log(error);
+        }
+
+    })
 }

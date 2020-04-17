@@ -106,20 +106,6 @@
                         <?php
                             include 'Controllers/php/php_profileDataLoader.php';
 
-                            /*$function_status = "Success";
-                            $hotel_id = "";
-                            $hotel_name = "";
-                            $hotel_email = "";
-                            $hotel_phone_number = "";
-                            $hotel_location = "";
-                            $hotel_description = "";
-                            $hotel_hotelImage = "";
-                            $hotel_pool = "";
-                            $hotel_parking = "";
-                            $hotel_spa ="";
-                            $hotel_bar = "";
-                            $hotel_wifi = "";*/
-
                             if($function_status == "Success"){
 
                                 if($hotel_hotelImage == ""){
@@ -172,14 +158,14 @@
 
                                 //<!--===============================================================================================-->
                                 echo '<div id="profile_details_input" class="dnone">';
-                                
+                                echo '<form id="profile_form">';
                                 echo '
                                 <p class="mb-4" style="font-size: 10px;"><i class="fa fa-at mright" aria-hidden="true" title="Email"></i>'.$hotel_email.'</p>
-                                <p class="mb-4"><i class="fa fa-phone mright" aria-hidden="true" title="Contact number"></i><input type="text" class="cusInput" value="'.$hotel_phone_number.'"></p>
-                                <p class="mb-4"><i class="fa fa-map-marker mright" aria-hidden="true" title="Location"></i><input type="text" class="cusInput" value="'.$hotel_location.'"></p>
+                                <p class="mb-4"><i class="fa fa-phone mright" aria-hidden="true" title="Contact number"></i><input type="text" class="cusInput" value="'.$hotel_phone_number.'" name="hotel_phone_number_input_atr" id="hotel_phone_number_input"></p>
+                                <p class="mb-4"><i class="fa fa-map-marker mright" aria-hidden="true" title="Location"></i><input type="text" class="cusInput" value="'.$hotel_location.'" name="hotel_location_input_atr" id="hotel_location_input"></p>
                                 <p class="mb-4">
                                 <i class="fa fa-align-left mright" aria-hidden="true" title="Description"></i>
-                                <textarea name="" id="" cols="10" rows="6" class="cusInput">'.$hotel_description.'</textarea>
+                                <textarea cols="10" rows="4" class="cusInput" name="hotel_description_input_atr" id="hotel_description_input">'.$hotel_description.'</textarea>
                                 </p>';
 
                                 echo '
@@ -198,15 +184,20 @@
                                 <i class="fa fa-wifi mright" aria-hidden="true" title="Wifi" id="wifi_ava" onclick="toggle_hotel_wifi(0)" style="cursor: pointer"></i>
                                 <i class="fa fa-wifi mright notAve" aria-hidden="true" title="Wifi" id="wifi_notava" onclick="toggle_hotel_wifi(1)" style="cursor: pointer"></i>
 
-                                <input type="text" value= "'.$hotel_pool.'" style="width:30px;" id="hotel_pool_input" class="dnone">
-                                <input type="text" value= "'.$hotel_parking.'" style="width:30px;" id="hotel_parking_input" class="dnone">
-                                <input type="text" value= "'.$hotel_spa.'" style="width:30px;" id="hotel_spa_input" class="dnone">
-                                <input type="text" value= "'.$hotel_bar.'" style="width:30px;" id="hotel_bar_input" class="dnone">
-                                <input type="text" value= "'.$hotel_wifi.'" style="width:30px;" id="hotel_wifi_input" class="dnone">
+                                <input type="text" value= "'.$hotel_pool.'" style="width:30px;" id="hotel_pool_input" class="dnone" name="hotel_pool_input_atr">
+                                <input type="text" value= "'.$hotel_parking.'" style="width:30px;" id="hotel_parking_input" class="dnone" name="hotel_parking_input_atr">
+                                <input type="text" value= "'.$hotel_spa.'" style="width:30px;" id="hotel_spa_input" class="dnone" name="hotel_spa_input_atr">
+                                <input type="text" value= "'.$hotel_bar.'" style="width:30px;" id="hotel_bar_input" class="dnone" name="hotel_bar_input_atr">
+                                <input type="text" value= "'.$hotel_wifi.'" style="width:30px;" id="hotel_wifi_input" class="dnone" name="hotel_wifi_input_atr">
                                 ';
 
-                                echo '<br><button class="button btn-clr" onclick="update_profile()">Save</button>';
+                                echo '
+                                    <p id="update_err_lbl"></p>
+                                    <br><button class="button btn-clr" onclick="update_profile()" id="update_profile_btn">Save</button><br><br>
+                                    <div class="show-progress" id="update_loading_bar"></div>
+                                ';
 
+                                echo '</form>';
                                 echo '</div>';
                                 //<!--===============================================================================================-->
 
