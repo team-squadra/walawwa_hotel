@@ -214,9 +214,9 @@
 											<div class="packages-para">
 												<p>
 													<span>
-													<i class="fas fa-calendar-times"></i>From: '.$check_in.'
+													<i class="fas fa-angle-right"></i>   From: '.$check_in.'
 													</span>
-													<i class="fas fa-calendar-check"></i> To: '.$check_out.'
+													<i class="fas fa-angle-right"></i>   To: '.$check_out.'
 												</p>
 												<p>
 													You have Booked '.$rooms.' rooms for '.$adaults.' adults and '.$childrens.' children.
