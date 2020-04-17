@@ -1,6 +1,7 @@
 <?php
 //
 if (isset($_SESSION["email"])) {
+    
 
     // The data to send to the API
     $postData = array(
@@ -29,19 +30,27 @@ if (isset($_SESSION["email"])) {
 
     // Decode the response
     $responseData = json_decode($response, TRUE);
+    
+    $function_status = $responseData['function_status'];
 
-    $hotel_id = $responseData[0]['_id'];
-    $hotel_name = $responseData[0]['name'];
-    $hotel_email = $responseData[0]['email'];
-    $hotel_phone_number = $responseData[0]['phone_number'];
-    $hotel_location = $responseData[0]['location'];
-    $hotel_description = $responseData[0]['description'];
-    $hotel_hotelImage = $responseData[0]['hotelImage'];
-    $hotel_pool = $responseData[0]['pool'];
-    $hotel_parking = $responseData[0]['parking'];
-    $hotel_spa = $responseData[0]['spa'];
-    $hotel_bar = $responseData[0]['bar'];
-    $hotel_wifi = $responseData[0]['wifi'];
+    if($function_status == "Success"){
+        $hotel_id = $responseData['all'][0]['_id'];
+        $hotel_name = $responseData['all'][0]['name'];
+        $hotel_email = $responseData['all'][0]['email'];
+        $hotel_phone_number = $responseData['all'][0]['phone_number'];
+        $hotel_location = $responseData['all'][0]['location'];
+        $hotel_description = $responseData['all'][0]['description'];
+        $hotel_hotelImage = $responseData['all'][0]['hotelImage'];
+        $hotel_pool = $responseData['all'][0]['pool'];
+        $hotel_parking = $responseData['all'][0]['parking'];
+        $hotel_spa = $responseData['all'][0]['spa'];
+        $hotel_bar = $responseData['all'][0]['bar'];
+        $hotel_wifi = $responseData['all'][0]['wifi'];
+    }else{
+
+    }
+
+    
     
 
 } else {

@@ -49,6 +49,10 @@
     <!--===============================================================================================-->
     <link rel="stylesheet" href="css/style.css">
     <!--===============================================================================================-->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.13.0/css/all.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.13.0/css/v4-shims.css">
+    <!--===============================================================================================-->
+
 </head>
 
 <body>
@@ -79,7 +83,7 @@
             </nav>
 
             <div class="colorlib-footer" style="display: none;">
-                <p>
+                <label>
                     <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
                     Copyright &copy;<script>
                     document.write(new Date().getFullYear());
@@ -94,46 +98,135 @@
             </div>
         </aside> <!-- END COLORLIB-ASIDE -->
         <div id="colorlib-main">
-            <div class="hero-wrap hero-wrap-2 js-fullheight" style="background-image: url(images/bg_4.jpg);"
+            <div class="hero-wrap hero-wrap-2 js-fullheight" style="background-image: url(images/bg_1.jpg);"
                 data-stellar-background-ratio="0.5">
                 <div class="overlay"></div>
                 <div class="js-fullheight d-flex justify-content-center align-items-center">
-                    <div class="col-md-8 text text-center">
-                        <div class="img mb-4" style="background-image: url(images/bg1.jpg);"></div>
-                        <div class="desc">
-                            <h1 class="mb-4">
-                                <?php
-                                if(isset($_SESSION["name"])){
-                                    echo $_SESSION["name"] ;
+                    <div class="col-md-8 text text-center" style="overflow: auto;">
+                        <?php
+                            include 'Controllers/php/php_profileDataLoader.php';
+
+                            /*$function_status = "Success";
+                            $hotel_id = "";
+                            $hotel_name = "";
+                            $hotel_email = "";
+                            $hotel_phone_number = "";
+                            $hotel_location = "";
+                            $hotel_description = "";
+                            $hotel_hotelImage = "";
+                            $hotel_pool = "";
+                            $hotel_parking = "";
+                            $hotel_spa ="";
+                            $hotel_bar = "";
+                            $hotel_wifi = "";*/
+
+                            if($function_status == "Success"){
+
+                                if($hotel_hotelImage == ""){
+                                    echo '<div class="img mb-4" style="background-image: url(../logo/full_logo.png);"></div>';
                                 }
                                 else{
-                                    echo "Hotel Username";
+                                    echo '<div class="img mb-4" style="background-image: url(data:image/png;base64,' . $hotel_hotelImage . ');"></div>';
                                 }
-                                ?>
-                            </h1>
-                            <?php
-                            include 'Controllers/php/php_profileDataLoader.php';
+
+                                echo '<div class="desc"><h1 class="mb-4">'.$hotel_name.'</h1>';
+
+                                //<!--===============================================================================================-->
+                                echo '<div id="profile_details_view" >';
+
                                 echo '
-                                <p class="mb-4">'.$hotel_id.'</p>
-                                <p class="mb-4">'.$hotel_name.'</p>
-                                <p class="mb-4">'.$hotel_email.'</p>
-                                <p class="mb-4">'.$hotel_phone_number.'</p>
-                                <p class="mb-4">'.$hotel_location.'</p>
-                                <p class="mb-4">'.$hotel_description.'</p>
-                                <p class="mb-4">'.$hotel_hotelImage.'</p>
-                                <p class="mb-4">'.$hotel_pool.'</p>
-                                <p class="mb-4">'.$hotel_parking.'</p>
-                                <p class="mb-4">'.$hotel_spa.'</p>
-                                <p class="mb-4">'.$hotel_bar.'</p>
-                                <p class="mb-4">'.$hotel_wifi.'</p>
+                                <p class="mb-4"><i class="fa fa-at mright" aria-hidden="true" title="Email"></i>'.$hotel_email.'</p>
+                                <p class="mb-4"><i class="fa fa-phone mright" aria-hidden="true" title="Contact number"></i>'.$hotel_phone_number.'</p>
+                                <p class="mb-4"><i class="fa fa-map-marker mright" aria-hidden="true" title="Location"></i>'.$hotel_location.'</p>
+                                <p class="mb-4"><i class="fa fa-align-left mright" aria-hidden="true" title="Description"></i>'.$hotel_description.'</p>
                                 ';
+                                if($hotel_pool == "1"){
+                                    echo '<i class="fa fa-swimming-pool mright " aria-hidden="true" title="Pool"></i>';
+                                }
+                                else{ echo '<i class="fa fa-swimming-pool mright notAve" aria-hidden="true" title="Pool"></i>';}
+
+                                if($hotel_parking == "1"){
+                                    echo '<i class="fa fa-parking mright " aria-hidden="true" title="Parking"></i>';
+                                }
+                                else{ echo '<i class="fa fa-parking mright notAve" aria-hidden="true" title="Parking"></i>';}
+
+                                if($hotel_spa == "1"){
+                                    echo '<i class="fa fa-spa mright " aria-hidden="true" title="Spa"></i>';
+                                }
+                                else{ echo '<i class="fa fa-spa mright notAve" aria-hidden="true" title="Spa"></i>';}
+
+                                if($hotel_bar == "1"){
+                                    echo '<i class="fa fa-glass-cheers mright " aria-hidden="true" title="Bar"></i>';
+                                }
+                                else{ echo '<i class="fa fa-glass-cheers mright notAve" aria-hidden="true" title="Bar"></i>';}
+
+                                if($hotel_wifi == "1"){
+                                    echo '<i class="fa fa-wifi mright " aria-hidden="true" title="Wifi"></i>';
+                                }
+                                else{ echo '<i class="fa fa-wifi mright notAve" aria-hidden="true" title="Wifi"></i>';}
+
+                                echo '<br><button class="button btn-clr" onclick="switch_to_edit()">Update Profile</button>';
+
+                                echo '</div>';
+                                //<!--===============================================================================================-->
+
+                                //<!--===============================================================================================-->
+                                echo '<div id="profile_details_input" class="dnone">';
+                                
+                                echo '
+                                <p class="mb-4" style="font-size: 10px;"><i class="fa fa-at mright" aria-hidden="true" title="Email"></i>'.$hotel_email.'</p>
+                                <p class="mb-4"><i class="fa fa-phone mright" aria-hidden="true" title="Contact number"></i><input type="text" class="cusInput" value="'.$hotel_phone_number.'"></p>
+                                <p class="mb-4"><i class="fa fa-map-marker mright" aria-hidden="true" title="Location"></i><input type="text" class="cusInput" value="'.$hotel_location.'"></p>
+                                <p class="mb-4">
+                                <i class="fa fa-align-left mright" aria-hidden="true" title="Description"></i>
+                                <textarea name="" id="" cols="10" rows="6" class="cusInput">'.$hotel_description.'</textarea>
+                                </p>';
+
+                                echo '
+                                <i class="fa fa-swimming-pool mright" aria-hidden="true" title="Pool" id="pool_ava" onclick="toggle_hotel_pool(0)" style="cursor: pointer"></i>
+                                <i class="fa fa-swimming-pool mright notAve" aria-hidden="true" title="Pool" id="pool_notava" onclick="toggle_hotel_pool(1)" style="cursor: pointer"></i>
+
+                                <i class="fa fa-parking mright" aria-hidden="true" title="Parking" id="parking_ava" onclick="toggle_hotel_parking(0)" style="cursor: pointer"></i>
+                                <i class="fa fa-parking mright notAve" aria-hidden="true" title="Parking" id="parking_notava" onclick="toggle_hotel_parking(1)" style="cursor: pointer"></i>
+
+                                <i class="fa fa-spa mright" aria-hidden="true" title="Spa" id="spa_ava" onclick="toggle_hotel_spa(0)" style="cursor: pointer"></i>
+                                <i class="fa fa-spa mright notAve" aria-hidden="true" title="Spa" id="spa_notava" onclick="toggle_hotel_spa(1)" style="cursor: pointer"></i>
+
+                                <i class="fa fa-glass-cheers mright" aria-hidden="true" title="Bar" id="bar_ava" onclick="toggle_hotel_bar(0)" style="cursor: pointer"></i>
+                                <i class="fa fa-glass-cheers mright notAve" aria-hidden="true" title="Bar" id="bar_notava" onclick="toggle_hotel_bar(1)" style="cursor: pointer"></i>
+
+                                <i class="fa fa-wifi mright" aria-hidden="true" title="Wifi" id="wifi_ava" onclick="toggle_hotel_wifi(0)" style="cursor: pointer"></i>
+                                <i class="fa fa-wifi mright notAve" aria-hidden="true" title="Wifi" id="wifi_notava" onclick="toggle_hotel_wifi(1)" style="cursor: pointer"></i>
+
+                                <input type="text" value= "'.$hotel_pool.'" style="width:30px;" id="hotel_pool_input" class="dnone">
+                                <input type="text" value= "'.$hotel_parking.'" style="width:30px;" id="hotel_parking_input" class="dnone">
+                                <input type="text" value= "'.$hotel_spa.'" style="width:30px;" id="hotel_spa_input" class="dnone">
+                                <input type="text" value= "'.$hotel_bar.'" style="width:30px;" id="hotel_bar_input" class="dnone">
+                                <input type="text" value= "'.$hotel_wifi.'" style="width:30px;" id="hotel_wifi_input" class="dnone">
+                                ';
+
+                                echo '<br><button class="button btn-clr" onclick="update_profile()">Save</button>';
+
+                                echo '</div>';
+                                //<!--===============================================================================================-->
+
+                               
+
+                            }
+                            else{
+                                echo '<div class="desc">
+                                        <h1 class="mb-4"></h1>
+                                ';
+                                echo $function_status;
+                            }
+                                
                             ?>
-                            
-                        </div>
+
                     </div>
                 </div>
             </div>
-        </div><!-- END COLORLIB-MAIN -->
+        </div>
+    </div><!-- END COLORLIB-MAIN -->
     </div><!-- END COLORLIB-PAGE -->
 
     <!-- loader -->
@@ -161,6 +254,7 @@
     </script>
     <script src="js/google-map.js"></script>
     <script src="js/main.js"></script>
+    <script src="Controllers/js/js_main.js"></script>
 
 </body>
 
