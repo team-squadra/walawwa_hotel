@@ -362,15 +362,10 @@
 							$pool = $response['pool'];
 							$hotelImage = $response['hotelImage'];
 						
-							if(empty($email)){
-								// header("Location:../login.html");
-								echo "No responce from server";
-							}
-							else{
+							if($hotelImage == ""){
 								echo'
 								<div class="col-md-4 col-sm-6">
 									<div class="single-package-item">
-										<img src="data:image/png;base64,' . $hotelImage . '" alt="package-place">
 										<div class="single-package-item-txt">
 											<h3>'.$name.'</h3>
 											<div class="packages-para">
@@ -387,11 +382,46 @@
 													<i class="fas fa-swimming-pool"></i> Pool '.$pool.'
 												</p>
 											</div><!--/.packages-para-->
-											<div class="about-btn">
-												<button  class="about-view packages-btn">
-													book now
-												</button>
-											</div><!--/.about-btn-->
+											<a href="Hotelbooking.php">
+												<div class="about-btn">									
+													<button  class="about-view packages-btn">
+														book now</a>
+													</button>
+												</div><!--/.about-btn-->
+											</a>
+										</div><!--/.single-package-item-txt-->
+									</div><!--/.single-package-item-->  
+								</div><!--/.col--> 
+								';
+							}
+							else{
+								echo'
+								<div class="col-md-4 col-sm-6">
+									<div class="single-package-item">
+										<img src="data:image/png;base64,' . $hotelImage . '">
+										<div class="single-package-item-txt">
+											<h3>'.$name.'</h3>
+											<div class="packages-para">
+												<p>
+													<span>
+													<i class="fas fa-parking"></i>  Parking '.$parking.'
+													</span>
+													<i class="fas fa-spa"></i> Spa '.$spa.'
+												</p>
+												<p>
+													<span>
+														<i class="fas fa-glass-cheers"></i> Bar '.$bar.'
+													</span>
+													<i class="fas fa-swimming-pool"></i> Pool '.$pool.'
+												</p>
+											</div><!--/.packages-para-->
+											<a href="Hotelbooking.php">
+												<div class="about-btn">
+													<button  class="about-view packages-btn">
+														book now
+													</button>
+												</div><!--/.about-btn-->
+											</a>
 										</div><!--/.single-package-item-txt-->
 									</div><!--/.single-package-item-->  
 								</div><!--/.col--> 

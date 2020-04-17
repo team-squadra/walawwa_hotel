@@ -65,7 +65,7 @@
       <input type="number" placeholder="phonenumber" name="phone" id="phone" required><br>
 
       <label for="imageUpload"><b>Your Image</b></label><br>
-      <input type="file" name="imagefile" id="imagefile" accept=".png, .jpg, .jpeg" required><br>
+      <input type="file" name="imagefile" id="imagefile" accept=".png, .jpg, .jpeg"><br>
 
       <button type="submit" name="upload">Register</button>
       <label>

@@ -13,22 +13,22 @@ if(isset($_POST['upload'])){
     $bar = $_POST['bar'];
     $description = $_POST['description'];
 
-    //Image upload 
-    $target_file = basename($_FILES["imagefile"]["name"]);
+    // //Image upload 
+    // $target_file = basename($_FILES["imagefile"]["name"]);
 
-    // Select file type
-    $imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
+    // // Select file type
+    // $imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
   
-    // Valid file extensions
-    $extensions_arr = array("jpg","jpeg","png","gif");
+    // // Valid file extensions
+    // $extensions_arr = array("jpg","jpeg","png","gif");
   
-    // Check extension
-    if( in_array($imageFileType,$extensions_arr) ){
+    // // Check extension
+    // if( in_array($imageFileType,$extensions_arr) ){
    
-      // Convert to base64 
-      $image_base64 = base64_encode(file_get_contents($_FILES['imagefile']['tmp_name']) );
+    //   // Convert to base64 
+    //   $image_base64 = base64_encode(file_get_contents($_FILES['imagefile']['tmp_name']) );
     
-    }
+    // }
 
 
     // Display the output 
@@ -38,7 +38,7 @@ if(isset($_POST['upload'])){
         'name' => $name,
         'phone_number' => $phone_number,
         'email' => $email,
-        'hotelImage' => $image_base64,
+        // 'hotelImage' => $image_base64,
         'location' => $location,
         'pool' => $pool,
         'wifi' => $wifi,

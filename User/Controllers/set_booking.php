@@ -1,8 +1,11 @@
 <?php
 
+session_start();
+$uname= $_SESSION["name"];
+
 if(isset($_POST['upload'])){
 
-    $user_name = 'Hishan Kavishka';
+    $user_name = $uname;
     $hotel_name = $_POST['hotel_name'];
     $check_in = $_POST['check_in'];
     $check_out = $_POST['check_out'];

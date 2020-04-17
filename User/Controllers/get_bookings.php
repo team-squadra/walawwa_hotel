@@ -1,6 +1,6 @@
 <?php
 
-$user_name = 'Hishan Kavishka';
+$user_name = $_SESSION["name"];
 
 //The data to send to the API
 $postData = array(

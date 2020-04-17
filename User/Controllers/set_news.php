@@ -52,7 +52,13 @@ if (isset($_POST['upload'])) {
      $responseData = json_decode($response, TRUE);
 
      // Print the date from the response
-    echo $responseData['news'];
+     $news = $responseData['news'];
+     if($news == ""){
+        echo 'Not a valid request';
+    }
+    else{
+        header("Location: ../Home.php");
+    }
 
 }
 ?>

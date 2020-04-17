@@ -127,6 +127,7 @@
 									<ul class="nav navbar-nav navbar-right">
 										<li ><a href="Home.php">Home</a></li>
 										<li ><a href="#mybookings">My bookings</a></li>
+										<li ><a href="#makereservation">Make a Reservation</a></li>
 										<li>
 											<!-- <a href="php/logout.php"> -->
 											<a class="book-btn" href="../Access/logout.php">LogOut</a>
@@ -189,6 +190,7 @@
 						<?php include 'Controllers/get_bookings.php';
 						foreach($responseData AS $response) {
 
+							$id = $response['_id'];
 							$user_name = $response['user_name'];
 							$hotel_name = $response['hotel_name'];
 							$check_in = $response['check_in'];
@@ -198,9 +200,9 @@
 							$childrens = $response['childrens'];
 							$hotelImage = $response['hotelImage'];
 						
-							if(empty($hotel_name)){
+							if($hotel_name ==""){
 								// header("Location:../login.html");
-								echo "No responce from server";
+								echo 'No items to preview';
 							}
 							else{
 								echo'
@@ -217,22 +219,14 @@
 													<i class="fas fa-calendar-check"></i> To: '.$check_out.'
 												</p>
 												<p>
-													<span>
-														<i class="fas fa-person-booth"></i> Rooms: '.$rooms.'
-													</span>
-													<i class="fas fa-male"></i> Adults: '.$adaults.'
-												</p>
-												<p>
-													<span>
-														<i class="fas fa-child"></i> Childrens: '.$childrens.'
-													</span>
+													You have Booked '.$rooms.' rooms for '.$adaults.' adults and '.$childrens.' children.
 												</p>
 											</div><!--/.packages-para-->
-
-											<div class="about-btn">
-												<button  class="about-view packages-btn">Update</button>										
-											</div><!--/.about-btn-->
-
+												<div class="about-btn">
+													<form action="Controllers/delete_booking.php" method="post">
+														<button  class="about-view packages-btn" type="submit" name="delete" id="delete" value='.$id.'>Delete</button>
+													</form>										
+												</div><!--/.about-btn-->
 										</div><!--/.single-package-item-txt-->
 									</div><!--/.single-package-item-->  
 								</div><!--/.col--> 
@@ -245,7 +239,7 @@
 				</div><!--/.packages-content-->
 			</div><!--/.container-->
 
-			<section id="subs" class="subscribe">
+			<section id="makereservation" class="subscribe">
 			<div class="container">
 				<!-- form start	 -->
 
@@ -260,6 +254,7 @@
 											ad sint fugit architecto incidunt iste culpa perspiciatis possimus voluptates aliquid consequuntur cumque quasi.
 											Perspiciatis.
 										</p>
+
 									</div>
 								</div>
 								<div class="col-md-4 col-md-pull-7">
