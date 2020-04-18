@@ -11567,11 +11567,13 @@ textarea.form-control {
     color: darkgray;
     border: 1px solid #FF5722;
     margin-top: 10px;
+    outline: none;
 }
 
 .btn-clr:hover {
     background-color: #FF5722;
     color: white;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
 .cusInput {
@@ -11626,4 +11628,32 @@ textarea.form-control {
     100% {
         width: 100%
     }
+}
+
+.custom-file-input {
+    display: none;
+}
+
+.custom-file-upload {
+    border: 1px solid #ccc;
+    display: inline-block;
+    padding: 6px 12px;
+    cursor: pointer;
+    border-radius: 5px;
+    margin-bottom: 20px;
+}
+
+.custom-file-upload:hover {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+#close_btn {
+    cursor: pointer;
+    font-size: 40px;
+    padding: 5px 10px;
+    border-radius: 50%;
+}
+
+#close_btn:hover {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }

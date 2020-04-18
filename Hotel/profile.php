@@ -121,10 +121,10 @@
                                 echo '<div id="profile_details_view" >';
 
                                 echo '
-                                <p class="mb-4"><i class="fa fa-at mright" aria-hidden="true" title="Email"></i>'.$hotel_email.'</p>
-                                <p class="mb-4"><i class="fa fa-phone mright" aria-hidden="true" title="Contact number"></i>'.$hotel_phone_number.'</p>
-                                <p class="mb-4"><i class="fa fa-map-marker mright" aria-hidden="true" title="Location"></i>'.$hotel_location.'</p>
-                                <p class="mb-4"><i class="fa fa-align-left mright" aria-hidden="true" title="Description"></i>'.$hotel_description.'</p>
+                                <p class="mb-4" style="font-size: 10px;"><i class="fa fa-at mright" aria-hidden="true" title="Email"></i>'.$hotel_email.'</p>
+                                <p class="mb-4" style="font-size: 10px;"><i class="fa fa-phone mright" aria-hidden="true" title="Contact number"></i>'.$hotel_phone_number.'</p>
+                                <p class="mb-4" style="font-size: 10px;"><i class="fa fa-map-marker mright" aria-hidden="true" title="Location"></i>'.$hotel_location.'</p>
+                                <p class="mb-4" style="font-size: 10px;"><i class="fa fa-align-left mright" aria-hidden="true" title="Description"></i>'.$hotel_description.'</p>
                                 ';
                                 if($hotel_pool == "1"){
                                     echo '<i class="fa fa-swimming-pool mright " aria-hidden="true" title="Pool"></i>';
@@ -151,14 +151,14 @@
                                 }
                                 else{ echo '<i class="fa fa-wifi mright notAve" aria-hidden="true" title="Wifi"></i>';}
 
-                                echo '<br><button class="button btn-clr" onclick="switch_to_edit()">Update Profile</button>';
+                                echo '<br><button class="button btn-clr" style="margin-top: 40px;" onclick="switch_to_edit()">Update Profile</button>';
 
                                 echo '</div>';
                                 //<!--===============================================================================================-->
 
                                 //<!--===============================================================================================-->
                                 echo '<div id="profile_details_input" class="dnone">';
-                                echo '<form id="profile_form">';
+                                echo '<form id="profile_form" action="Controllers/php/php_updateProfile.php" method="POST" enctype="multipart/form-data">';
                                 echo '
                                 <p class="mb-4" style="font-size: 10px;"><i class="fa fa-at mright" aria-hidden="true" title="Email"></i>'.$hotel_email.'</p>
                                 <p class="mb-4"><i class="fa fa-phone mright" aria-hidden="true" title="Contact number"></i><input type="text" class="cusInput" value="'.$hotel_phone_number.'" name="hotel_phone_number_input_atr" id="hotel_phone_number_input"></p>
@@ -166,7 +166,15 @@
                                 <p class="mb-4">
                                 <i class="fa fa-align-left mright" aria-hidden="true" title="Description"></i>
                                 <textarea cols="10" rows="4" class="cusInput" name="hotel_description_input_atr" id="hotel_description_input">'.$hotel_description.'</textarea>
-                                </p>';
+                                </p>
+                                <p class="mb-4">
+                                <input type="text" class="cusInput dnone" value="'.$hotel_hotelImage.'" name="hotel_prev_image_input_atr" id="hotel_prev_image_input">
+                                </p>
+                                <label class="custom-file-upload">
+                                    <input type="file" name="hotel_image_input_atr" id="hotel_image_input" accept=".png, .jpg, .jpeg" onchange="get_img_name()" class="dnone"/>
+                                    <i class="fas fa-upload mright"></i><i id="img_input_val">Update image</i> 
+                                </label><br>
+                                ';
 
                                 echo '
                                 <i class="fa fa-swimming-pool mright" aria-hidden="true" title="Pool" id="pool_ava" onclick="toggle_hotel_pool(0)" style="cursor: pointer"></i>
@@ -192,16 +200,17 @@
                                 ';
 
                                 echo '
-                                    <p id="update_err_lbl"></p>
-                                    <br><button class="button btn-clr" onclick="update_profile()" id="update_profile_btn">Save</button><br><br>
+                                    <br><button class="button btn-clr" name="update" type="submit" onclick="loadbar()">Save</button><br><br>
                                     <div class="show-progress" id="update_loading_bar"></div>
                                 ';
 
                                 echo '</form>';
-                                echo '</div>';
+                                
+                                echo '
+                                    <p onclick="switch_to_profileview()"><i class="fas fa-times" id="close_btn"></i></p>
+                                    </div>
+                                ';
                                 //<!--===============================================================================================-->
-
-                               
 
                             }
                             else{
@@ -227,6 +236,7 @@
                 stroke="#F96D00" /></svg></div>
 
 
+               
     <script src="js/jquery.min.js"></script>
     <script src="js/jquery-migrate-3.0.1.min.js"></script>
     <script src="js/popper.min.js"></script>

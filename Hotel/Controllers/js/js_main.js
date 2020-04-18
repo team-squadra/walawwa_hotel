@@ -81,36 +81,18 @@ function switch_to_edit() {
     document.getElementById("profile_details_input").style.display = "block";
 }
 
-function update_profile() {
+function switch_to_profileview() {
+    document.getElementById("profile_details_view").style.display = "block";
+    document.getElementById("profile_details_input").style.display = "none";
+}
 
-    $.ajax({
-        type: 'POST',
-        url: 'Controllers/php/php_updateProfile.php?update=true',
-        data: $("#profile_form").serialize(),
-        dataType: "JSON",
-        beforeSend: function() {
-            $("#update_profile_btn").html("Wait........");
-            $(".show-progress").addClass('progress');
-            $("#update_profile_btn").attr("disabled", true);
-        },
-        success: function(feedback) {
-            console.log(feedback);
-            if (feedback['error'] == 'success') {
-                location = feedback['msg'];
-            } else if (feedback['error'] == 'error') {
+function get_img_name() {
+    var hotel_image_input = document.getElementById("hotel_image_input").value;
+    var name = hotel_image_input.split("fakepath")[1];
+    document.getElementById("img_input_val").innerHTML = "<p style='font-size: 10px;'>" + name + "</p>";
+}
 
-                $("#update_err_lbl").html(feedback['msg']);
-                $(".show-progress").removeClass('progress');
-                $("#update_profile_btn").html("Save");
-                $("#update_profile_btn").attr("disabled", false);
-
-            } else {
-
-            }
-        },
-        error: function(error) {
-            console.log(error);
-        }
-
-    })
+function loadbar() {
+    document.getElementById("close_btn").style.display = "none";
+    document.getElementById("update_loading_bar").classList.add("progress");
 }
