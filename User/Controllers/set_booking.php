@@ -12,9 +12,40 @@ if(isset($_POST['upload'])){
     $rooms = $_POST['rooms'];
     $adaults = $_POST['adaults'];
     $childrens = $_POST['childrens'];
+    $roomtype = $_POST['roomtype'];
 
 
-    function writeMsg($hotel_name) {
+    function getprice($hotel_name,$roomtype){
+        //The data to send to the API
+        $postData = array(
+            'hotel_name' => $hotel_name,
+            'roomtype' => $roomtype
+        );
+
+        $ch = curl_init( 'https://mighty-inlet-78383.herokuapp.com/api/rooms/selectedroom');
+        curl_setopt_array($ch, array(
+            CURLOPT_POST => TRUE,
+            CURLOPT_RETURNTRANSFER => TRUE,
+            CURLOPT_HTTPHEADER => array(
+                'Content-Type: application/json'
+            ),
+            CURLOPT_POSTFIELDS => json_encode($postData)
+        ));
+
+        // Send the request
+        $response = curl_exec($ch);
+        // Check for errors
+        if($response === FALSE){
+            die(curl_error($ch));
+            echo 'No responce';
+        }
+
+        // Decode the response
+        $responseData = json_decode($response, true);
+        return $responseData[0]['rmprice'];
+    }
+
+    function gethotelimg($hotel_name) {
 
             //The data to send to the API
             $postData = array(
@@ -43,9 +74,35 @@ if(isset($_POST['upload'])){
             $responseData = json_decode($response, true);
             return $responseData[0]['hotelImage'];
     }
+      
+    function getdays($check_in,$check_out){
 
-    $hotelImage = writeMsg($hotel_name);
+        // Declare and define two dates 
+        $date1 = strtotime($check_in); 
+        $date2 = strtotime($check_out); 
 
+        // Formulate the Difference between two dates 
+        $diff = abs($date2 - $date1); 
+
+        // get years
+        $years = floor($diff / (365*60*60*24)); 
+
+        // get months
+        $months = floor(($diff - $years * 365*60*60*24) / (30*60*60*24)); 
+
+        // get days
+        $days = floor(($diff - $years * 365*60*60*24 - $months*30*60*60*24)/ (60*60*24)); 
+
+        return $days;
+
+    }
+
+    $datediffrance = getdays($check_in,$check_out);
+    $roomprice = getprice($hotel_name,$roomtype);
+    $hotelImage = gethotelimg($hotel_name);
+
+    $totprice = $roomprice * $datediffrance;
+    
     //The data to send to the API
     $postData = array(
         'user_name' => $user_name,
@@ -55,6 +112,7 @@ if(isset($_POST['upload'])){
         'rooms' => $rooms,
         'adaults' => $adaults,
         'childrens' => $childrens,
+        'totprice' => $totprice,
         'hotelImage' => $hotelImage
     );
 

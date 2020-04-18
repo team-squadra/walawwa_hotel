@@ -28,6 +28,9 @@
       <label for="room_capacity"><b>Room Capacity</b></label><br>
       <input type="number" placeholder="Enter room capacity" name="room_capacity" id="room_capacity" required><br>
 
+      <label for="room_capacity"><b>Room Price</b></label><br>
+      <input type="number" placeholder="Enter room Price" name="rmprice" id="rmprice" required><br>
+
       <label for="ac"><b>A/C Facility</b></label><br>
       <select id="ac" name="ac">
         <option value="available">available</option>

@@ -150,11 +150,13 @@
 										Explore the Beauty of the Beautiful SriLanka 
 
 									</h2>
-									<div class="about-btn">
-										<button  class="about-view">
-											explore now
-										</button>
-									</div><!--/.about-btn-->
+									<a href="#gallery">
+										<div class="about-btn">
+											<button  class="about-view">
+												explore now
+											</button>
+										</div><!--/.about-btn-->
+									</a>
 								</div><!--/.about-us-txt-->
 							</div><!--/.single-about-us-->
 						</div><!--/.col-->
@@ -187,7 +189,7 @@
 									amazing tour packages
 									</a>
 								</h2>
-								<p>Duis aute irure dolor in  velit esse cillum dolore eu fugiat nulla.</p>
+								<p>Enjoy unforgettable tour packages offered by HotelBook.</p>
 							</div><!--/.service-content-->
 						</div><!--/.single-service-box-->
 					</div><!--/.col-->
@@ -203,7 +205,7 @@
 										book top class hotel
 									</a>
 								</h2>
-								<p>Duis aute irure dolor in  velit esse cillum dolore eu fugiat nulla.</p>
+								<p>Up to 80% off on hotels. Over 500,000 Satisfied Customers.</p>
 							</div><!--/.service-content-->
 						</div><!--/.single-service-box-->
 					</div><!--/.col-->
@@ -217,10 +219,10 @@
 
 								<h2>
 									<a href="#">
-										online flight booking
+										online trip planing
 									</a>
 								</h2>
-								<p>Duis aute irure dolor in  velit esse cillum dolore eu fugiat nulla.</p>
+								<p>Use our Online trip planner to get a personalized vacation</p>
 							</div><!--/.service-content-->
 						</div><!--/.single-service-box-->
 					</div><!--/.col-->
@@ -350,7 +352,10 @@
 				</div><!--/.gallery-header-->
 				<div class="packages-content">
 					<div class="row">
-						<?php include 'Controllers/get_hotels.php';
+						<?php 
+						include 'Controllers/get_hotels.php';
+						include 'Controllers/Homefunctions.php';
+
 						foreach($responseData AS $response) {
 
 							$name = $response['name'];
@@ -360,7 +365,15 @@
 							$spa = $response['spa'];
 							$bar = $response['bar'];
 							$pool = $response['pool'];
+							$wifi = $response['wifi'];
+							$description = $response['description'];
 							$hotelImage = $response['hotelImage'];
+
+							$set_description = setdescription($description);
+							$set_spa = spaicon($spa,$wifi);
+							$set_parking = parkingicon($parking,$wifi);
+							$set_bar = baricon($bar,$wifi);
+							$set_pool = poolicon($pool,$wifi);
 						
 							if($hotelImage == ""){
 								echo'
@@ -371,21 +384,24 @@
 											<div class="packages-para">
 												<p>
 													<span>
-													<i class="fas fa-parking"></i>  Parking '.$parking.'
+														'.$set_parking.'
 													</span>
-													<i class="fas fa-spa"></i> Spa '.$spa.'
+													'.$set_spa.'
 												</p>
 												<p>
 													<span>
-														<i class="fas fa-glass-cheers"></i> Bar '.$bar.'
+														 '.$set_bar.'
 													</span>
-													<i class="fas fa-swimming-pool"></i> Pool '.$pool.'
+													 '.$set_pool.'
+												</p>
+												<p>
+													'.$set_description.' ... <a href="/this/story">Read More</a>
 												</p>
 											</div><!--/.packages-para-->
 											<a href="Hotelbooking.php">
-												<div class="about-btn">									
+												<div class="about-btn">
 													<button  class="about-view packages-btn">
-														book now</a>
+														book now
 													</button>
 												</div><!--/.about-btn-->
 											</a>
@@ -404,15 +420,18 @@
 											<div class="packages-para">
 												<p>
 													<span>
-													<i class="fas fa-parking"></i>  Parking '.$parking.'
+														'.$set_parking.'
 													</span>
-													<i class="fas fa-spa"></i> Spa '.$spa.'
+													'.$set_spa.'
 												</p>
 												<p>
 													<span>
-														<i class="fas fa-glass-cheers"></i> Bar '.$bar.'
+														 '.$set_bar.'
 													</span>
-													<i class="fas fa-swimming-pool"></i> Pool '.$pool.'
+													 '.$set_pool.'
+												</p>
+												<p>
+													'.$set_description.' ... <a href="/this/story">Read More</a>
 												</p>
 											</div><!--/.packages-para-->
 											<a href="Hotelbooking.php">
@@ -426,7 +445,7 @@
 									</div><!--/.single-package-item-->  
 								</div><!--/.col--> 
 								';
-								}
+								}			
 						}
 						?>
 

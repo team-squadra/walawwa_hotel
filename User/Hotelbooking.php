@@ -199,6 +199,7 @@
 							$adaults = $response['adaults'];
 							$childrens = $response['childrens'];
 							$hotelImage = $response['hotelImage'];
+							$totprice = $response['totprice'];
 						
 							if($hotel_name ==""){
 								// header("Location:../login.html");
@@ -220,6 +221,11 @@
 												</p>
 												<p>
 													You have Booked '.$rooms.' rooms for '.$adaults.' adults and '.$childrens.' children.
+												</p>
+												<p>
+													<span>
+														<i class="fas fa-angle-right"></i> Total price: $ '.$totprice.'
+													</span>
 												</p>
 											</div><!--/.packages-para-->
 												<div class="about-btn">
@@ -250,9 +256,9 @@
 								<div class="col-md-7 col-md-push-5">
 									<div class="booking-cta">
 										<h1>Make your reservation</h1>
-										<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Animi facere, soluta magnam consectetur molestias itaque
-											ad sint fugit architecto incidunt iste culpa perspiciatis possimus voluptates aliquid consequuntur cumque quasi.
-											Perspiciatis.
+										<p>HotelsCombined refunds the difference if you find a hotel listed cheaper elsewhere,
+											so you can be sure you’re getting the best deal.HotelBook does remarkably well in delivering lower-than-average prices,
+											since the site is always aggregating the best options around.
 										</p>
 
 									</div>
@@ -265,7 +271,7 @@
 												<input class="form-control" type="text" placeholder="Enter a destination or hotel name"> -->							
 												<span class="form-label">Pick Your Hotel</span>
 														<select class="form-control" id="hotel_name" name="hotel_name">
-															<option value="0" selected="selected" disabled>Category</option>
+															<option value="0" selected="selected" disabled>Select</option>
 															<?php include 'Controllers/get_hotels.php';
 																foreach($responseData AS $response) {
 
@@ -275,9 +281,19 @@
 																}
 																?>
 														</select>
+												<span class="select-arrow"></span>									
+											</div>
+											<div class="form-group">
+												<span class="form-label">Room type</span>
+														<select class="form-control" id="roomtype" name="roomtype">
+															<option selected="selected" disabled>Select</option>
+															<option value="Single">Single</option>
+															<option value="Double">Double</option>
+															<option value="Quad">Quad</option>
+															<option value="Queen">Queen</option>
+															<option value="King">King</option>
+														</select>
 												<span class="select-arrow"></span>
-
-
 											</div>
 											<div class="row">
 												<div class="col-sm-6">
