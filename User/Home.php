@@ -431,7 +431,7 @@
 													 '.$set_pool.'
 												</p>
 												<p>
-													'.$set_description.' ... <a href="">Read More</a>
+													'.$set_description.' ... <a href="#">Read More</a>
 												</p>
 											</div><!--/.packages-para-->
 											<a href="Hotelbooking.php">
