@@ -81,7 +81,18 @@ function switch_to_edit() {
     document.getElementById("profile_details_input").style.display = "block";
 }
 
-function update_profile() {
+function switch_to_profileview() {
     document.getElementById("profile_details_view").style.display = "block";
     document.getElementById("profile_details_input").style.display = "none";
+}
+
+function get_img_name() {
+    var hotel_image_input = document.getElementById("hotel_image_input").value;
+    var name = hotel_image_input.split("fakepath")[1];
+    document.getElementById("img_input_val").innerHTML = "<p style='font-size: 10px;'>" + name + "</p>";
+}
+
+function loadbar() {
+    document.getElementById("close_btn").style.display = "none";
+    document.getElementById("update_loading_bar").classList.add("progress");
 }
