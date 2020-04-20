@@ -1,7 +1,9 @@
 <?php
 
-if(isset($_POST['delete'])){
+include '../../Connecter/connecterlink.php';
+$clinklocal = $clink;
 
+if(isset($_POST['delete'])){
     // $user_name = 'temp user';
     $id = $_POST['delete'];
 
@@ -11,7 +13,7 @@ if(isset($_POST['delete'])){
     );
 
     // Setup cURL
-    $ch = curl_init('https://mighty-inlet-78383.herokuapp.com/api/bookings/deletebooking');
+    $ch = curl_init( ''.$clinklocal.'api/bookings/deletebooking');
     curl_setopt_array($ch, array(
         CURLOPT_POST => TRUE,
         CURLOPT_RETURNTRANSFER => TRUE,

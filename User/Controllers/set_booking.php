@@ -17,12 +17,15 @@ if(isset($_POST['upload'])){
 
     function getprice($hotel_name,$roomtype){
         //The data to send to the API
+        include '../Connecter/connecterlink.php';
+        $clinklocal = $clink;   
+
         $postData = array(
             'hotel_name' => $hotel_name,
             'roomtype' => $roomtype
         );
 
-        $ch = curl_init( 'https://mighty-inlet-78383.herokuapp.com/api/rooms/selectedroom');
+        $ch = curl_init( ''.$clinklocal.'api/rooms/selectedroom');
         curl_setopt_array($ch, array(
             CURLOPT_POST => TRUE,
             CURLOPT_RETURNTRANSFER => TRUE,
@@ -46,13 +49,14 @@ if(isset($_POST['upload'])){
     }
 
     function gethotelimg($hotel_name) {
-
+            include '../Connecter/connecterlink.php';
+            $clinklocal = $clink;
             //The data to send to the API
             $postData = array(
                 'name' => $hotel_name
             );
 
-            $ch = curl_init( 'https://mighty-inlet-78383.herokuapp.com/api/hotels/nmselectedhotel');
+            $ch = curl_init( ''.$clinklocal.'api/hotels/nmselectedhotel');
             curl_setopt_array($ch, array(
                 CURLOPT_POST => TRUE,
                 CURLOPT_RETURNTRANSFER => TRUE,
@@ -110,6 +114,9 @@ if(isset($_POST['upload'])){
     }
     else{
 
+        include '../Connecter/connecterlink.php';
+        $clinklocal = $clink;
+
         $totprice = $roomprice * $datediffrance * $rooms;
     
         //The data to send to the API
@@ -127,7 +134,7 @@ if(isset($_POST['upload'])){
         );
 
         // Setup cURL
-        $ch = curl_init('https://mighty-inlet-78383.herokuapp.com/api/bookings/regbooking');
+        $ch = curl_init( ''.$clinklocal.'api/bookings/regbooking');
         curl_setopt_array($ch, array(
             CURLOPT_POST => TRUE,
             CURLOPT_RETURNTRANSFER => TRUE,

@@ -1,6 +1,8 @@
 <?php
+include '../Connecter/connecterlink.php';
+$clinklocal = $clink;
 
-$ch = curl_init( 'https://mighty-inlet-78383.herokuapp.com/api/review/getreview');
+$ch = curl_init( ''.$clinklocal.'api/review/getreview');
 curl_setopt_array($ch, array(
     CURLOPT_RETURNTRANSFER => TRUE
 ));

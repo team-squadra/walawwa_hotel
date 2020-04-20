@@ -1,13 +1,15 @@
 <?php
 
 $user_name = $_SESSION["name"];
+include '../Connecter/connecterlink.php';
+$clinklocal = $clink;
 
 //The data to send to the API
 $postData = array(
     'user_name' => $user_name
 );
 
-$ch = curl_init( 'https://mighty-inlet-78383.herokuapp.com/api/bookings/selectedbooking');
+$ch = curl_init( ''.$clinklocal.'api/bookings/selectedbooking');
 curl_setopt_array($ch, array(
     CURLOPT_POST => TRUE,
     CURLOPT_RETURNTRANSFER => TRUE,
