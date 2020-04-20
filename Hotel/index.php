@@ -77,7 +77,6 @@ if (!isset($_SESSION['status'])) {
                     <li><a href="profile.php">Profile</a></li>
                     <li><a href="contact.php">Contact</a></li>
                     <li><a href="../Access/logout.php">Log out</a></li>
-                    <li><a href="#">Log out</a></li>
                 </ul>
             </nav>
 
