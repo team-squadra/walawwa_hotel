@@ -11691,7 +11691,7 @@ textarea.form-control {
 .roomcrd {
     margin: 5px;
     border-radius: 5px;
-    border: 1px solid gray;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
 .card {
@@ -11720,4 +11720,11 @@ textarea.form-control {
 
 .cursorp {
     cursor: pointer;
+}
+
+.pricetag {
+    border-radius: 10px;
+    padding: 5px;
+    color: white;
+    background-color: mediumseagreen;
 }

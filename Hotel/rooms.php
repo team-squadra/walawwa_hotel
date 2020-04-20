@@ -63,8 +63,7 @@ if (!isset($_SESSION['status'])) {
                         <label style="color:Gray;">Hotel</label><br>
                         <label style="color:LightGray;">Book
                             <sub>
-                                <img src="../logo/logo1.png"
-                                    style="width: 25px;height :25px;-ms-transform: rotate(20deg);transform: rotate(20deg);">
+                                <img src="../logo/logo1.png" style="width: 25px;height :25px;-ms-transform: rotate(20deg);transform: rotate(20deg);">
                             </sub>
                         </label>
                     </center>
@@ -84,9 +83,8 @@ if (!isset($_SESSION['status'])) {
                 <p>
                     <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
                     Copyright &copy;<script>
-                    document.write(new Date().getFullYear());
-                    </script> All rights reserved | This template is made with <i class="icon-heart"
-                        aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
+                        document.write(new Date().getFullYear());
+                    </script> All rights reserved | This template is made with <i class="icon-heart" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
                     <ul>
                         <li><a href="#"><i class="icon-facebook"></i></a></li>
                         <li><a href="#"><i class="icon-twitter"></i></a></li>
@@ -105,8 +103,7 @@ if (!isset($_SESSION['status'])) {
                                 <form action="Controllers/php/php_addRoom.php" method="POST">
                                     <p class="mb-4">
                                         <i class="fas fa-tag"></i>
-                                        <input type="number" class="cusInput2" placeholder="Room ID" name="r_id"
-                                            id="r_id_id" required>
+                                        <input type="number" class="cusInput2" placeholder="Room ID" name="r_id" id="r_id_id" required>
                                     </p>
                                     <p class="mb-4">
                                         <i class="fas fa-list"></i>
@@ -120,57 +117,39 @@ if (!isset($_SESSION['status'])) {
                                     </p>
                                     <p class="mb-4">
                                         <i class="fas fa-users"></i>
-                                        <input type="number" class="cusInput2" placeholder="Room capacity"
-                                            name="r_capacity" id="r_capacity_id" required>
+                                        <input type="number" class="cusInput2" placeholder="Room capacity" name="r_capacity" id="r_capacity_id" required>
                                     </p>
                                     <p class="mb-4">
                                         <i class="fas fa-dollar-sign"></i>
-                                        <input type="number" class="cusInput2" placeholder="Price" name="r_price"
-                                            id="r_price_id" required>
+                                        <input type="number" class="cusInput2" placeholder="Price" name="r_price" id="r_price_id" required>
                                     </p>
                                     <p class="mb-4">
                                         <i class="far fa-eye"></i>
-                                        <input type="text" class="cusInput2" placeholder="View" name="r_view"
-                                            id="r_view_id" required>
+                                        <input type="text" class="cusInput2" placeholder="View" name="r_view" id="r_view_id" required>
                                     </p>
                                     <hr>
                                     <label>
-                                        <img src="../images/air_conditioner.png" class="iconImg mright cursorp "
-                                            title="Air conditioner" onclick="toggle_icons(1)" id="air_ico_view">
-                                        <img src="../images/tv.png" class="iconImg mright cursorp " title="TV"
-                                            onclick="toggle_icons(2)" id="tv_ico_view">
-                                        <img src="../images/mini_bar.png" class="iconImg mright cursorp "
-                                            title="Mini bar" onclick="toggle_icons(3)" id="bar_ico_view">
-                                        <img src="../images/wardrobe.png" class="iconImg mright cursorp "
-                                            title="Wardrobe" onclick="toggle_icons(4)" id="wardrobe_ico_view">
-                                        <img src="../images/safe.png" class="iconImg mright cursorp " title="Safe"
-                                            onclick="toggle_icons(5)" id="safe_ico_view">
-                                        <img src="../images/soundproof.png" class="iconImg mright cursorp "
-                                            title="Soundproof" onclick="toggle_icons(6)" id="sound_ico_view">
-                                        <img src="../images/bathroom.png" class="iconImg mright cursorp "
-                                            title="Bathroom" onclick="toggle_icons(7)" id="bathroom_ico_view">
+                                        <img src="../images/air_conditioner.png" class="iconImg mright cursorp " title="Air conditioner" onclick="toggle_icons(1)" id="air_ico_view">
+                                        <img src="../images/tv.png" class="iconImg mright cursorp " title="TV" onclick="toggle_icons(2)" id="tv_ico_view">
+                                        <img src="../images/mini_bar.png" class="iconImg mright cursorp " title="Mini bar" onclick="toggle_icons(3)" id="bar_ico_view">
+                                        <img src="../images/wardrobe.png" class="iconImg mright cursorp " title="Wardrobe" onclick="toggle_icons(4)" id="wardrobe_ico_view">
+                                        <img src="../images/safe.png" class="iconImg mright cursorp " title="Safe" onclick="toggle_icons(5)" id="safe_ico_view">
+                                        <img src="../images/soundproof.png" class="iconImg mright cursorp " title="Soundproof" onclick="toggle_icons(6)" id="sound_ico_view">
+                                        <img src="../images/bathroom.png" class="iconImg mright cursorp " title="Bathroom" onclick="toggle_icons(7)" id="bathroom_ico_view">
                                     </label>
                                     <hr>
                                     <p class="mb-4 dnone">
-                                        <input type="text" style="width: 20px;" value="1" id="air_ico_val_id"
-                                            name="air_ico_val">
-                                        <input type="text" style="width: 20px;" value="1" id="tv_ico_val_id"
-                                            name="tv_ico_val">
-                                        <input type="text" style="width: 20px;" value="1" id="bar_ico_val_id"
-                                            name="bar_ico_val">
-                                        <input type="text" style="width: 20px;" value="1" id="wardrobe_ico_val_id"
-                                            name="wardrobe_ico_val">
-                                        <input type="text" style="width: 20px;" value="1" id="safe_ico_val_id"
-                                            name="safe_ico_val">
-                                        <input type="text" style="width: 20px;" value="1" id="sound_ico_val_id"
-                                            name="sound_ico_val">
-                                        <input type="text" style="width: 20px;" value="0" id="bathroom_ico_val_id"
-                                            name="bathroom_ico_val">
+                                        <input type="text" style="width: 20px;" value="1" id="air_ico_val_id" name="air_ico_val">
+                                        <input type="text" style="width: 20px;" value="1" id="tv_ico_val_id" name="tv_ico_val">
+                                        <input type="text" style="width: 20px;" value="1" id="bar_ico_val_id" name="bar_ico_val">
+                                        <input type="text" style="width: 20px;" value="1" id="wardrobe_ico_val_id" name="wardrobe_ico_val">
+                                        <input type="text" style="width: 20px;" value="1" id="safe_ico_val_id" name="safe_ico_val">
+                                        <input type="text" style="width: 20px;" value="1" id="sound_ico_val_id" name="sound_ico_val">
+                                        <input type="text" style="width: 20px;" value="0" id="bathroom_ico_val_id" name="bathroom_ico_val">
                                     </p>
                                     <center>
-                                        <button class="button btn-clr" style="max-width: 200px;" name="addaroom"
-                                            type="submit" onclick="adaroom_load()">Add a Room</button>
-                                            <br><i class="fas fa-times cursorp" onclick="switchDiv(0)"></i>
+                                        <button class="button btn-clr" style="max-width: 200px;" name="addaroom" type="submit" onclick="adaroom_load()">Add a Room</button>
+                                        <br><i class="fas fa-times cursorp" onclick="switchDiv(0)"></i>
                                         <div class="show-progress" id="adaroom_loading_bar"></div>
                                     </center>
                                 </form>
@@ -182,56 +161,56 @@ if (!isset($_SESSION['status'])) {
                     <div class="w3-row">
 
                         <?php include 'Controllers/php/php_loadRoomData.php';
-						foreach($responseData AS $response) {
-
+                        foreach ($responseData as $response) {
                             $room_name = $response['room_name'];
                             $room_type = $response['roomtype'];
-							$room_capacity = $response['room_capacity'];
-							$room_price = $response['rmprice'];
-							$room_view = $response['view'];
-							$ac = $response['ac'];
-							$tv = $response['tv'];
+                            $room_capacity = $response['room_capacity'];
+                            $room_price = $response['rmprice'];
+                            $room_view = $response['view'];
+                            $ac = $response['ac'];
+                            $tv = $response['tv'];
                             $minibar = $response['minibar'];
                             $wardrobe = $response['wardrobe'];
-							$safe = $response['safe'];
+                            $safe = $response['safe'];
                             $soundproof = $response['soundproof'];
                             $bathroom = $response['bathroom'];
 
-                        echo ' 
+                            echo ' 
                         <div class="w3-third">
                             <div class="w3-container w3-padding-16 roomcrd">
                                 <div class="ftco-animate">
-                                    <label class="category mb-3 d-block" style="color: orangered;" title="Room ID" ><i class="fas fa-tag"></i> '.$room_name.'</label>
+                                    <label class="category mb-3 d-block" style="color: orangered;" title="Room ID" ><i class="fas fa-tag"></i> ' . $room_name . '</label>
 
-                                    <label class="lbl_tag" title="Room type"><i class="fas fa-list"></i> '.$room_type.'</label>
-                                    <label class="lbl_tag" title="Price"><i class="fas fa-dollar-sign"></i> '.$room_price.'</label>
-                                    <label class="lbl_tag" title="room_capacity"><i class="fas fa-users"></i> '.$room_capacity.'</label><br>
-                                    <label class="lbl_tag" title="View"><i class="far fa-eye"></i> '.$room_view.'</label><br>
+                                    <label class="lbl_tag" title="Room type"><i class="fas fa-list"></i> ' . $room_type . '</label>
+                                    <label class="lbl_tag" title="Price"><i class="fas fa-dollar-sign"></i> ' . $room_price . '</label>
+                                    <label class="lbl_tag" title="room_capacity"><i class="fas fa-users"></i> ' . $room_capacity . '</label><br>
+                                    <label class="lbl_tag" title="View"><i class="far fa-eye"></i> ' . $room_view . '</label><br>
                                     <label>
                         ';
 
-                        if($ac == 1){
-                            echo'<img src="../images/air_conditioner.png" class="iconImg iconBG mright" title="Air conditioner">';
-                        }
-                        if($tv == 1){
-                            echo'<img src="../images/tv.png" class="iconImg iconBG mright" title="TV">';
-                        }
-                        if($minibar == 1){
-                            echo'<img src="../images/mini_bar.png" class="iconImg iconBG mright" title="Mini bar">';
-                        }
-                        if($wardrobe == 1){
-                            echo'<img src="../images/wardrobe.png" class="iconImg iconBG mright" title="Wardrobe">';
-                        }if($safe == 1){
-                            echo'<img src="../images/safe.png" class="iconImg iconBG mright" title="Safe">';
-                        }
-                        if($soundproof == 1){
-                            echo'<img src="../images/soundproof.png" class="iconImg iconBG mright" title="Soundproof">';
-                        }
-                        if($bathroom == 1){
-                            echo'<img src="../images/bathroom.png" class="iconImg iconBG mright" title="Bathroom">';
-                        }
-                                        
-                        echo '
+                            if ($ac == 1) {
+                                echo '<img src="../images/air_conditioner.png" class="iconImg iconBG mright" title="Air conditioner">';
+                            }
+                            if ($tv == 1) {
+                                echo '<img src="../images/tv.png" class="iconImg iconBG mright" title="TV">';
+                            }
+                            if ($minibar == 1) {
+                                echo '<img src="../images/mini_bar.png" class="iconImg iconBG mright" title="Mini bar">';
+                            }
+                            if ($wardrobe == 1) {
+                                echo '<img src="../images/wardrobe.png" class="iconImg iconBG mright" title="Wardrobe">';
+                            }
+                            if ($safe == 1) {
+                                echo '<img src="../images/safe.png" class="iconImg iconBG mright" title="Safe">';
+                            }
+                            if ($soundproof == 1) {
+                                echo '<img src="../images/soundproof.png" class="iconImg iconBG mright" title="Soundproof">';
+                            }
+                            if ($bathroom == 1) {
+                                echo '<img src="../images/bathroom.png" class="iconImg iconBG mright" title="Bathroom">';
+                            }
+
+                            echo '
                                     </label>
                                 </div>
                             </div>
@@ -248,53 +227,47 @@ if (!isset($_SESSION['status'])) {
                     <div class="row mb-5">
                         <div class="col-md">
                             <div class="ftco-footer-widget mb-4 ml-md-4">
-                                <h2 class="ftco-heading-2">Category</h2>
-                                <ul class="list-unstyled categories">
-                                    <li><a href="#">Photography <span>(6)</span></a></li>
-                                    <li><a href="#">Fashion <span>(8)</span></a></li>
-                                    <li><a href="#">Technology <span>(2)</span></a></li>
-                                    <li><a href="#">Travel <span>(2)</span></a></li>
-                                </ul>
+                                <h2 class="ftco-heading-2">#HotelBook</h2>
+                                <label>
+                                    <i class="fab fa-facebook-f mright"></i>
+                                    <i class="fab fa-instagram mright"></i>
+                                    <i class="fab fa-twitter mright"></i>
+                                </label>
                             </div>
                         </div>
                         <div class="col-md">
                             <div class="ftco-footer-widget mb-4">
-                                <h2 class="ftco-heading-2">Archives</h2>
+                                <h2 class="ftco-heading-2">Contact</h2>
                                 <ul class="list-unstyled categories">
-                                    <li><a href="#">October 2018 <span>(6)</span></a></li>
-                                    <li><a href="#">September 2018 <span>(6)</span></a></li>
-                                    <li><a href="#">August 2018 <span>(8)</span></a></li>
-                                    <li><a href="#">July 2018 <span>(2)</span></a></li>
-                                    <li><a href="#">June 2018 <span>(7)</span></a></li>
+                                    <li><i class="fas fa-map-marker"></i> 198 West 21th Street, Suite 721 New York NY
+                                        10016</li>
+                                    <li><i class="fas fa-phone-alt"></i> + 1235 2355 98</li>
+                                    <li><i class="fas fa-at"></i> info@hotelbook.com</li>
                                 </ul>
-                            </div>
-                        </div>
-                        <div class="col-md">
-                            <div class="ftco-footer-widget mb-4">
-                                <h2 class="ftco-heading-2">Have a Questions?</h2>
-                                <div class="block-23 mb-3">
-                                    <ul>
-                                        <li><span class="icon icon-map-marker"></span><span class="text">203 Fake St.
-                                                Mountain View, San Francisco, California, USA</span></li>
-                                        <li><a href="#"><span class="icon icon-phone"></span><span class="text">+2 392
-                                                    3929 210</span></a></li>
-                                        <li><a href="#"><span class="icon icon-envelope"></span><span
-                                                    class="text">info@yourdomain.com</span></a></li>
-                                    </ul>
-                                </div>
                             </div>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-md-12">
+                            <center>
+                                <label style="color:Gray;">Hotel</label>
+                                <label style="color:LightGray;">Book
+                                    <sub>
+                                        <img src="../logo/logo1.png" style="width: 25px;height :25px;-ms-transform: rotate(20deg);transform: rotate(20deg);">
+                                    </sub>
+                                </label>
+                            </center>
+
+                        </div>
+                    </div>
+                    <div class="row dnone">
+                        <div class="col-md-12">
 
                             <p>
                                 <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
                                 Copyright &copy;<script>
-                                document.write(new Date().getFullYear());
-                                </script> All rights reserved | This template is made with <i class="icon-heart"
-                                    aria-hidden="true"></i> by <a href="https://colorlib.com"
-                                    target="_blank">Colorlib</a>
+                                    document.write(new Date().getFullYear());
+                                </script> All rights reserved | This template is made with <i class="icon-heart" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
                                 <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
                             </p>
                         </div>
@@ -307,8 +280,7 @@ if (!isset($_SESSION['status'])) {
     <!-- loader -->
     <div id="ftco-loader" class="show fullscreen"><svg class="circular" width="48px" height="48px">
             <circle class="path-bg" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke="#eeeeee" />
-            <circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10"
-                stroke="#F96D00" /></svg></div>
+            <circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10" stroke="#F96D00" /></svg></div>
 
 
     <script src="js/jquery.min.js"></script>

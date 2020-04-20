@@ -1,4 +1,4 @@
-<a href="../../rooms.php"> go t rooms.php</a>
+
 <?php
 session_start();
 

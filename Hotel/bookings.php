@@ -1,16 +1,12 @@
 <?php
-	session_start();
+session_start();
 
-	if(!isset($_SESSION['status'])){
-		header('Location: ../Access/login.php');
-	} 
-	else if($_SESSION['status'] !='hotel')
-	{
-		header('Location: ../index.php');
-    }
-    else{
-
-	}
+if (!isset($_SESSION['status'])) {
+    header('Location: ../Access/login.php');
+} else if ($_SESSION['status'] != 'hotel') {
+    header('Location: ../index.php');
+} else {
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -53,6 +49,8 @@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.13.0/css/all.css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.13.0/css/v4-shims.css">
     <!--===============================================================================================-->
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <!--===============================================================================================-->
 </head>
 
 <body>
@@ -65,8 +63,7 @@
                         <label style="color:Gray;">Hotel</label><br>
                         <label style="color:LightGray;">Book
                             <sub>
-                                <img src="../logo/logo1.png"
-                                    style="width: 25px;height :25px;-ms-transform: rotate(20deg);transform: rotate(20deg);">
+                                <img src="../logo/logo1.png" style="width: 25px;height :25px;-ms-transform: rotate(20deg);transform: rotate(20deg);">
                             </sub>
                         </label>
                     </center>
@@ -86,9 +83,8 @@
                 <p>
                     <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
                     Copyright &copy;<script>
-                    document.write(new Date().getFullYear());
-                    </script> All rights reserved | This template is made with <i class="icon-heart"
-                        aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
+                        document.write(new Date().getFullYear());
+                    </script> All rights reserved | This template is made with <i class="icon-heart" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
                     <ul>
                         <li><a href="#"><i class="icon-facebook"></i></a></li>
                         <li><a href="#"><i class="icon-twitter"></i></a></li>
@@ -98,81 +94,64 @@
             </div>
         </aside> <!-- END COLORLIB-ASIDE -->
         <div id="colorlib-main">
-            <div class="hero-wrap js-fullheight" style="background-image: url(images/bg_1.jpg);"
-                data-stellar-background-ratio="0.5">
-                <div class="overlay"></div>
-                <div class="js-fullheight d-flex justify-content-center align-items-center">
-                    <div class="col-md-8 text text-center">
-                        <?php
-                            include 'Controllers/php/php_profileDataLoader.php';
-
-                            if($function_status == "Success"){
-
-                                if($hotel_hotelImage == ""){
-                                    echo '<div class="img mb-4" style="background-image: url(../logo/full_logo.png);"></div>';
-                                }
-                                else{
-                                    echo '<div class="img mb-4" style="background-image: url(data:image/png;base64,' . $hotel_hotelImage . ');"></div>';
-                                }
-
-                                echo '<div class="desc"><h1 class="mb-4">'.$hotel_name.'</h1>';
-                                echo '
-                                    <p class="mb-4" style="font-size: 10px;">'.$hotel_email.'</p>
-                                    <p class="mb-4" style="font-size: 10px;">'.$hotel_description.'</p>
-                                    <p>
-                                        <a href="profile.php" class="btn-custom">
-                                            Profile <span class="ion-ios-arrow-forward"></span>
-                                        </a>
-                                    </p>
-                                ';
-                            }
-                            else{}
-                        ?>
-                        </div>
-                    </div>
-                </div>
-            </div>
             <section class="ftco-section">
                 <div class="container">
                     <div class="row justify-content-center mb-5 pb-2">
                         <div class="col-md-7 heading-section text-center ftco-animate">
-                            <h2 class="mb-4">Articles</h2>
-                            <p>A small river named Duden flows by their place and supplies it with the necessary
-                                regelialia. It is a paradisematic country.</p>
+                            <h2 class="mb-4">Bookings</h2>
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-md-4">
-                            <div class="blog-entry ftco-animate">
-                                <a href="#" class="img img-2" style="background-image: url(images/image_1.jpg);"></a>
-                                <div class="text text-2 pt-2 mt-3">
-                                    <span class="category mb-3 d-block"><a href="#">Technology</a></span>
-                                    <h3 class="mb-4"><a href="#">The Newest Technology On This Year 2019</a></h3>
-                                    <p class="mb-4">Even the all-powerful Pointing has no control about the blind texts
-                                        it is an almost</p>
-                                    <div class="author mb-4 d-flex align-items-center">
-                                        <a href="#" class="img" style="background-image: url(images/person_2.jpg);"></a>
-                                        <div class="ml-3 info">
-                                            <span>Written by</span>
-                                            <h3><a href="#">Dave Lewis</a>, <span>Nov. 28, 2018</span></h3>
-                                        </div>
-                                    </div>
-                                    <div class="meta-wrap align-items-center">
-                                        <div class="half order-md-last">
-                                            <p class="meta">
-                                                <span><i class="icon-heart"></i>3</span>
-                                                <span><i class="icon-eye"></i>100</span>
-                                                <span><i class="icon-comment"></i>5</span>
-                                            </p>
-                                        </div>
-                                        <div class="half">
-                                            <p><a href="#" class="btn py-2">Continue Reading <span
-                                                        class="ion-ios-arrow-forward"></span></a></p>
-                                        </div>
-                                    </div>
+                        <?php include 'Controllers/php/php_loadBookingData.php';
+                        $x = 0;
+                        foreach ($responseData as $response) {
+
+                            $x++;
+                            $user_name = $response['user_name'];
+                            $check_in = $response['check_in'];
+                            $check_out = $response['check_out'];
+                            $rooms = $response['rooms'];
+                            $roomtype = $response['roomtype'];
+                            $adaults = $response['adaults'];
+                            $childrens = $response['childrens'];
+                            $totprice = $response['totprice'];
+
+                            echo ' 
+                        <div class="w3-third">
+                            <div class="w3-container w3-padding-16 roomcrd">
+                                <div class="ftco-animate">
+                                    <label class="category mb-3 d-block" style="color: orangered;" title="Room ID" ><i class="fas fa-user"></i> ' . $user_name . '</label>
+
+                                    <label class="lbl_tag" title="Check in"><i class="fas fa-sign-in-alt"></i> ' . $check_in . '</label>
+                                    <label class="lbl_tag" title="Check out"><i class="fas fa-sign-out-alt"></i> ' . $check_out . '</label><br>
+                                    <label class="lbl_tag" title="Rooms type"><i class="fas fa-list"></i> ' . $roomtype . '</label>
+                                    <label class="lbl_tag" title="Rooms"><i class="fas fa-door-open"></i> ' . $rooms . '</label><br>
+                                    <label class="lbl_tag" title="Adaults"><i class="fas fa-restroom"></i> ' . $adaults . '</label>
+                                    <label class="lbl_tag" title="Childrens"><i class="fas fa-child"></i> ' . $childrens . '</label><br>
+                                    <label class="category mb-3 d-block pricetag">
+                                        <center><i class="fas fa-dollar-sign"></i> ' . $totprice . '</center>
+                                    </label>
+
                                 </div>
                             </div>
                         </div>
+                        ';
+                        }
+                        if ($x == 0) {
+                            echo '
+                            <div class="w3-third">
+                            </div>
+                            <div class="w3-third">
+                                <img src="images/nodata.jpg" alt="nodata" style="width: 300px; height:300px;">
+                                <center>
+                                <label>No Bookings for today :(</label>
+                                </center>
+                            </div>
+                            <div class="w3-third">
+                            </div>
+                            ';
+                        }
+                        ?>
                     </div>
                 </div>
             </section>
@@ -181,53 +160,47 @@
                     <div class="row mb-5">
                         <div class="col-md">
                             <div class="ftco-footer-widget mb-4 ml-md-4">
-                                <h2 class="ftco-heading-2">Category</h2>
-                                <ul class="list-unstyled categories">
-                                    <li><a href="#">Photography <span>(6)</span></a></li>
-                                    <li><a href="#">Fashion <span>(8)</span></a></li>
-                                    <li><a href="#">Technology <span>(2)</span></a></li>
-                                    <li><a href="#">Travel <span>(2)</span></a></li>
-                                </ul>
+                                <h2 class="ftco-heading-2">#HotelBook</h2>
+                                <label>
+                                    <i class="fab fa-facebook-f mright"></i>
+                                    <i class="fab fa-instagram mright"></i>
+                                    <i class="fab fa-twitter mright"></i>
+                                </label>
                             </div>
                         </div>
                         <div class="col-md">
                             <div class="ftco-footer-widget mb-4">
-                                <h2 class="ftco-heading-2">Archives</h2>
+                                <h2 class="ftco-heading-2">Contact</h2>
                                 <ul class="list-unstyled categories">
-                                    <li><a href="#">October 2018 <span>(6)</span></a></li>
-                                    <li><a href="#">September 2018 <span>(6)</span></a></li>
-                                    <li><a href="#">August 2018 <span>(8)</span></a></li>
-                                    <li><a href="#">July 2018 <span>(2)</span></a></li>
-                                    <li><a href="#">June 2018 <span>(7)</span></a></li>
+                                    <li><i class="fas fa-map-marker"></i> 198 West 21th Street, Suite 721 New York NY
+                                        10016</li>
+                                    <li><i class="fas fa-phone-alt"></i> + 1235 2355 98</li>
+                                    <li><i class="fas fa-at"></i> info@hotelbook.com</li>
                                 </ul>
-                            </div>
-                        </div>
-                        <div class="col-md">
-                            <div class="ftco-footer-widget mb-4">
-                                <h2 class="ftco-heading-2">Have a Questions?</h2>
-                                <div class="block-23 mb-3">
-                                    <ul>
-                                        <li><span class="icon icon-map-marker"></span><span class="text">203 Fake St.
-                                                Mountain View, San Francisco, California, USA</span></li>
-                                        <li><a href="#"><span class="icon icon-phone"></span><span class="text">+2 392
-                                                    3929 210</span></a></li>
-                                        <li><a href="#"><span class="icon icon-envelope"></span><span
-                                                    class="text">info@yourdomain.com</span></a></li>
-                                    </ul>
-                                </div>
                             </div>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-md-12">
+                            <center>
+                                <label style="color:Gray;">Hotel</label>
+                                <label style="color:LightGray;">Book
+                                    <sub>
+                                        <img src="../logo/logo1.png" style="width: 25px;height :25px;-ms-transform: rotate(20deg);transform: rotate(20deg);">
+                                    </sub>
+                                </label>
+                            </center>
+
+                        </div>
+                    </div>
+                    <div class="row dnone">
+                        <div class="col-md-12">
 
                             <p>
                                 <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
                                 Copyright &copy;<script>
-                                document.write(new Date().getFullYear());
-                                </script> All rights reserved | This template is made with <i class="icon-heart"
-                                    aria-hidden="true"></i> by <a href="https://colorlib.com"
-                                    target="_blank">Colorlib</a>
+                                    document.write(new Date().getFullYear());
+                                </script> All rights reserved | This template is made with <i class="icon-heart" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
                                 <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
                             </p>
                         </div>
@@ -240,8 +213,7 @@
     <!-- loader -->
     <div id="ftco-loader" class="show fullscreen"><svg class="circular" width="48px" height="48px">
             <circle class="path-bg" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke="#eeeeee" />
-            <circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10"
-                stroke="#F96D00" /></svg></div>
+            <circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10" stroke="#F96D00" /></svg></div>
 
 
     <script src="js/jquery.min.js"></script>
