@@ -63,7 +63,8 @@ if (!isset($_SESSION['status'])) {
                         <label style="color:Gray;">Hotel</label><br>
                         <label style="color:LightGray;">Book
                             <sub>
-                                <img src="../logo/logo1.png" style="width: 25px;height :25px;-ms-transform: rotate(20deg);transform: rotate(20deg);">
+                                <img src="../logo/logo1.png"
+                                    style="width: 25px;height :25px;-ms-transform: rotate(20deg);transform: rotate(20deg);">
                             </sub>
                         </label>
                     </center>
@@ -83,8 +84,9 @@ if (!isset($_SESSION['status'])) {
                 <p>
                     <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
                     Copyright &copy;<script>
-                        document.write(new Date().getFullYear());
-                    </script> All rights reserved | This template is made with <i class="icon-heart" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
+                    document.write(new Date().getFullYear());
+                    </script> All rights reserved | This template is made with <i class="icon-heart"
+                        aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
                     <ul>
                         <li><a href="#"><i class="icon-facebook"></i></a></li>
                         <li><a href="#"><i class="icon-twitter"></i></a></li>
@@ -94,7 +96,8 @@ if (!isset($_SESSION['status'])) {
             </div>
         </aside> <!-- END COLORLIB-ASIDE -->
         <div id="colorlib-main">
-            <div class="hero-wrap js-fullheight" style="background-image: url(images/bg_1.jpg);" data-stellar-background-ratio="0.5">
+            <div class="hero-wrap js-fullheight" style="background-image: url(images/bg_1.jpg);"
+                data-stellar-background-ratio="0.5">
                 <div class="overlay"></div>
                 <div class="js-fullheight d-flex justify-content-center align-items-center">
                     <div class="col-md-8 text text-center">
@@ -104,21 +107,45 @@ if (!isset($_SESSION['status'])) {
                         if ($function_status == "Success") {
 
                             if ($hotel_hotelImage == "") {
-                                echo '<div class="img mb-4" style="background-image: url(../logo/full_logo.png);"></div>';
+                                echo '<a href="profile.php"><div class="img mb-4" style="background-image: url(../logo/full_logo.png);"></div></a>';
                             } else {
-                                echo '<div class="img mb-4" style="background-image: url(data:image/png;base64,' . $hotel_hotelImage . ');"></div>';
+                                echo '<a href="profile.php"><div class="img mb-4" style="background-image: url(data:image/png;base64,' . $hotel_hotelImage . ');"></div></a>';
                             }
 
                             echo '<div class="desc"><h1 class="mb-4">' . $hotel_name . '</h1>';
                             echo '
                                     <p class="mb-4" style="font-size: 10px;">' . $hotel_email . '</p>
                                     <p class="mb-4" style="font-size: 10px;">' . $hotel_description . '</p>
-                                    <p>
-                                        <a href="profile.php" class="btn-custom">
-                                            Profile <span class="ion-ios-arrow-forward"></span>
-                                        </a>
-                                    </p>
                                 ';
+
+                            if ($hotel_pool == "1") {
+                                echo '<i class="fa fa-swimming-pool mright " aria-hidden="true" title="Pool"></i>';
+                            }
+
+                            if ($hotel_parking == "1") {
+                                echo '<i class="fa fa-parking mright " aria-hidden="true" title="Parking"></i>';
+                            }
+
+                            if ($hotel_spa == "1") {
+                                echo '<i class="fa fa-spa mright " aria-hidden="true" title="Spa"></i>';
+                            }
+
+                            if ($hotel_bar == "1") {
+                                echo '<i class="fa fa-glass-cheers mright " aria-hidden="true" title="Bar"></i>';
+                            }
+
+                            if ($hotel_wifi == "1") {
+                                echo '<i class="fa fa-wifi mright " aria-hidden="true" title="Wifi"></i>';
+                            }
+
+                            echo '
+                            <br><br>
+                                <p>
+                                    <a href="bookings.php" class="btn-custom">
+                                            View Bookings <span class="ion-ios-arrow-forward"></span>
+                                    </a>
+                                </p>
+                            ';
                         } else {
                         }
                         ?>
@@ -126,138 +153,6 @@ if (!isset($_SESSION['status'])) {
                 </div>
             </div>
         </div>
-        <section class="ftco-section">
-            <div class="container">
-                <div class="row justify-content-center mb-5 pb-2">
-                    <div class="col-md-7 heading-section text-center ftco-animate">
-                        <h2 class="mb-4"><a href="bookings.php">Bookings</a></h2>
-                    </div>
-                </div>
-                <div class="row">
-                    <?php include 'Controllers/php/php_loadBookingData.php';
-                    $x = 0;
-                    foreach ($responseData as $response) {
-
-                        $x++;
-                        $user_name = $response['user_name'];
-                        $check_in = $response['check_in'];
-                        $check_out = $response['check_out'];
-                        $rooms = $response['rooms'];
-                        $roomtype = $response['roomtype'];
-                        $adaults = $response['adaults'];
-                        $childrens = $response['childrens'];
-                        $totprice = $response['totprice'];
-
-                        echo ' 
-                        <div class="w3-third">
-                            <div class="w3-container w3-padding-16 roomcrd">
-                                <div class="ftco-animate">
-                                    <label class="category mb-3 d-block" style="color: orangered;" title="Room ID" ><i class="fas fa-user"></i> ' . $user_name . '</label>
-
-                                    <label class="lbl_tag" title="Check in"><i class="fas fa-sign-in-alt"></i> ' . $check_in . '</label>
-                                    <label class="lbl_tag" title="Check out"><i class="fas fa-sign-out-alt"></i> ' . $check_out . '</label><br>
-                                    <label class="lbl_tag" title="Rooms type"><i class="fas fa-list"></i> ' . $roomtype . '</label>
-                                    <label class="lbl_tag" title="Rooms"><i class="fas fa-door-open"></i> ' . $rooms . '</label><br>
-                                    <label class="lbl_tag" title="Adaults"><i class="fas fa-restroom"></i> ' . $adaults . '</label>
-                                    <label class="lbl_tag" title="Childrens"><i class="fas fa-child"></i> ' . $childrens . '</label><br>
-                                    <label class="category mb-3 d-block pricetag">
-                                        <center><i class="fas fa-dollar-sign"></i> ' . $totprice . '</center>
-                                    </label>
-
-                                </div>
-                            </div>
-                        </div>
-                        ';
-                    }
-                    if ($x == 0) {
-                        echo '
-                            <div class="w3-third">
-                            </div>
-                            <div class="w3-third">
-                                <img src="images/nodata.jpg" alt="nodata" style="width: 300px; height:300px;">
-                                <center>
-                                <label>No Bookings for today :(</label>
-                                </center>
-                            </div>
-                            <div class="w3-third">
-                            </div>
-                            ';
-                    }
-                    ?>
-                </div>
-
-                <br>
-                <hr><br>
-
-                <div class="row justify-content-center mb-5 pb-2">
-                    <div class="col-md-7 heading-section text-center ftco-animate">
-                        <h2 class="mb-4"><a href="rooms.php">Rooms</a></h2>
-                    </div>
-                </div>
-
-                <div class="w3-row">
-
-                    <?php include 'Controllers/php/php_loadRoomData.php';
-                    foreach ($responseData as $response) {
-                        $room_name = $response['room_name'];
-                        $room_type = $response['roomtype'];
-                        $room_capacity = $response['room_capacity'];
-                        $room_price = $response['rmprice'];
-                        $room_view = $response['view'];
-                        $ac = $response['ac'];
-                        $tv = $response['tv'];
-                        $minibar = $response['minibar'];
-                        $wardrobe = $response['wardrobe'];
-                        $safe = $response['safe'];
-                        $soundproof = $response['soundproof'];
-                        $bathroom = $response['bathroom'];
-
-                        echo ' 
-                        <div class="w3-third">
-                            <div class="w3-container w3-padding-16 roomcrd">
-                                <div class="ftco-animate">
-                                    <label class="category mb-3 d-block" style="color: orangered;" title="Room ID" ><i class="fas fa-tag"></i> ' . $room_name . '</label>
-
-                                    <label class="lbl_tag" title="Room type"><i class="fas fa-list"></i> ' . $room_type . '</label>
-                                    <label class="lbl_tag" title="Price"><i class="fas fa-dollar-sign"></i> ' . $room_price . '</label>
-                                    <label class="lbl_tag" title="room_capacity"><i class="fas fa-users"></i> ' . $room_capacity . '</label><br>
-                                    <label class="lbl_tag" title="View"><i class="far fa-eye"></i> ' . $room_view . '</label><br>
-                                    <label>
-                        ';
-
-                        if ($ac == 1) {
-                            echo '<img src="../images/air_conditioner.png" class="iconImg iconBG mright" title="Air conditioner">';
-                        }
-                        if ($tv == 1) {
-                            echo '<img src="../images/tv.png" class="iconImg iconBG mright" title="TV">';
-                        }
-                        if ($minibar == 1) {
-                            echo '<img src="../images/mini_bar.png" class="iconImg iconBG mright" title="Mini bar">';
-                        }
-                        if ($wardrobe == 1) {
-                            echo '<img src="../images/wardrobe.png" class="iconImg iconBG mright" title="Wardrobe">';
-                        }
-                        if ($safe == 1) {
-                            echo '<img src="../images/safe.png" class="iconImg iconBG mright" title="Safe">';
-                        }
-                        if ($soundproof == 1) {
-                            echo '<img src="../images/soundproof.png" class="iconImg iconBG mright" title="Soundproof">';
-                        }
-                        if ($bathroom == 1) {
-                            echo '<img src="../images/bathroom.png" class="iconImg iconBG mright" title="Bathroom">';
-                        }
-
-                        echo '
-                                    </label>
-                                </div>
-                            </div>
-                        </div>
-                        ';
-                    }
-                    ?>
-                </div>
-            </div>
-        </section>
         <footer class="ftco-footer ftco-bg-dark ftco-section">
             <div class="container px-md-5">
                 <div class="row mb-5">
@@ -289,7 +184,8 @@ if (!isset($_SESSION['status'])) {
                             <label style="color:Gray;">Hotel</label>
                             <label style="color:LightGray;">Book
                                 <sub>
-                                    <img src="../logo/logo1.png" style="width: 25px;height :25px;-ms-transform: rotate(20deg);transform: rotate(20deg);">
+                                    <img src="../logo/logo1.png"
+                                        style="width: 25px;height :25px;-ms-transform: rotate(20deg);transform: rotate(20deg);">
                                 </sub>
                             </label>
                         </center>
@@ -302,8 +198,9 @@ if (!isset($_SESSION['status'])) {
                         <p>
                             <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
                             Copyright &copy;<script>
-                                document.write(new Date().getFullYear());
-                            </script> All rights reserved | This template is made with <i class="icon-heart" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
+                            document.write(new Date().getFullYear());
+                            </script> All rights reserved | This template is made with <i class="icon-heart"
+                                aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
                             <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
                         </p>
                     </div>
@@ -316,7 +213,8 @@ if (!isset($_SESSION['status'])) {
     <!-- loader -->
     <div id="ftco-loader" class="show fullscreen"><svg class="circular" width="48px" height="48px">
             <circle class="path-bg" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke="#eeeeee" />
-            <circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10" stroke="#F96D00" /></svg></div>
+            <circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10"
+                stroke="#F96D00" /></svg></div>
 
 
     <script src="js/jquery.min.js"></script>
