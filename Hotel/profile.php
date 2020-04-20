@@ -74,11 +74,11 @@
             <nav id="colorlib-main-menu" role="navigation">
                 <ul>
                     <li><a href="index.php">Home</a></li>
-                    <li><a href="photography.php">Photography</a></li>
-                    <li><a href="travel.php">Travel</a></li>
-                    <li><a href="fashion.php">Fashion</a></li>
+                    <li><a href="bookings.php">Bookings</a></li>
+                    <li><a href="rooms.php">Rooms</a></li>
                     <li class="colorlib-active"><a href="profile.php">Profile</a></li>
                     <li><a href="contact.php">Contact</a></li>
+                    <li><a href="../Access/logout.php">Log out</a></li>
                 </ul>
             </nav>
 
@@ -256,6 +256,7 @@
     <script src="js/google-map.js"></script>
     <script src="js/main.js"></script>
     <script src="Controllers/js/js_main.js"></script>
+    <script>loadingprofile();</script>
 
 </body>
 

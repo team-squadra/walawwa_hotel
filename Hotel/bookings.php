@@ -1,3 +1,17 @@
+<?php
+	session_start();
+
+	if(!isset($_SESSION['status'])){
+		header('Location: ../Access/login.php');
+	} 
+	else if($_SESSION['status'] !='hotel')
+	{
+		header('Location: ../index.php');
+    }
+    else{
+
+	}
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -36,6 +50,9 @@
     <!--===============================================================================================-->
     <link rel="stylesheet" href="css/style.css">
     <!--===============================================================================================-->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.13.0/css/all.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.13.0/css/v4-shims.css">
+    <!--===============================================================================================-->
 </head>
 
 <body>
@@ -57,11 +74,11 @@
             <nav id="colorlib-main-menu" role="navigation">
                 <ul>
                     <li><a href="index.php">Home</a></li>
-                    <li class="colorlib-active"><a href="photography.php">Photography</a></li>
-                    <li><a href="travel.php">Travel</a></li>
-                    <li><a href="fashion.php">Fashion</a></li>
+                    <li class="colorlib-active"><a href="bookings.php">Bookings</a></li>
+                    <li><a href="rooms.php">Rooms</a></li>
                     <li><a href="profile.php">Profile</a></li>
                     <li><a href="contact.php">Contact</a></li>
+                    <li><a href="../Access/logout.php">Log out</a></li>
                 </ul>
             </nav>
 
@@ -81,128 +98,80 @@
             </div>
         </aside> <!-- END COLORLIB-ASIDE -->
         <div id="colorlib-main">
-            <section class="ftco-section-2">
-                <div class="photograhy">
-                    <div class="row no-gutters">
-                        <div class="col-md-3">
-                            <a href="#" class="photography-entry img d-flex justify-content-center align-items-center"
-                                style="background-image: url(images/image_1.jpg);">
-                                <div class="overlay"></div>
-                                <div class="text text-center">
-                                    <h3>Work 01</h3>
-                                    <span>Technology</span>
-                                </div>
-                            </a>
+            <div class="hero-wrap js-fullheight" style="background-image: url(images/bg_1.jpg);"
+                data-stellar-background-ratio="0.5">
+                <div class="overlay"></div>
+                <div class="js-fullheight d-flex justify-content-center align-items-center">
+                    <div class="col-md-8 text text-center">
+                        <?php
+                            include 'Controllers/php/php_profileDataLoader.php';
+
+                            if($function_status == "Success"){
+
+                                if($hotel_hotelImage == ""){
+                                    echo '<div class="img mb-4" style="background-image: url(../logo/full_logo.png);"></div>';
+                                }
+                                else{
+                                    echo '<div class="img mb-4" style="background-image: url(data:image/png;base64,' . $hotel_hotelImage . ');"></div>';
+                                }
+
+                                echo '<div class="desc"><h1 class="mb-4">'.$hotel_name.'</h1>';
+                                echo '
+                                    <p class="mb-4" style="font-size: 10px;">'.$hotel_email.'</p>
+                                    <p class="mb-4" style="font-size: 10px;">'.$hotel_description.'</p>
+                                    <p>
+                                        <a href="profile.php" class="btn-custom">
+                                            Profile <span class="ion-ios-arrow-forward"></span>
+                                        </a>
+                                    </p>
+                                ';
+                            }
+                            else{}
+                        ?>
                         </div>
-                        <div class="col-md-3">
-                            <a href="#" class="photography-entry img d-flex justify-content-center align-items-center"
-                                style="background-image: url(images/image_2.jpg);">
-                                <div class="overlay"></div>
-                                <div class="text text-center">
-                                    <h3>Work 02</h3>
-                                    <span>Nature</span>
-                                </div>
-                            </a>
+                    </div>
+                </div>
+            </div>
+            <section class="ftco-section">
+                <div class="container">
+                    <div class="row justify-content-center mb-5 pb-2">
+                        <div class="col-md-7 heading-section text-center ftco-animate">
+                            <h2 class="mb-4">Articles</h2>
+                            <p>A small river named Duden flows by their place and supplies it with the necessary
+                                regelialia. It is a paradisematic country.</p>
                         </div>
-                        <div class="col-md-3">
-                            <a href="#" class="photography-entry img d-flex justify-content-center align-items-center"
-                                style="background-image: url(images/image_3.jpg);">
-                                <div class="overlay"></div>
-                                <div class="text text-center">
-                                    <h3>Work 03</h3>
-                                    <span>Fashion</span>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="blog-entry ftco-animate">
+                                <a href="#" class="img img-2" style="background-image: url(images/image_1.jpg);"></a>
+                                <div class="text text-2 pt-2 mt-3">
+                                    <span class="category mb-3 d-block"><a href="#">Technology</a></span>
+                                    <h3 class="mb-4"><a href="#">The Newest Technology On This Year 2019</a></h3>
+                                    <p class="mb-4">Even the all-powerful Pointing has no control about the blind texts
+                                        it is an almost</p>
+                                    <div class="author mb-4 d-flex align-items-center">
+                                        <a href="#" class="img" style="background-image: url(images/person_2.jpg);"></a>
+                                        <div class="ml-3 info">
+                                            <span>Written by</span>
+                                            <h3><a href="#">Dave Lewis</a>, <span>Nov. 28, 2018</span></h3>
+                                        </div>
+                                    </div>
+                                    <div class="meta-wrap align-items-center">
+                                        <div class="half order-md-last">
+                                            <p class="meta">
+                                                <span><i class="icon-heart"></i>3</span>
+                                                <span><i class="icon-eye"></i>100</span>
+                                                <span><i class="icon-comment"></i>5</span>
+                                            </p>
+                                        </div>
+                                        <div class="half">
+                                            <p><a href="#" class="btn py-2">Continue Reading <span
+                                                        class="ion-ios-arrow-forward"></span></a></p>
+                                        </div>
+                                    </div>
                                 </div>
-                            </a>
-                        </div>
-                        <div class="col-md-3">
-                            <a href="#" class="photography-entry img d-flex justify-content-center align-items-center"
-                                style="background-image: url(images/image_4.jpg);">
-                                <div class="overlay"></div>
-                                <div class="text text-center">
-                                    <h3>Work 04</h3>
-                                    <span>Travel</span>
-                                </div>
-                            </a>
-                        </div>
-                        <div class="col-md-3">
-                            <a href="#" class="photography-entry img d-flex justify-content-center align-items-center"
-                                style="background-image: url(images/image_5.jpg);">
-                                <div class="overlay"></div>
-                                <div class="text text-center">
-                                    <h3>Work 05</h3>
-                                    <span>Travel</span>
-                                </div>
-                            </a>
-                        </div>
-                        <div class="col-md-3">
-                            <a href="#" class="photography-entry img d-flex justify-content-center align-items-center"
-                                style="background-image: url(images/image_6.jpg);">
-                                <div class="overlay"></div>
-                                <div class="text text-center">
-                                    <h3>Work 06</h3>
-                                    <span>Travel</span>
-                                </div>
-                            </a>
-                        </div>
-                        <div class="col-md-3">
-                            <a href="#" class="photography-entry img d-flex justify-content-center align-items-center"
-                                style="background-image: url(images/image_7.jpg);">
-                                <div class="overlay"></div>
-                                <div class="text text-center">
-                                    <h3>Work 07</h3>
-                                    <span>Fashion, Model</span>
-                                </div>
-                            </a>
-                        </div>
-                        <div class="col-md-3">
-                            <a href="#" class="photography-entry img d-flex justify-content-center align-items-center"
-                                style="background-image: url(images/image_8.jpg);">
-                                <div class="overlay"></div>
-                                <div class="text text-center">
-                                    <h3>Work 08</h3>
-                                    <span>Nature</span>
-                                </div>
-                            </a>
-                        </div>
-                        <div class="col-md-3">
-                            <a href="#" class="photography-entry img d-flex justify-content-center align-items-center"
-                                style="background-image: url(images/image_9.jpg);">
-                                <div class="overlay"></div>
-                                <div class="text text-center">
-                                    <h3>Work 09</h3>
-                                    <span>Technology</span>
-                                </div>
-                            </a>
-                        </div>
-                        <div class="col-md-3">
-                            <a href="#" class="photography-entry img d-flex justify-content-center align-items-center"
-                                style="background-image: url(images/image_10.jpg);">
-                                <div class="overlay"></div>
-                                <div class="text text-center">
-                                    <h3>Work 10</h3>
-                                    <span>Model</span>
-                                </div>
-                            </a>
-                        </div>
-                        <div class="col-md-3">
-                            <a href="#" class="photography-entry img d-flex justify-content-center align-items-center"
-                                style="background-image: url(images/image_11.jpg);">
-                                <div class="overlay"></div>
-                                <div class="text text-center">
-                                    <h3>Work 11</h3>
-                                    <span>Fashion</span>
-                                </div>
-                            </a>
-                        </div>
-                        <div class="col-md-3">
-                            <a href="#" class="photography-entry img d-flex justify-content-center align-items-center"
-                                style="background-image: url(images/image_12.jpg);">
-                                <div class="overlay"></div>
-                                <div class="text text-center">
-                                    <h3>Work 12</h3>
-                                    <span>Photography</span>
-                                </div>
-                            </a>
+                            </div>
                         </div>
                     </div>
                 </div>
