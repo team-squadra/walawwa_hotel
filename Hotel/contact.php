@@ -36,6 +36,9 @@
     <!--===============================================================================================-->
     <link rel="stylesheet" href="css/style.css">
     <!--===============================================================================================-->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.13.0/css/all.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.13.0/css/v4-shims.css">
+    <!--===============================================================================================-->
 </head>
 
 <body>
@@ -57,11 +60,11 @@
             <nav id="colorlib-main-menu" role="navigation">
                 <ul>
                     <li><a href="index.php">Home</a></li>
-                    <li><a href="photography.php">Photography</a></li>
-                    <li><a href="travel.php">Travel</a></li>
-                    <li><a href="fashion.php">Fashion</a></li>
+                    <li><a href="bookings.php">Bookings</a></li>
+                    <li><a href="rooms.php">Rooms</a></li>
                     <li><a href="profile.php">Profile</a></li>
                     <li class="colorlib-active"><a href="contact.php">Contact</a></li>
+                    <li><a href="../Access/logout.php">Log out</a></li>
                 </ul>
             </nav>
 
