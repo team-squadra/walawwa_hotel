@@ -201,9 +201,15 @@
 							$hotelImage = $response['hotelImage'];
 							$totprice = $response['totprice'];
 						
-							if($hotel_name ==""){
-								// header("Location:../login.html");
-								echo 'No items to preview';
+							if($responseData[0]['_id'] == ""){
+								echo '
+								<div class="col-md-4 col-sm-6">
+									<div class="single-package-item">
+										<p>No Bookings to show..</p>
+									</div>
+								</div>
+								
+								';
 							}
 							else{
 								echo'
@@ -328,6 +334,11 @@
 															<option value="1">1</option>
 															<option value="2">2</option>
 															<option value="3">3</option>
+															<option value="4">4</option>
+															<option value="5">5</option>
+															<option value="6">6</option>
+															<option value="7">7</option>
+															<option value="8">8</option>
 														</select>
 														<span class="select-arrow"></span>
 													</div>
@@ -339,6 +350,11 @@
 															<option value="1">1</option>
 															<option value="2">2</option>
 															<option value="3">3</option>
+															<option value="4">4</option>
+															<option value="5">5</option>
+															<option value="6">6</option>
+															<option value="7">7</option>
+															<option value="8">8</option>
 														</select>
 														<span class="select-arrow"></span>
 													</div>
@@ -383,7 +399,7 @@
 										</span>
 									</a>
 									<p>
-										best hotel agency
+									 	best hotel agency
 									</p>
 								</div>
 							</div><!--/.single-footer-item-->
@@ -393,12 +409,12 @@
 							<div class="single-footer-item">
 								<h2>link</h2>
 								<div class="single-footer-txt">
-									<p><a href="#home">home</a></p>
-									<p><a href="#gallery">destination</a></p>
-									<p><a href="#pack">Hotels</a></p>
-									<p><a href="#spo">special offers</a></p>
-									<p><a href="#blog">blog</a></p>
-									<p><a href="#subs">Make a Review</a></p>
+									<p><a href="Home.php">home</a></p>
+									<p><a href="Home.php">destination</a></p>
+									<p><a href="Home.php">Hotels</a></p>
+									<p><a href="Home.php">special offers</a></p>
+									<p><a href="Home.php">blog</a></p>
+									<p><a href="Home.php">Make a Review</a></p>
 
 								</div><!--/.single-footer-txt-->
 							</div><!--/.single-footer-item-->

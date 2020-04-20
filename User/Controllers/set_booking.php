@@ -101,52 +101,64 @@ if(isset($_POST['upload'])){
     $roomprice = getprice($hotel_name,$roomtype);
     $hotelImage = gethotelimg($hotel_name);
 
-    $totprice = $roomprice * $datediffrance;
-    
-    //The data to send to the API
-    $postData = array(
-        'user_name' => $user_name,
-        'hotel_name' => $hotel_name,
-        'check_in' => $check_in,
-        'check_out' => $check_out,
-        'rooms' => $rooms,
-        'adaults' => $adaults,
-        'childrens' => $childrens,
-        'totprice' => $totprice,
-        'hotelImage' => $hotelImage
-    );
-
-    // Setup cURL
-    $ch = curl_init('https://mighty-inlet-78383.herokuapp.com/api/bookings/regbooking');
-    curl_setopt_array($ch, array(
-        CURLOPT_POST => TRUE,
-        CURLOPT_RETURNTRANSFER => TRUE,
-        CURLOPT_HTTPHEADER => array(
-            'Content-Type: application/json'
-        ),
-        CURLOPT_POSTFIELDS => json_encode($postData)
-    ));
-
-    // Send the request
-    $response = curl_exec($ch);
-
-    // Check for errors
-    if ($response === FALSE) {
-        die(curl_error($ch));
-        echo 'Connection error';
-    }
-
-    // Decode the response
-    $responseData = json_decode($response, TRUE);
-
-    // Print the date from the response
-    $bookingid = $responseData['booking'];
-    if($bookingid == ""){
-        echo 'Not a valid request';
-    }
-    else{
+    if($roomprice == ""){
+        header("Location: ../Hotelbooking.php");
+        echo '<script type="text/javascript">';
+        echo ' alert("Selected room type unavailable at the moment")';
+        echo '</script>';
         header("Location: ../Hotelbooking.php");
     }
+    else{
+
+        $totprice = $roomprice * $datediffrance * $rooms;
+    
+        //The data to send to the API
+        $postData = array(
+            'user_name' => $user_name,
+            'hotel_name' => $hotel_name,
+            'check_in' => $check_in,
+            'check_out' => $check_out,
+            'rooms' => $rooms,
+            'roomtype' =>$roomtype,
+            'adaults' => $adaults,
+            'childrens' => $childrens,
+            'totprice' => $totprice,
+            'hotelImage' => $hotelImage
+        );
+
+        // Setup cURL
+        $ch = curl_init('https://mighty-inlet-78383.herokuapp.com/api/bookings/regbooking');
+        curl_setopt_array($ch, array(
+            CURLOPT_POST => TRUE,
+            CURLOPT_RETURNTRANSFER => TRUE,
+            CURLOPT_HTTPHEADER => array(
+                'Content-Type: application/json'
+            ),
+            CURLOPT_POSTFIELDS => json_encode($postData)
+        ));
+
+        // Send the request
+        $response = curl_exec($ch);
+
+        // Check for errors
+        if ($response === FALSE) {
+            die(curl_error($ch));
+            echo 'Connection error';
+        }
+
+        // Decode the response
+        $responseData = json_decode($response, TRUE);
+
+        // Print the date from the response
+        $bookingid = $responseData['booking'];
+        if($bookingid == ""){
+            echo 'Not a valid request';
+        }
+        else{
+            header("Location: ../Hotelbooking.php");
+        }
+    }
+
 }
 ?>
 
