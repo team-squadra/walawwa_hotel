@@ -12,6 +12,7 @@ if(isset($_POST['upload'])){
     $safe = $_POST['safe'];
     $soundproof = $_POST['soundproof'];
     $bathroom = $_POST['bathroom'];
+    $rmprice = $_POST['rmprice'];
     $view = $_POST['view'];
 
 
@@ -27,6 +28,7 @@ if(isset($_POST['upload'])){
         'safe' => $safe,
         'soundproof' => $soundproof,
         'bathroom' => $bathroom,
+        'rmprice' => $rmprice,
         'view' => $view
     );
 
