@@ -1,6 +1,8 @@
-
 <?php
 session_start();
+
+include '../../../Connecter/connecterlink.php';
+$clinklocal = $clink;
 
 if(isset($_POST['sendmsg'])){
 
@@ -20,7 +22,7 @@ if(isset($_POST['sendmsg'])){
     );
 
     // Setup cURL
-    $ch = curl_init('https://mighty-inlet-78383.herokuapp.com/api/requests/adminrequest');
+    $ch = curl_init(''.$clinklocal.'api/requests/adminrequest');
     curl_setopt_array($ch, array(
         CURLOPT_POST => TRUE,
         CURLOPT_RETURNTRANSFER => TRUE,

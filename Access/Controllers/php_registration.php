@@ -1,8 +1,12 @@
 <?php
+session_start();
 
-registration();
+include '../../Connecter/connecterlink.php';
+$clinklocal = $clink;
 
-function registration(){
+registration($clinklocal);
+
+function registration($clinklocal){
 
     if (isset($_GET['registration_user']) && $_GET['registration_user'] == 'true'){
 
@@ -22,7 +26,7 @@ function registration(){
         );
 
         // Setup cURL
-        $ch = curl_init('https://mighty-inlet-78383.herokuapp.com/api/user/register');
+        $ch = curl_init(''.$clinklocal.'api/user/register');
         curl_setopt_array($ch, array(
             CURLOPT_POST => TRUE,
             CURLOPT_RETURNTRANSFER => TRUE,
@@ -74,7 +78,7 @@ function registration(){
         );
 
         // Setup cURL
-        $ch = curl_init('https://mighty-inlet-78383.herokuapp.com/api/user/register');
+        $ch = curl_init(''.$clinklocal.'api/user/register');
         curl_setopt_array($ch, array(
             CURLOPT_POST => TRUE,
             CURLOPT_RETURNTRANSFER => TRUE,
@@ -101,7 +105,7 @@ function registration(){
         
         //result finalizing
         if ($error == "success"){
-            registration_setp2($email , $uname);
+            registration_setp2($email , $uname ,$clinklocal);
         }
         else{
             echo json_encode(['error' => 'error', 'msg' => ''.$error.'']);
@@ -111,8 +115,7 @@ function registration(){
 }
 
 
-
-function registration_setp2($remail , $runame){
+function registration_setp2($remail , $runame , $clinklocal){
 
         //The data to send to the API
         $postData = array(
@@ -121,7 +124,7 @@ function registration_setp2($remail , $runame){
         );
     
         // Setup cURL
-        $ch = curl_init('https://mighty-inlet-78383.herokuapp.com/api/hotels/reghotel');
+        $ch = curl_init(''.$clinklocal.'api/hotels/reghotel');
         curl_setopt_array($ch, array(
             CURLOPT_POST => TRUE,
             CURLOPT_RETURNTRANSFER => TRUE,
@@ -155,5 +158,3 @@ function registration_setp2($remail , $runame){
         }
 
 }
-
-?>

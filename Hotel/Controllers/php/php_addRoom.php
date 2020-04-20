@@ -1,6 +1,7 @@
-
 <?php
 session_start();
+include '../../../Connecter/connecterlink.php';
+$clinklocal = $clink;
 
 if(isset($_POST['addaroom'])){
 
@@ -41,7 +42,7 @@ if(isset($_POST['addaroom'])){
     );
 
     // Setup cURL
-    $ch = curl_init('https://mighty-inlet-78383.herokuapp.com/api/rooms/regroom');
+    $ch = curl_init(''.$clinklocal.'api/rooms/regroom');
     curl_setopt_array($ch, array(
         CURLOPT_POST => TRUE,
         CURLOPT_RETURNTRANSFER => TRUE,

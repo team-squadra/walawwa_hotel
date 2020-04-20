@@ -1,9 +1,9 @@
 <?php
 session_start();
 
-login();
+include '../../Connecter/connecterlink.php';
+$clinklocal = $clink;
 
-function login(){
 
     if (isset($_GET['login']) && $_GET['login'] == 'true'){
 
@@ -16,7 +16,7 @@ function login(){
             'email' => $email);
 
         // Setup cURL
-        $ch = curl_init( 'https://mighty-inlet-78383.herokuapp.com/api/user/login');
+        $ch = curl_init( ''.$clinklocal.'api/user/login');
         curl_setopt_array($ch, array(
             CURLOPT_POST => TRUE,
             CURLOPT_RETURNTRANSFER => TRUE,
@@ -77,5 +77,3 @@ function login(){
         }
 
     }
-}
-?>

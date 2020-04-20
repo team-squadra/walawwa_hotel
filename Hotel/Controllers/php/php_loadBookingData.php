@@ -1,4 +1,6 @@
 <?php
+include '../Connecter/connecterlink.php';
+$clinklocal = $clink;
 
 if (isset($_SESSION["name"])) {
     
@@ -8,7 +10,7 @@ if (isset($_SESSION["name"])) {
     );
 
     // Setup cURL
-    $ch = curl_init('https://mighty-inlet-78383.herokuapp.com/api/bookings/getbooking');
+    $ch = curl_init(''.$clinklocal.'api/bookings/getbooking');
     curl_setopt_array($ch, array(
         CURLOPT_POST => TRUE,
         CURLOPT_RETURNTRANSFER => TRUE,

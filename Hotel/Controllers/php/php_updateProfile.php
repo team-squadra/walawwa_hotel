@@ -1,5 +1,7 @@
 <?php
 session_start();
+include '../../../Connecter/connecterlink.php';
+$clinklocal = $clink;
 
 if (isset($_POST['update'])){
 
@@ -60,7 +62,7 @@ if (isset($_POST['update'])){
         );
 
         // Setup cURL
-        $ch = curl_init( 'https://mighty-inlet-78383.herokuapp.com/api/hotels/updatehotel');
+        $ch = curl_init( ''.$clinklocal.'api/hotels/updatehotel');
         curl_setopt_array($ch, array(
             CURLOPT_POST => TRUE,
             CURLOPT_RETURNTRANSFER => TRUE,
