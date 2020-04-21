@@ -1,1048 +1,372 @@
-<!DOCTYPE html>
-<html lang="en">
 <?php
-	session_start();
-	
-	if(!isset($_SESSION['status'])){
-		header('Location: ../Access/login.php');
-	} 
-	else if($_SESSION['status'] !='admin')
-	{
-		header('Location: ../index.php');
+session_start();
+
+if (!isset($_SESSION['status'])) {
+    header('Location: ../Access/login.php');
+} else if ($_SESSION['status'] != 'admin') {
+    header('Location: ../index.php');
+} else {
+}
+?>
+
+<!DOCTYPE html>
+<html>
+<title>HotelBook</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!--===============================================================================================-->
+<link rel="icon" type="image/png" href="../logo/logo1.png" />
+<!--===============================================================================================-->
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<!--===============================================================================================-->
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+<!--===============================================================================================-->
+<link rel="stylesheet" href="css/style.css">
+<!--===============================================================================================-->
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.13.0/css/all.css">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.13.0/css/v4-shims.css">
+<!--===============================================================================================-->
+<style>
+html,
+body,
+h1,
+h2,
+h3,
+h4,
+h5 {
+    font-family: "Raleway", sans-serif
+}
+</style>
+
+<body class="w3-light-grey">
+
+    <!-- Top container -->
+    <div class="w3-bar w3-top w3-black w3-large" style="z-index:4">
+        <button class="w3-bar-item w3-button w3-hide-large w3-hover-none w3-hover-text-light-grey"
+            onclick="w3_open();"><i class="fa fa-bars"></i>  Menu</button>
+        <span class="w3-bar-item w3-right">
+            <center>
+                <label style="color:Gray;">Hotel</label>
+                <label style="color:LightGray;">Book
+                    <sub>
+                        <img src="../logo/logo1.png"
+                            style="width: 25px;height :25px;-ms-transform: rotate(20deg);transform: rotate(20deg);">
+                    </sub>
+                </label>
+            </center>
+        </span>
+    </div>
+
+    <!-- Sidebar/menu -->
+    <nav class="w3-sidebar w3-collapse w3-white w3-animate-left" style="z-index:3;width:300px;" id="mySidebar"><br>
+        <div class="w3-container w3-row">
+            <div class="w3-col s4">
+                <img src="images/avatar.png" class="w3-circle w3-margin-right" style="width:46px">
+            </div>
+            <div class="w3-col s8 w3-bar">
+                <span><strong><?php echo $_SESSION['name']; ?></strong></span><br>
+                <span style="font-size: 10px;color:lightgrey;"><i class="fas fa-at"></i>
+                    <?php echo $_SESSION['email']; ?></span>
+            </div>
+        </div>
+        <hr>
+        <div class="w3-container">
+            <h5>Dashboard</h5>
+        </div>
+        <div class="w3-bar-block">
+            <a href="#" class="w3-bar-item w3-button w3-padding-16 w3-hide-large w3-dark-grey w3-hover-black"
+                onclick="w3_close()" title="close menu"><i class="fa fa-remove fa-fw"></i>  Close Menu</a>
+            <a href="index.php" class="w3-bar-item w3-button w3-padding w3-blue"><i class="fas fa-th-large"></i> 
+                Dashbord</a>
+            <a href="manage_users.php" class="w3-bar-item w3-button w3-padding "><i class="fas fa-users"></i> 
+                Manage Users</a>
+            <a href="manage_hotel.php" class="w3-bar-item w3-button w3-padding "><i class="fas fa-users"></i> 
+                Manage Hotels</a>
+            <a href="../Access/logout.php" class="w3-bar-item w3-button w3-padding"><i class="fas fa-sign-out-alt"></i> 
+                logout</a>
+        </div>
+    </nav>
+
+
+    <!-- Overlay effect when opening sidebar on small screens -->
+    <div class="w3-overlay w3-hide-large w3-animate-opacity" onclick="w3_close()" style="cursor:pointer"
+        title="close side menu" id="myOverlay"></div>
+
+    <!-- !PAGE CONTENT! -->
+    <div class="w3-main" style="margin-left:300px;margin-top:43px;">
+
+        <!-- Header -->
+        <header class="w3-container" style="padding-top:22px">
+            <h5><b><i class="fas fa-th-large"></i> My Dashboard</b></h5>
+        </header>
+
+        <div class="w3-row-padding w3-margin-bottom">
+            <div class="w3-quarter">
+                <div class="w3-container w3-orange w3-text-white w3-padding-16 card">
+                    <div class="w3-left"><i class="fas fa-users w3-xxxlarge"></i></div>
+                    <div class="w3-right">
+                        <h3 id="countUserVal">-/-</h3>
+                    </div>
+                    <div class="w3-clear"></div>
+                    <h4>Users</h4>
+                </div>
+            </div>
+            <div class="w3-quarter">
+                <div class="w3-container w3-blue w3-padding-16 card">
+                    <div class="w3-left"><i class="fas fa-hotel w3-xxxlarge"></i></div>
+                    <div class="w3-right">
+                        <h3 id="countHotelVal">-/-</h3>
+                    </div>
+                    <div class="w3-clear"></div>
+                    <h4>Hotels</h4>
+                </div>
+            </div>
+            <div class="w3-quarter">
+                <div class="w3-container w3-red w3-padding-16 card">
+                    <div class="w3-left"><i class="fas fa-user-secret w3-xxxlarge"></i></div>
+                    <div class="w3-right">
+                        <h3 id="countAdminVal">-/-</h3>
+                    </div>
+                    <div class="w3-clear"></div>
+                    <h4>Admins</h4>
+                </div>
+            </div>
+        </div>
+
+        <div class="w3-panel">
+            <div class="w3-row-padding" style="margin:0 -16px">
+                <div class="w3-third">
+                    <h5>Regions</h5>
+                    <img src="images/region.jpg" style="width:100%" alt="Google Regional Map">
+                </div>
+                <div class="w3-twothird">
+                    <h5>Feeds</h5>
+                    <table class="w3-table w3-striped w3-white">
+                        <tr>
+                            <td><i class="fa fa-user w3-text-blue w3-large"></i></td>
+                            <td>New record, over 90 views.</td>
+                            <td><i>10 mins</i></td>
+                        </tr>
+                        <tr>
+                            <td><i class="fa fa-bell w3-text-red w3-large"></i></td>
+                            <td>Database error.</td>
+                            <td><i>15 mins</i></td>
+                        </tr>
+                        <tr>
+                            <td><i class="fa fa-users w3-text-yellow w3-large"></i></td>
+                            <td>New record, over 40 users.</td>
+                            <td><i>17 mins</i></td>
+                        </tr>
+                        <tr>
+                            <td><i class="fa fa-comment w3-text-red w3-large"></i></td>
+                            <td>New comments.</td>
+                            <td><i>25 mins</i></td>
+                        </tr>
+                        <tr>
+                            <td><i class="fa fa-bookmark w3-text-blue w3-large"></i></td>
+                            <td>Check transactions.</td>
+                            <td><i>28 mins</i></td>
+                        </tr>
+                        <tr>
+                            <td><i class="fa fa-laptop w3-text-red w3-large"></i></td>
+                            <td>CPU overload.</td>
+                            <td><i>35 mins</i></td>
+                        </tr>
+                        <tr>
+                            <td><i class="fa fa-share-alt w3-text-green w3-large"></i></td>
+                            <td>New shares.</td>
+                            <td><i>39 mins</i></td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <hr>
+        <div class="w3-container">
+            <h5>General Stats</h5>
+            <p>New Visitors</p>
+            <div class="w3-grey">
+                <div class="w3-container w3-center w3-padding w3-green" style="width:25%">+25%</div>
+            </div>
+
+            <p>New Users</p>
+            <div class="w3-grey">
+                <div class="w3-container w3-center w3-padding w3-orange" style="width:50%">50%</div>
+            </div>
+
+            <p>Bounce Rate</p>
+            <div class="w3-grey">
+                <div class="w3-container w3-center w3-padding w3-red" style="width:75%">75%</div>
+            </div>
+        </div>
+        <hr>
+
+        <div class="w3-container">
+            <h5>Countries</h5>
+            <table class="w3-table w3-striped w3-bordered w3-border w3-hoverable w3-white">
+                <tr>
+                    <td>United States</td>
+                    <td>65%</td>
+                </tr>
+                <tr>
+                    <td>UK</td>
+                    <td>15.7%</td>
+                </tr>
+                <tr>
+                    <td>Russia</td>
+                    <td>5.6%</td>
+                </tr>
+                <tr>
+                    <td>Spain</td>
+                    <td>2.1%</td>
+                </tr>
+                <tr>
+                    <td>India</td>
+                    <td>1.9%</td>
+                </tr>
+                <tr>
+                    <td>France</td>
+                    <td>1.5%</td>
+                </tr>
+            </table><br>
+            <button class="w3-button w3-dark-grey">More Countries  <i class="fa fa-arrow-right"></i></button>
+        </div>
+        <hr>
+        <div class="w3-container">
+            <h5>Recent Users</h5>
+            <ul class="w3-ul w3-card-4 w3-white">
+                <li class="w3-padding-16">
+                    <img src="images/avatar2.png" class="w3-left w3-circle w3-margin-right" style="width:35px">
+                    <span class="w3-xlarge">Mike</span><br>
+                </li>
+                <li class="w3-padding-16">
+                    <img src="images/avatar5.png" class="w3-left w3-circle w3-margin-right" style="width:35px">
+                    <span class="w3-xlarge">Jill</span><br>
+                </li>
+                <li class="w3-padding-16">
+                    <img src="images/avatar6.png" class="w3-left w3-circle w3-margin-right" style="width:35px">
+                    <span class="w3-xlarge">Jane</span><br>
+                </li>
+            </ul>
+        </div>
+        <hr>
+
+        <div class="w3-container">
+            <h5>Recent Comments</h5>
+            <div class="w3-row">
+                <div class="w3-col m2 text-center">
+                    <img class="w3-circle" src="images/avatar3.png" style="width:96px;height:96px">
+                </div>
+                <div class="w3-col m10 w3-container">
+                    <h4>John <span class="w3-opacity w3-medium">Sep 29, 2014, 9:12 PM</span></h4>
+                    <p>Keep up the GREAT work! I am cheering for you!! Lorem ipsum dolor sit amet, consectetur
+                        adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p><br>
+                </div>
+            </div>
+
+            <div class="w3-row">
+                <div class="w3-col m2 text-center">
+                    <img class="w3-circle" src="images/avatar1.png" style="width:96px;height:96px">
+                </div>
+                <div class="w3-col m10 w3-container">
+                    <h4>Bo <span class="w3-opacity w3-medium">Sep 28, 2014, 10:15 PM</span></h4>
+                    <p>Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p><br>
+                </div>
+            </div>
+        </div>
+        <br>
+        <div class="w3-container w3-dark-grey w3-padding-32">
+            <div class="w3-row">
+                <div class="w3-container w3-third">
+                    <h5 class="w3-bottombar w3-border-green">Demographic</h5>
+                    <p>Language</p>
+                    <p>Country</p>
+                    <p>City</p>
+                </div>
+                <div class="w3-container w3-third">
+                    <h5 class="w3-bottombar w3-border-red">System</h5>
+                    <p>Browser</p>
+                    <p>OS</p>
+                    <p>More</p>
+                </div>
+                <div class="w3-container w3-third">
+                    <h5 class="w3-bottombar w3-border-orange">Target</h5>
+                    <p>Users</p>
+                    <p>Active</p>
+                    <p>Geo</p>
+                    <p>Interests</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <footer class="w3-container w3-padding-16 w3-light-grey">
+            <hr>
+            <center>
+                <label style="color:Gray;">Hotel</label>
+                <label style="color:LightGray;">Book
+                    <sub>
+                        <img src="../logo/logo1.png"
+                            style="width: 25px;height :25px;-ms-transform: rotate(20deg);transform: rotate(20deg);">
+                    </sub>
+                </label>
+            </center>
+        </footer>
+
+        <!-- End page content -->
+    </div>
+
+    <script>
+    // Get the Sidebar
+    var mySidebar = document.getElementById("mySidebar");
+
+    // Get the DIV with overlay effect
+    var overlayBg = document.getElementById("myOverlay");
+
+    // Toggle between showing and hiding the sidebar, and add overlay effect
+    function w3_open() {
+        if (mySidebar.style.display === 'block') {
+            mySidebar.style.display = 'none';
+            overlayBg.style.display = "none";
+        } else {
+            mySidebar.style.display = 'block';
+            overlayBg.style.display = "block";
+        }
     }
-    else{}
-	?>
 
-<head>
-    <!-- Required meta tags-->
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="au theme template">
-    <meta name="author" content="Hau Nguyen">
-    <meta name="keywords" content="au theme template">
-
-    <!-- Title Page-->
-    <title>Dashboard</title>
-
-    <!-- Fontfaces CSS-->
-    <link href="css/font-face.css" rel="stylesheet" media="all">
-    <link href="vendor/font-awesome-4.7/css/font-awesome.min.css" rel="stylesheet" media="all">
-    <link href="vendor/font-awesome-5/css/fontawesome-all.min.css" rel="stylesheet" media="all">
-    <link href="vendor/mdi-font/css/material-design-iconic-font.min.css" rel="stylesheet" media="all">
-
-    <!-- Bootstrap CSS-->
-    <link href="vendor/bootstrap-4.1/bootstrap.min.css" rel="stylesheet" media="all">
-
-    <!-- Vendor CSS-->
-    <link href="vendor/animsition/animsition.min.css" rel="stylesheet" media="all">
-    <link href="vendor/bootstrap-progressbar/bootstrap-progressbar-3.3.4.min.css" rel="stylesheet" media="all">
-    <link href="vendor/wow/animate.css" rel="stylesheet" media="all">
-    <link href="vendor/css-hamburgers/hamburgers.min.css" rel="stylesheet" media="all">
-    <link href="vendor/slick/slick.css" rel="stylesheet" media="all">
-    <link href="vendor/select2/select2.min.css" rel="stylesheet" media="all">
-    <link href="vendor/perfect-scrollbar/perfect-scrollbar.css" rel="stylesheet" media="all">
-
-    <!-- Main CSS-->
-    <link href="css/theme.css" rel="stylesheet" media="all">
-
-</head>
-
-<body class="animsition">
-    <div class="page-wrapper">
-        <!-- HEADER MOBILE-->
-        <header class="header-mobile d-block d-lg-none">
-            <div class="header-mobile__bar">
-                <div class="container-fluid">
-                    <div class="header-mobile-inner">
-                        <a class="logo" href="index.html">
-                            <img src="images/icon/logo.png" alt="CoolAdmin" />
-                        </a>
-                        <button class="hamburger hamburger--slider" type="button">
-                            <span class="hamburger-box">
-                                <span class="hamburger-inner"></span>
-                            </span>
-                        </button>
-                    </div>
-                </div>
-            </div>
-            <nav class="navbar-mobile">
-                <div class="container-fluid">
-                    <ul class="navbar-mobile__list list-unstyled">
-                        <li class="has-sub">
-                            <a class="js-arrow" href="#">
-                                <i class="fas fa-tachometer-alt"></i>Dashboard</a>
-                            <ul class="navbar-mobile-sub__list list-unstyled js-sub-list">
-                                <li>
-                                    <a href="index.html">Dashboard 1</a>
-                                </li>
-                                <li>
-                                    <a href="index2.html">Dashboard 2</a>
-                                </li>
-                                <li>
-                                    <a href="index3.html">Dashboard 3</a>
-                                </li>
-                                <li>
-                                    <a href="index4.html">Dashboard 4</a>
-                                </li>
-                            </ul>
-                        </li>
-                        <li>
-                            <a href="chart.html">
-                                <i class="fas fa-chart-bar"></i>Charts</a>
-                        </li>
-                        <li>
-                            <a href="table.html">
-                                <i class="fas fa-table"></i>Tables</a>
-                        </li>
-                        <li>
-                            <a href="form.html">
-                                <i class="far fa-check-square"></i>Forms</a>
-                        </li>
-                        <li>
-                            <a href="calendar.html">
-                                <i class="fas fa-calendar-alt"></i>Calendar</a>
-                        </li>
-                        <li>
-                            <a href="map.html">
-                                <i class="fas fa-map-marker-alt"></i>Maps</a>
-                        </li>
-                        <li class="has-sub">
-                            <a class="js-arrow" href="#">
-                                <i class="fas fa-copy"></i>Pages</a>
-                            <ul class="navbar-mobile-sub__list list-unstyled js-sub-list">
-                                <li>
-                                    <a href="login.html">Login</a>
-                                </li>
-                                <li>
-                                    <a href="register.html">Register</a>
-                                </li>
-                                <li>
-                                    <a href="forget-pass.html">Forget Password</a>
-                                </li>
-                            </ul>
-                        </li>
-                        <li class="has-sub">
-                            <a class="js-arrow" href="#">
-                                <i class="fas fa-desktop"></i>UI Elements</a>
-                            <ul class="navbar-mobile-sub__list list-unstyled js-sub-list">
-                                <li>
-                                    <a href="button.html">Button</a>
-                                </li>
-                                <li>
-                                    <a href="badge.html">Badges</a>
-                                </li>
-                                <li>
-                                    <a href="tab.html">Tabs</a>
-                                </li>
-                                <li>
-                                    <a href="card.html">Cards</a>
-                                </li>
-                                <li>
-                                    <a href="alert.html">Alerts</a>
-                                </li>
-                                <li>
-                                    <a href="progress-bar.html">Progress Bars</a>
-                                </li>
-                                <li>
-                                    <a href="modal.html">Modals</a>
-                                </li>
-                                <li>
-                                    <a href="switch.html">Switchs</a>
-                                </li>
-                                <li>
-                                    <a href="grid.html">Grids</a>
-                                </li>
-                                <li>
-                                    <a href="fontawesome.html">Fontawesome Icon</a>
-                                </li>
-                                <li>
-                                    <a href="typo.html">Typography</a>
-                                </li>
-                            </ul>
-                        </li>
-                    </ul>
-                </div>
-            </nav>
-        </header>
-        <!-- END HEADER MOBILE-->
-
-        <!-- MENU SIDEBAR-->
-        <aside class="menu-sidebar d-none d-lg-block">
-            <div class="logo">
-                <a href="#">
-                    <img src="images/icon/logo.png" alt="Cool Admin" />
-                </a>
-            </div>
-            <div class="menu-sidebar__content js-scrollbar1">
-                <nav class="navbar-sidebar">
-                    <ul class="list-unstyled navbar__list">
-                        <li class="active has-sub">
-                            <a class="js-arrow" href="#">
-                                <i class="fas fa-tachometer-alt"></i>Dashboard</a>
-                            <ul class="list-unstyled navbar__sub-list js-sub-list">
-                                <li>
-                                    <a href="index.html">Dashboard 1</a>
-                                </li>
-                                <li>
-                                    <a href="index2.html">Dashboard 2</a>
-                                </li>
-                                <li>
-                                    <a href="index3.html">Dashboard 3</a>
-                                </li>
-                                <li>
-                                    <a href="index4.html">Dashboard 4</a>
-                                </li>
-                            </ul>
-                        </li>
-                        <li>
-                            <a href="chart.html">
-                                <i class="fas fa-chart-bar"></i>Charts</a>
-                        </li>
-                        <li>
-                            <a href="table.html">
-                                <i class="fas fa-table"></i>Tables</a>
-                        </li>
-                        <li>
-                            <a href="form.html">
-                                <i class="far fa-check-square"></i>Forms</a>
-                        </li>
-                        <li>
-                            <a href="calendar.html">
-                                <i class="fas fa-calendar-alt"></i>Calendar</a>
-                        </li>
-                        <li>
-                            <a href="map.html">
-                                <i class="fas fa-map-marker-alt"></i>Maps</a>
-                        </li>
-                        <li class="has-sub">
-                            <a class="js-arrow" href="#">
-                                <i class="fas fa-copy"></i>Pages</a>
-                            <ul class="list-unstyled navbar__sub-list js-sub-list">
-                                <li>
-                                    <a href="login.html">Login</a>
-                                </li>
-                                <li>
-                                    <a href="register.html">Register</a>
-                                </li>
-                                <li>
-                                    <a href="forget-pass.html">Forget Password</a>
-                                </li>
-                            </ul>
-                        </li>
-                        <li class="has-sub">
-                            <a class="js-arrow" href="#">
-                                <i class="fas fa-desktop"></i>UI Elements</a>
-                            <ul class="list-unstyled navbar__sub-list js-sub-list">
-                                <li>
-                                    <a href="button.html">Button</a>
-                                </li>
-                                <li>
-                                    <a href="badge.html">Badges</a>
-                                </li>
-                                <li>
-                                    <a href="tab.html">Tabs</a>
-                                </li>
-                                <li>
-                                    <a href="card.html">Cards</a>
-                                </li>
-                                <li>
-                                    <a href="alert.html">Alerts</a>
-                                </li>
-                                <li>
-                                    <a href="progress-bar.html">Progress Bars</a>
-                                </li>
-                                <li>
-                                    <a href="modal.html">Modals</a>
-                                </li>
-                                <li>
-                                    <a href="switch.html">Switchs</a>
-                                </li>
-                                <li>
-                                    <a href="grid.html">Grids</a>
-                                </li>
-                                <li>
-                                    <a href="fontawesome.html">Fontawesome Icon</a>
-                                </li>
-                                <li>
-                                    <a href="typo.html">Typography</a>
-                                </li>
-                            </ul>
-                        </li>
-                    </ul>
-                </nav>
-            </div>
-        </aside>
-        <!-- END MENU SIDEBAR-->
-
-        <!-- PAGE CONTAINER-->
-        <div class="page-container">
-            <!-- HEADER DESKTOP-->
-            <header class="header-desktop">
-                <div class="section__content section__content--p30">
-                    <div class="container-fluid">
-                        <div class="header-wrap">
-                            <form class="form-header" action="" method="POST">
-                                <input class="au-input au-input--xl" type="text" name="search"
-                                    placeholder="Search for datas &amp; reports..." />
-                                <button class="au-btn--submit" type="submit">
-                                    <i class="zmdi zmdi-search"></i>
-                                </button>
-                            </form>
-                            <div class="header-button">
-                                <div class="noti-wrap">
-                                    <div class="noti__item js-item-menu">
-                                        <i class="zmdi zmdi-comment-more"></i>
-                                        <span class="quantity">1</span>
-                                        <div class="mess-dropdown js-dropdown">
-                                            <div class="mess__title">
-                                                <p>You have 2 news message</p>
-                                            </div>
-                                            <div class="mess__item">
-                                                <div class="image img-cir img-40">
-                                                    <img src="images/icon/avatar-06.jpg" alt="Michelle Moreno" />
-                                                </div>
-                                                <div class="content">
-                                                    <h6>Michelle Moreno</h6>
-                                                    <p>Have sent a photo</p>
-                                                    <span class="time">3 min ago</span>
-                                                </div>
-                                            </div>
-                                            <div class="mess__item">
-                                                <div class="image img-cir img-40">
-                                                    <img src="images/icon/avatar-04.jpg" alt="Diane Myers" />
-                                                </div>
-                                                <div class="content">
-                                                    <h6>Diane Myers</h6>
-                                                    <p>You are now connected on message</p>
-                                                    <span class="time">Yesterday</span>
-                                                </div>
-                                            </div>
-                                            <div class="mess__footer">
-                                                <a href="#">View all messages</a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="noti__item js-item-menu">
-                                        <i class="zmdi zmdi-email"></i>
-                                        <span class="quantity">1</span>
-                                        <div class="email-dropdown js-dropdown">
-                                            <div class="email__title">
-                                                <p>You have 3 New Emails</p>
-                                            </div>
-                                            <div class="email__item">
-                                                <div class="image img-cir img-40">
-                                                    <img src="images/icon/avatar-06.jpg" alt="Cynthia Harvey" />
-                                                </div>
-                                                <div class="content">
-                                                    <p>Meeting about new dashboard...</p>
-                                                    <span>Cynthia Harvey, 3 min ago</span>
-                                                </div>
-                                            </div>
-                                            <div class="email__item">
-                                                <div class="image img-cir img-40">
-                                                    <img src="images/icon/avatar-05.jpg" alt="Cynthia Harvey" />
-                                                </div>
-                                                <div class="content">
-                                                    <p>Meeting about new dashboard...</p>
-                                                    <span>Cynthia Harvey, Yesterday</span>
-                                                </div>
-                                            </div>
-                                            <div class="email__item">
-                                                <div class="image img-cir img-40">
-                                                    <img src="images/icon/avatar-04.jpg" alt="Cynthia Harvey" />
-                                                </div>
-                                                <div class="content">
-                                                    <p>Meeting about new dashboard...</p>
-                                                    <span>Cynthia Harvey, April 12,,2018</span>
-                                                </div>
-                                            </div>
-                                            <div class="email__footer">
-                                                <a href="#">See all emails</a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="noti__item js-item-menu">
-                                        <i class="zmdi zmdi-notifications"></i>
-                                        <span class="quantity">3</span>
-                                        <div class="notifi-dropdown js-dropdown">
-                                            <div class="notifi__title">
-                                                <p>You have 3 Notifications</p>
-                                            </div>
-                                            <div class="notifi__item">
-                                                <div class="bg-c1 img-cir img-40">
-                                                    <i class="zmdi zmdi-email-open"></i>
-                                                </div>
-                                                <div class="content">
-                                                    <p>You got a email notification</p>
-                                                    <span class="date">April 12, 2018 06:50</span>
-                                                </div>
-                                            </div>
-                                            <div class="notifi__item">
-                                                <div class="bg-c2 img-cir img-40">
-                                                    <i class="zmdi zmdi-account-box"></i>
-                                                </div>
-                                                <div class="content">
-                                                    <p>Your account has been blocked</p>
-                                                    <span class="date">April 12, 2018 06:50</span>
-                                                </div>
-                                            </div>
-                                            <div class="notifi__item">
-                                                <div class="bg-c3 img-cir img-40">
-                                                    <i class="zmdi zmdi-file-text"></i>
-                                                </div>
-                                                <div class="content">
-                                                    <p>You got a new file</p>
-                                                    <span class="date">April 12, 2018 06:50</span>
-                                                </div>
-                                            </div>
-                                            <div class="notifi__footer">
-                                                <a href="#">All notifications</a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="account-wrap">
-                                    <div class="account-item clearfix js-item-menu">
-                                        <div class="image">
-                                            <img src="images/icon/avatar-01.jpg" alt="John Doe" />
-                                        </div>
-                                        <?php
-                                         echo'
-                                        <div class="content">
-                                            <a class="js-acc-btn" href="#">'.$_SESSION['name'].'</a>
-                                        </div>
-                                        <div class="account-dropdown js-dropdown">
-                                       
-                                            <div class="info clearfix">
-                                                <div class="image">
-                                                    <a href="#">
-                                                        <img src="images/icon/avatar-01.jpg" alt='.$_SESSION['name'].' />
-                                                    </a>
-                                                </div>
-                                                <div class="content">
-                                                    <h5 class="name">
-                                                    
-                                                        <a href="#">
-                                                             '.$_SESSION['name'].'
-                                                            
-                                                            </a>
-                                                            
-                                                    </h5>
-                                                    <span class="email">'.$_SESSION['email'].'</span>
-                                                </div>
-                                            </div>
-                                            ';
-                                                            ?>
-
-                                        <div class="account-dropdown__body">
-                                            <div class="account-dropdown__item">
-                                                <a href="#">
-                                                    <i class="zmdi zmdi-account"></i>Account</a>
-                                            </div>
-                                            <div class="account-dropdown__item">
-                                                <a href="#">
-                                                    <i class="zmdi zmdi-settings"></i>Setting</a>
-                                            </div>
-                                            <div class="account-dropdown__item">
-                                                <a href="#">
-                                                    <i class="zmdi zmdi-money-box"></i>Billing</a>
-                                            </div>
-                                        </div>
-                                        <div class="account-dropdown__footer">
-                                            <a href="../Access/logout.php">
-                                                <i class="zmdi zmdi-power"></i>Logout</a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-        </div>
-        </header>
-        <!-- HEADER DESKTOP-->
-
-        <!-- MAIN CONTENT-->
-        <div class="main-content">
-            <div class="section__content section__content--p30">
-                <div class="container-fluid">
-                    <div class="row">
-                        <div class="col-md-12">
-                            <div class="overview-wrap">
-                                <h2 class="title-1">overview</h2>
-                                <button class="au-btn au-btn-icon au-btn--blue">
-                                    <i class="zmdi zmdi-plus"></i>add item</button>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row m-t-25">
-                        <div class="col-sm-6 col-lg-3">
-                            <div class="overview-item overview-item--c1">
-                                <div class="overview__inner">
-                                    <div class="overview-box clearfix">
-                                        <div class="icon">
-                                            <i class="zmdi zmdi-account-o"></i>
-                                        </div>
-                                        <div class="text">
-                                            <h2>10368</h2>
-                                            <span>members online</span>
-                                        </div>
-                                    </div>
-                                    <div class="overview-chart">
-                                        <canvas id="widgetChart1"></canvas>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-sm-6 col-lg-3">
-                            <div class="overview-item overview-item--c2">
-                                <div class="overview__inner">
-                                    <div class="overview-box clearfix">
-                                        <div class="icon">
-                                            <i class="zmdi zmdi-shopping-cart"></i>
-                                        </div>
-                                        <div class="text">
-                                            <h2>388,688</h2>
-                                            <span>items solid</span>
-                                        </div>
-                                    </div>
-                                    <div class="overview-chart">
-                                        <canvas id="widgetChart2"></canvas>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-sm-6 col-lg-3">
-                            <div class="overview-item overview-item--c3">
-                                <div class="overview__inner">
-                                    <div class="overview-box clearfix">
-                                        <div class="icon">
-                                            <i class="zmdi zmdi-calendar-note"></i>
-                                        </div>
-                                        <div class="text">
-                                            <h2>1,086</h2>
-                                            <span>this week</span>
-                                        </div>
-                                    </div>
-                                    <div class="overview-chart">
-                                        <canvas id="widgetChart3"></canvas>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-sm-6 col-lg-3">
-                            <div class="overview-item overview-item--c4">
-                                <div class="overview__inner">
-                                    <div class="overview-box clearfix">
-                                        <div class="icon">
-                                            <i class="zmdi zmdi-money"></i>
-                                        </div>
-                                        <div class="text">
-                                            <h2>$1,060,386</h2>
-                                            <span>total earnings</span>
-                                        </div>
-                                    </div>
-                                    <div class="overview-chart">
-                                        <canvas id="widgetChart4"></canvas>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-lg-6">
-                            <div class="au-card recent-report">
-                                <div class="au-card-inner">
-                                    <h3 class="title-2">recent reports</h3>
-                                    <div class="chart-info">
-                                        <div class="chart-info__left">
-                                            <div class="chart-note">
-                                                <span class="dot dot--blue"></span>
-                                                <span>products</span>
-                                            </div>
-                                            <div class="chart-note mr-0">
-                                                <span class="dot dot--green"></span>
-                                                <span>services</span>
-                                            </div>
-                                        </div>
-                                        <div class="chart-info__right">
-                                            <div class="chart-statis">
-                                                <span class="index incre">
-                                                    <i class="zmdi zmdi-long-arrow-up"></i>25%</span>
-                                                <span class="label">products</span>
-                                            </div>
-                                            <div class="chart-statis mr-0">
-                                                <span class="index decre">
-                                                    <i class="zmdi zmdi-long-arrow-down"></i>10%</span>
-                                                <span class="label">services</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="recent-report__chart">
-                                        <canvas id="recent-rep-chart"></canvas>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-6">
-                            <div class="au-card chart-percent-card">
-                                <div class="au-card-inner">
-                                    <h3 class="title-2 tm-b-5">char by %</h3>
-                                    <div class="row no-gutters">
-                                        <div class="col-xl-6">
-                                            <div class="chart-note-wrap">
-                                                <div class="chart-note mr-0 d-block">
-                                                    <span class="dot dot--blue"></span>
-                                                    <span>products</span>
-                                                </div>
-                                                <div class="chart-note mr-0 d-block">
-                                                    <span class="dot dot--red"></span>
-                                                    <span>services</span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-xl-6">
-                                            <div class="percent-chart">
-                                                <canvas id="percent-chart"></canvas>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-lg-9">
-                            <h2 class="title-1 m-b-25">Earnings By Items</h2>
-                            <div class="table-responsive table--no-card m-b-40">
-                                <table class="table table-borderless table-striped table-earning">
-                                    <thead>
-                                        <tr>
-                                            <th>date</th>
-                                            <th>order ID</th>
-                                            <th>name</th>
-                                            <th class="text-right">price</th>
-                                            <th class="text-right">quantity</th>
-                                            <th class="text-right">total</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                            <td>2018-09-29 05:57</td>
-                                            <td>100398</td>
-                                            <td>iPhone X 64Gb Grey</td>
-                                            <td class="text-right">$999.00</td>
-                                            <td class="text-right">1</td>
-                                            <td class="text-right">$999.00</td>
-                                        </tr>
-                                        <tr>
-                                            <td>2018-09-28 01:22</td>
-                                            <td>100397</td>
-                                            <td>Samsung S8 Black</td>
-                                            <td class="text-right">$756.00</td>
-                                            <td class="text-right">1</td>
-                                            <td class="text-right">$756.00</td>
-                                        </tr>
-                                        <tr>
-                                            <td>2018-09-27 02:12</td>
-                                            <td>100396</td>
-                                            <td>Game Console Controller</td>
-                                            <td class="text-right">$22.00</td>
-                                            <td class="text-right">2</td>
-                                            <td class="text-right">$44.00</td>
-                                        </tr>
-                                        <tr>
-                                            <td>2018-09-26 23:06</td>
-                                            <td>100395</td>
-                                            <td>iPhone X 256Gb Black</td>
-                                            <td class="text-right">$1199.00</td>
-                                            <td class="text-right">1</td>
-                                            <td class="text-right">$1199.00</td>
-                                        </tr>
-                                        <tr>
-                                            <td>2018-09-25 19:03</td>
-                                            <td>100393</td>
-                                            <td>USB 3.0 Cable</td>
-                                            <td class="text-right">$10.00</td>
-                                            <td class="text-right">3</td>
-                                            <td class="text-right">$30.00</td>
-                                        </tr>
-                                        <tr>
-                                            <td>2018-09-29 05:57</td>
-                                            <td>100392</td>
-                                            <td>Smartwatch 4.0 LTE Wifi</td>
-                                            <td class="text-right">$199.00</td>
-                                            <td class="text-right">6</td>
-                                            <td class="text-right">$1494.00</td>
-                                        </tr>
-                                        <tr>
-                                            <td>2018-09-24 19:10</td>
-                                            <td>100391</td>
-                                            <td>Camera C430W 4k</td>
-                                            <td class="text-right">$699.00</td>
-                                            <td class="text-right">1</td>
-                                            <td class="text-right">$699.00</td>
-                                        </tr>
-                                        <tr>
-                                            <td>2018-09-22 00:43</td>
-                                            <td>100393</td>
-                                            <td>USB 3.0 Cable</td>
-                                            <td class="text-right">$10.00</td>
-                                            <td class="text-right">3</td>
-                                            <td class="text-right">$30.00</td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
-                        <div class="col-lg-3">
-                            <h2 class="title-1 m-b-25">Top countries</h2>
-                            <div class="au-card au-card--bg-blue au-card-top-countries m-b-40">
-                                <div class="au-card-inner">
-                                    <div class="table-responsive">
-                                        <table class="table table-top-countries">
-                                            <tbody>
-                                                <tr>
-                                                    <td>United States</td>
-                                                    <td class="text-right">$119,366.96</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>Australia</td>
-                                                    <td class="text-right">$70,261.65</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>United Kingdom</td>
-                                                    <td class="text-right">$46,399.22</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>Turkey</td>
-                                                    <td class="text-right">$35,364.90</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>Germany</td>
-                                                    <td class="text-right">$20,366.96</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>France</td>
-                                                    <td class="text-right">$10,366.96</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>Australia</td>
-                                                    <td class="text-right">$5,366.96</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>Italy</td>
-                                                    <td class="text-right">$1639.32</td>
-                                                </tr>
-                                            </tbody>
-                                        </table>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-lg-6">
-                            <div class="au-card au-card--no-shadow au-card--no-pad m-b-40">
-                                <div class="au-card-title" style="background-image:url('images/bg-title-01.jpg');">
-                                    <div class="bg-overlay bg-overlay--blue"></div>
-                                    <h3>
-                                        <i class="zmdi zmdi-account-calendar"></i>26 April, 2018</h3>
-                                    <button class="au-btn-plus">
-                                        <i class="zmdi zmdi-plus"></i>
-                                    </button>
-                                </div>
-                                <div class="au-task js-list-load">
-                                    <div class="au-task__title">
-                                        <p>Tasks for John Doe</p>
-                                    </div>
-                                    <div class="au-task-list js-scrollbar3">
-                                        <div class="au-task__item au-task__item--danger">
-                                            <div class="au-task__item-inner">
-                                                <h5 class="task">
-                                                    <a href="#">Meeting about plan for Admin Template 2018</a>
-                                                </h5>
-                                                <span class="time">10:00 AM</span>
-                                            </div>
-                                        </div>
-                                        <div class="au-task__item au-task__item--warning">
-                                            <div class="au-task__item-inner">
-                                                <h5 class="task">
-                                                    <a href="#">Create new task for Dashboard</a>
-                                                </h5>
-                                                <span class="time">11:00 AM</span>
-                                            </div>
-                                        </div>
-                                        <div class="au-task__item au-task__item--primary">
-                                            <div class="au-task__item-inner">
-                                                <h5 class="task">
-                                                    <a href="#">Meeting about plan for Admin Template 2018</a>
-                                                </h5>
-                                                <span class="time">02:00 PM</span>
-                                            </div>
-                                        </div>
-                                        <div class="au-task__item au-task__item--success">
-                                            <div class="au-task__item-inner">
-                                                <h5 class="task">
-                                                    <a href="#">Create new task for Dashboard</a>
-                                                </h5>
-                                                <span class="time">03:30 PM</span>
-                                            </div>
-                                        </div>
-                                        <div class="au-task__item au-task__item--danger js-load-item">
-                                            <div class="au-task__item-inner">
-                                                <h5 class="task">
-                                                    <a href="#">Meeting about plan for Admin Template 2018</a>
-                                                </h5>
-                                                <span class="time">10:00 AM</span>
-                                            </div>
-                                        </div>
-                                        <div class="au-task__item au-task__item--warning js-load-item">
-                                            <div class="au-task__item-inner">
-                                                <h5 class="task">
-                                                    <a href="#">Create new task for Dashboard</a>
-                                                </h5>
-                                                <span class="time">11:00 AM</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="au-task__footer">
-                                        <button class="au-btn au-btn-load js-load-btn">load more</button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-6">
-                            <div class="au-card au-card--no-shadow au-card--no-pad m-b-40">
-                                <div class="au-card-title" style="background-image:url('images/bg-title-02.jpg');">
-                                    <div class="bg-overlay bg-overlay--blue"></div>
-                                    <h3>
-                                        <i class="zmdi zmdi-comment-text"></i>New Messages</h3>
-                                    <button class="au-btn-plus">
-                                        <i class="zmdi zmdi-plus"></i>
-                                    </button>
-                                </div>
-                                <div class="au-inbox-wrap js-inbox-wrap">
-                                    <div class="au-message js-list-load">
-                                        <div class="au-message__noti">
-                                            <p>You Have
-                                                <span>2</span>
-
-                                                new messages
-                                            </p>
-                                        </div>
-                                        <div class="au-message-list">
-                                            <div class="au-message__item unread">
-                                                <div class="au-message__item-inner">
-                                                    <div class="au-message__item-text">
-                                                        <div class="avatar-wrap">
-                                                            <div class="avatar">
-                                                                <img src="images/icon/avatar-02.jpg" alt="John Smith">
-                                                            </div>
-                                                        </div>
-                                                        <div class="text">
-                                                            <h5 class="name">John Smith</h5>
-                                                            <p>Have sent a photo</p>
-                                                        </div>
-                                                    </div>
-                                                    <div class="au-message__item-time">
-                                                        <span>12 Min ago</span>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="au-message__item unread">
-                                                <div class="au-message__item-inner">
-                                                    <div class="au-message__item-text">
-                                                        <div class="avatar-wrap online">
-                                                            <div class="avatar">
-                                                                <img src="images/icon/avatar-03.jpg"
-                                                                    alt="Nicholas Martinez">
-                                                            </div>
-                                                        </div>
-                                                        <div class="text">
-                                                            <h5 class="name">Nicholas Martinez</h5>
-                                                            <p>You are now connected on message</p>
-                                                        </div>
-                                                    </div>
-                                                    <div class="au-message__item-time">
-                                                        <span>11:00 PM</span>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="au-message__item">
-                                                <div class="au-message__item-inner">
-                                                    <div class="au-message__item-text">
-                                                        <div class="avatar-wrap online">
-                                                            <div class="avatar">
-                                                                <img src="images/icon/avatar-04.jpg"
-                                                                    alt="Michelle Sims">
-                                                            </div>
-                                                        </div>
-                                                        <div class="text">
-                                                            <h5 class="name">Michelle Sims</h5>
-                                                            <p>Lorem ipsum dolor sit amet</p>
-                                                        </div>
-                                                    </div>
-                                                    <div class="au-message__item-time">
-                                                        <span>Yesterday</span>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="au-message__item">
-                                                <div class="au-message__item-inner">
-                                                    <div class="au-message__item-text">
-                                                        <div class="avatar-wrap">
-                                                            <div class="avatar">
-                                                                <img src="images/icon/avatar-05.jpg"
-                                                                    alt="Michelle Sims">
-                                                            </div>
-                                                        </div>
-                                                        <div class="text">
-                                                            <h5 class="name">Michelle Sims</h5>
-                                                            <p>Purus feugiat finibus</p>
-                                                        </div>
-                                                    </div>
-                                                    <div class="au-message__item-time">
-                                                        <span>Sunday</span>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="au-message__item js-load-item">
-                                                <div class="au-message__item-inner">
-                                                    <div class="au-message__item-text">
-                                                        <div class="avatar-wrap online">
-                                                            <div class="avatar">
-                                                                <img src="images/icon/avatar-04.jpg"
-                                                                    alt="Michelle Sims">
-                                                            </div>
-                                                        </div>
-                                                        <div class="text">
-                                                            <h5 class="name">Michelle Sims</h5>
-                                                            <p>Lorem ipsum dolor sit amet</p>
-                                                        </div>
-                                                    </div>
-                                                    <div class="au-message__item-time">
-                                                        <span>Yesterday</span>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="au-message__item js-load-item">
-                                                <div class="au-message__item-inner">
-                                                    <div class="au-message__item-text">
-                                                        <div class="avatar-wrap">
-                                                            <div class="avatar">
-                                                                <img src="images/icon/avatar-05.jpg"
-                                                                    alt="Michelle Sims">
-                                                            </div>
-                                                        </div>
-                                                        <div class="text">
-                                                            <h5 class="name">Michelle Sims</h5>
-                                                            <p>Purus feugiat finibus</p>
-                                                        </div>
-                                                    </div>
-                                                    <div class="au-message__item-time">
-                                                        <span>Sunday</span>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="au-message__footer">
-                                            <button class="au-btn au-btn-load js-load-btn">load more</button>
-                                        </div>
-                                    </div>
-                                    <div class="au-chat">
-                                        <div class="au-chat__title">
-                                            <div class="au-chat-info">
-                                                <div class="avatar-wrap online">
-                                                    <div class="avatar avatar--small">
-                                                        <img src="images/icon/avatar-02.jpg" alt="John Smith">
-                                                    </div>
-                                                </div>
-                                                <span class="nick">
-                                                    <a href="#">John Smith</a>
-                                                </span>
-                                            </div>
-                                        </div>
-                                        <div class="au-chat__content">
-                                            <div class="recei-mess-wrap">
-                                                <span class="mess-time">12 Min ago</span>
-                                                <div class="recei-mess__inner">
-                                                    <div class="avatar avatar--tiny">
-                                                        <img src="images/icon/avatar-02.jpg" alt="John Smith">
-                                                    </div>
-                                                    <div class="recei-mess-list">
-                                                        <div class="recei-mess">Lorem ipsum dolor sit amet, consectetur
-                                                            adipiscing elit non iaculis</div>
-                                                        <div class="recei-mess">Donec tempor, sapien ac viverra</div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="send-mess-wrap">
-                                                <span class="mess-time">30 Sec ago</span>
-                                                <div class="send-mess__inner">
-                                                    <div class="send-mess-list">
-                                                        <div class="send-mess">Lorem ipsum dolor sit amet, consectetur
-                                                            adipiscing elit non iaculis</div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="au-chat-textfield">
-                                            <form class="au-form-icon">
-                                                <input class="au-input au-input--full au-input--h65" type="text"
-                                                    placeholder="Type a message">
-                                                <button class="au-input-icon">
-                                                    <i class="zmdi zmdi-camera"></i>
-                                                </button>
-                                            </form>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-12">
-                            <div class="copyright">
-                                <p>Copyright © 2018 Colorlib. All rights reserved. Template by <a
-                                        href="https://colorlib.com">Colorlib</a>.</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- END MAIN CONTENT-->
-        <!-- END PAGE CONTAINER-->
-    </div>
-
-    </div>
-
-    <!-- Jquery JS-->
-    <script src="vendor/jquery-3.2.1.min.js"></script>
-    <!-- Bootstrap JS-->
-    <script src="vendor/bootstrap-4.1/popper.min.js"></script>
-    <script src="vendor/bootstrap-4.1/bootstrap.min.js"></script>
-    <!-- Vendor JS       -->
-    <script src="vendor/slick/slick.min.js">
+    // Close the sidebar with the close button
+    function w3_close() {
+        mySidebar.style.display = "none";
+        overlayBg.style.display = "none";
+    }
     </script>
-    <script src="vendor/wow/wow.min.js"></script>
-    <script src="vendor/animsition/animsition.min.js"></script>
-    <script src="vendor/bootstrap-progressbar/bootstrap-progressbar.min.js">
-    </script>
-    <script src="vendor/counter-up/jquery.waypoints.min.js"></script>
-    <script src="vendor/counter-up/jquery.counterup.min.js">
-    </script>
-    <script src="vendor/circle-progress/circle-progress.min.js"></script>
-    <script src="vendor/perfect-scrollbar/perfect-scrollbar.js"></script>
-    <script src="vendor/chartjs/Chart.bundle.min.js"></script>
-    <script src="vendor/select2/select2.min.js">
-    </script>
-
-    <!-- Main JS-->
-    <script src="js/main.js"></script>
 
 </body>
 
 </html>
-<!-- end document-->
+
+
+<?php
+include 'Controllers/php/php_loadAllUsers.php';
+$countUser = 0;
+$countHotel = 0;
+$countAdmin = 0;
+foreach ($responseData as $response) {
+
+    $status = $response['status'];
+    if ($status == "user") {
+        $countUser++;
+    } else if ($status == "hotel") {
+        $countHotel++;
+    } else if ($status == "admin") {
+        $countAdmin++;
+    }
+}
+echo '
+<script>
+    document.getElementById("countUserVal").innerHTML = "'.$countUser.'";
+    document.getElementById("countHotelVal").innerHTML = "'.$countHotel.'";
+    document.getElementById("countAdminVal").innerHTML = "'.$countAdmin.'";
+</script>
+';
+?>
