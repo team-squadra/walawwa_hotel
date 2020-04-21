@@ -17,7 +17,7 @@ if(isset($_POST['upload'])){
 
     function getprice($hotel_name,$roomtype){
         //The data to send to the API
-        include '../Connecter/connecterlink.php';
+        include '../../Connecter/connecterlink.php';
         $clinklocal = $clink;   
 
         $postData = array(
@@ -49,7 +49,7 @@ if(isset($_POST['upload'])){
     }
 
     function gethotelimg($hotel_name) {
-            include '../Connecter/connecterlink.php';
+            include '../../Connecter/connecterlink.php';
             $clinklocal = $clink;
             //The data to send to the API
             $postData = array(
@@ -114,7 +114,7 @@ if(isset($_POST['upload'])){
     }
     else{
 
-        include '../Connecter/connecterlink.php';
+        include '../../Connecter/connecterlink.php';
         $clinklocal = $clink;
 
         $totprice = $roomprice * $datediffrance * $rooms;

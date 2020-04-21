@@ -1,5 +1,5 @@
 <?php
-include '../Connecter/connecterlink.php';
+include '../../Connecter/connecterlink.php';
 $clinklocal = $clink;
 
 if (isset($_POST['upload'])) {
