@@ -1,28 +1,12 @@
 <?php
+include '../../Connecter/connecterlink.php';
+$clinklocal = $clink;
 
 if (isset($_POST['upload'])) {
 
     $name = $_POST['uname'];
     $location = $_POST['location'];
     $review = $_POST['review'];
-
-    // //Image upload 
-    // // $target_file = basename($_FILES["img"]["name"]);
-    // $target_file = basename($_FILES["img"]["name"]);
-
-    // // Select file type
-    // $imageFileType = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
-
-    // // Valid file extensions
-    // $extensions_arr = array("jpg", "jpeg", "png", "gif");
-
-    // // Check extension
-    // if (in_array($imageFileType, $extensions_arr)) {
-
-    //     // Convert to base64 
-    //     $image_base64 = base64_encode(file_get_contents($_FILES['img']['tmp_name']));
-
-    // }
 
     //The data to send to the API
     $postData = array(
@@ -33,7 +17,7 @@ if (isset($_POST['upload'])) {
     );
 
     // Setup cURL
-    $ch = curl_init('https://mighty-inlet-78383.herokuapp.com/api/review/setreview');
+    $ch = curl_init( ''.$clinklocal.'api/review/setreview');
     curl_setopt_array($ch, array(
         CURLOPT_POST => TRUE,
         CURLOPT_RETURNTRANSFER => TRUE,

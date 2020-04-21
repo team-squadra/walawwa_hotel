@@ -479,7 +479,7 @@
 							$review = $response['review'];
 							$reviewImage = $response['reviewImage'];
 						
-							if(empty($email)){
+							if(empty($name)){
 								// header("Location:../login.html");
 								echo "No responce from server";
 							}

@@ -1,11 +1,12 @@
 <?php
+include '../Connecter/connecterlink.php';
+$clinklocal = $clink;
 
-$ch = curl_init( 'https://mighty-inlet-78383.herokuapp.com/api/hotels/hoteldata');
+$ch = curl_init( ''.$clinklocal.'api/hotels/hoteldata');
 curl_setopt_array($ch, array(
     CURLOPT_RETURNTRANSFER => TRUE
 ));
-curl_setopt($ch, CURLOPT_TIMEOUT_MS, 200000);
-// Send the request
+// Send the requests
 $response = curl_exec($ch);
 
 // Check for errors
